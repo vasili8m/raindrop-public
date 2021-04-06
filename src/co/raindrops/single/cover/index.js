@@ -4,12 +4,12 @@ import { FAVICON_ENDPOINT } from '~config/api'
 
 let sizes = {
     default: {
-        ar: '4:3',
+        width: 92,
         height: 69,
         mode: 'crop'
     },
     simple: {
-        ar: '1:1',
+        width: 24,
         height: 24
     },
     grid: {

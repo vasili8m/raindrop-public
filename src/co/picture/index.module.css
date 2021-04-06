@@ -2,6 +2,13 @@
     display: inline-block;
 }
 
+@supports not (aspect-ratio: 1/1) {
+    .picture {
+        width: var(--ar-w-fallback);
+        height: var(--ar-h-fallback);
+    }
+}
+
 .picture img {
     display: block;
     width: 100%;

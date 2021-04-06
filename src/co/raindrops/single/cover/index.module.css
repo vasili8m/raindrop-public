@@ -37,11 +37,13 @@
 }
 
 .simple {
+    width: var(--icon-size-regular) !important;
     height: var(--icon-size-regular) !important;
 }
 
 @media screen and (max-width: 1000px) {
     .list {
+        width: 68px !important;
         height: 51px !important;
     }
 }
