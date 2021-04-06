@@ -45,7 +45,8 @@ export default function Home({ collection, raindrops, user }) {
 
 				<Button 
 					variant='ghost'
-					href={`/${collection.slug}-${collection._id}/embed`}>
+					href={`/${collection.slug}-${collection._id}/embed`}
+					target='_blank'>
 					<Icon name='arrow-right-up' />
 				</Button>
 			</Page.Header>

@@ -53,11 +53,8 @@
     font-size: var(--font-size-h1);
     color: var(--text-color-secondary);
 }
-.header h2 a {
-    color: inherit;
-}
 
-.header h2 a:hover {
+.header a:hover h2 {
     text-decoration: underline;
 }
 

@@ -66,15 +66,19 @@ export default function Home({ collection, raindrops, user, parent, childrens })
 
 			<Page.Header>
 				{!!parent && (<>
-					<h2>
-						{!!parent.cover?.length && (
-							<Image 
-								src={parent.cover[0]}
-								size='large' />
-						)}
+					<Link href={`/${parent.slug}-${parent._id}`}>
+						<a>
+							<h2>
+								{!!parent.cover?.length && (
+									<Image 
+										src={parent.cover[0]}
+										size='large' />
+								)}
 
-						<Link href={`/${parent.slug}-${parent._id}`}>{parent.title}</Link>
-					</h2>
+								{parent.title}
+							</h2>
+						</a>
+					</Link>
 					
 
 					<span data-separator />
@@ -90,15 +94,24 @@ export default function Home({ collection, raindrops, user, parent, childrens })
 					{collection.title}
 				</h1>
 
-				<Button variant='flat' href={`/${collection.slug}-${collection._id}/embed`}>
+				<Button 
+					variant='flat' 
+					href={`/${collection.slug}-${collection._id}/export`}
+					title='Export & Share'>
 					<Icon name='upload-2' />
 				</Button>
 
-				<Button variant='flat' href={`/${collection.slug}-${collection._id}/search`}>
+				<Button 
+					variant='flat' 
+					href={`/${collection.slug}-${collection._id}/search`}
+					title='Search'>
 					<Icon name='search' />
 				</Button>
 
-				<Button variant='flat' href='https://raindrop.io'>
+				<Button 
+					variant='flat' 
+					href='https://raindrop.io'
+					title='Raindrop.io'>
 					<Logo />
 				</Button>
 			</Page.Header>

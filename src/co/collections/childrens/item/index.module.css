@@ -1,3 +1,20 @@
 .item {
-    
+    display: inline-grid;
+    grid-template-areas: 'cover title count';
+    grid-template-columns: min-content 1fr min-content;
+    grid-template-rows: min-content;
+    grid-gap: var(--padding-regular);
+    align-items: center;
+
+    color: inherit;
+}
+
+.count {
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-small);
+}
+
+.count:before {
+    content: '·';
+    margin-right: var(--padding-regular);
 }
