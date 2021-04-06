@@ -1,5 +1,4 @@
 .description {
-    grid-area: description;
     display: grid;
     grid-gap: var(--padding-large);
     padding-bottom: calc(var(--padding-large) + var(--padding-regular))

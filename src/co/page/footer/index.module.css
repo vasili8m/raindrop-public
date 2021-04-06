@@ -1,6 +1,4 @@
 .footer {
-    grid-area: footer;
-
     display: grid;
     align-items: center;
     grid-auto-flow: column;

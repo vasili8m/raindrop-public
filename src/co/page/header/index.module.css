@@ -1,5 +1,4 @@
 .header {
-    grid-area: header;
     margin: 0 calc(var(--padding-large) * -1);
     padding: var(--padding-large);
     
