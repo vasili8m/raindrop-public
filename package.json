@@ -1,15 +1,17 @@
 {
-  "name": "public",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "10.1.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  }
+	"name": "public",
+	"version": "0.1.0",
+	"scripts": {
+		"local": "next dev --port 3129",
+		"build": "next build"
+	},
+	"dependencies": {
+		"@svgr/webpack": "^5.5.0",
+		"date-fns": "^2.19.0",
+		"lodash": "^4.17.21",
+		"modern-normalize": "^1.0.0",
+		"next": "10.1.3",
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
+	}
 }

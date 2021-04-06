@@ -1,0 +1,22 @@
+.page {
+    min-height: 100%;
+
+    display: grid;
+    grid-column-gap: var(--padding-large);
+    grid-template-areas:    "la header ra"
+                            "la description ra"
+                            "la content ra"
+                            "la footer ra";
+    grid-template-columns:  1fr minmax(min(100%, 900px), 1fr) 1fr;
+    grid-template-rows:     min-content min-content 1fr min-content;
+}
+
+.page[data-full='true'] {
+    grid-template-columns:  calc(var(--button-size-regular) + var(--padding-large)) 1fr calc(var(--button-size-regular) + var(--padding-large));
+}
+
+@media screen and (max-width: 1000px) {
+    .page {
+        grid-template-columns:  0px 1fr 0px !important;
+    }
+}

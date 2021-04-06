@@ -1,0 +1,33 @@
+.footer {
+    grid-area: footer;
+
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+    grid-gap: calc(var(--padding-regular) + var(--padding-small));
+    justify-content: flex-start;
+
+    padding-top: calc(var(--padding-large) * 2);
+    padding-bottom: var(--padding-large);
+}
+
+.brand {
+    color: var(--text-color-secondary)
+}
+.brand:hover {
+    text-decoration: underline;
+}
+
+.site {
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+}
+
+.desc {
+    font-size: var(--font-size-micro);
+    display: block;
+    opacity: .7;
+}

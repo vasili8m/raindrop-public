@@ -1,0 +1,42 @@
+.cover {
+    grid-area: cover;
+    position: relative;
+    max-width: 100%;
+}
+
+.cover img {
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.cover img:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color-secondary);
+}
+
+.cover img:-moz-broken, .cover img:-moz-loading, .cover img:-moz-suppressed {
+    background: var(--background-color-secondary)
+}
+
+.cover:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 0 var(--line-size) var(--line-color);
+}
+
+@media screen and (max-width: 1000px) {
+    .list {
+        height: 51px !important;
+    }
+}

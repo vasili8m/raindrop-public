@@ -1,0 +1,21 @@
+.info {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    grid-gap: var(--padding-regular);
+
+    font-size: var(--font-size-small);
+    color: var(--text-color-secondary);
+}
+
+.info > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.info >:not(:first-child)::before {
+    content: '·';
+    margin-right: var(--padding-regular);
+}
