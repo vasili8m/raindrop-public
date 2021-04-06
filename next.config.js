@@ -10,6 +10,11 @@ module.exports = {
                 destination: '/view/:id',
             },
             {
+                source: '/(.*)-:id(\\d+)/:query(.+:.+)',
+                destination: '/view/:id/:query',
+            },
+
+            {
                 source: '/(.*)-:id(\\d+)/:section/:path*',
                 destination: '/:section/:id/:path*',
             },

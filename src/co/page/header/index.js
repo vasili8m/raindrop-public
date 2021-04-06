@@ -10,6 +10,8 @@ export default function Header({ children }) {
             setPinned(window.scrollY ? true : false)
         }, 50, { leading: true, trailing: true })
 
+        onScroll()
+
         window.addEventListener('scroll', onScroll)
         return ()=>window.removeEventListener('scroll', onScroll)
     }, [])

@@ -10,10 +10,10 @@ import Bookmarks from '~co/bookmark/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id } }) {
+export async function getStaticProps({ params: { id, query } }) {
 	const [ collection, raindrops ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id)
+		Api.raindrops.get(id, query)
 	])
 
 	if (!collection)
@@ -27,7 +27,7 @@ export async function getStaticProps({ params: { id } }) {
 			raindrops,
 			user
 		},
-		revalidate: 1,
+		revalidate: 3
 	}
 }
 
@@ -35,7 +35,26 @@ export default function Home({ collection, raindrops, user }) {
 	return (
 		<Page.Wrap full={collection.view == 'grid' || collection.view == 'masonry'}>
 			<Head>
+				<link rel='canonical' href={`https://${user.name}.raindrop.io/${collection.slug}-${collection._id}`} />
+
 				<title>{collection.title}</title>
+				<meta name='twitter:title' content={collection.title} />
+				<meta name='og:title' content={collection.title} />
+
+				<meta name='description' content={collection.description} />
+				<meta name='twitter:description' content={collection.description} />
+				<meta name='og:description' content={collection.description} />
+
+				<meta name='twitter:label1' content='Created by' />
+				<meta name='twitter:data1' content={user.name} />
+
+				{!!collection.cover?.length && (
+					<>
+						<link rel='icon' type='image/png' href={collection.cover[0]} />
+						<meta name='twitter:image' content={collection.cover[0]} />
+						<meta name='og:image' content={collection.cover[0]} />
+					</>
+				)}
 			</Head>
 
 			<Page.Header>
