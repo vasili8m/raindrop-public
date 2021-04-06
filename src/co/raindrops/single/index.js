@@ -3,7 +3,7 @@ import Info from '~co/helpers/info'
 import Cover from './cover'
 import { ShortDate } from '~modules/format/date'
 
-export default function BookmarkSingle({ view, cover, title, excerpt, domain, created, link }) {
+export default function RaindropsSingle({ view, cover, title, excerpt, domain, created, link }) {
     return (
         <article
             className={s.single+' '+s[view]}>
@@ -11,11 +11,19 @@ export default function BookmarkSingle({ view, cover, title, excerpt, domain, cr
                 <Cover
                     view={view} 
                     src={cover}
+                    domain={domain}
                     link={link} />
 
                 <div className={s.about}>
-                    <div className={s.title}>{title}</div>
-                    <div className={s.excerpt}>{excerpt}</div>
+                    <div className={s.title}>
+                        {title}
+                    </div>
+
+                    {!!excerpt && (
+                        <div className={s.excerpt}>
+                            {excerpt}
+                        </div>
+                    )}
 
                     <Info className={s.info}>
                         <span>{domain}</span>

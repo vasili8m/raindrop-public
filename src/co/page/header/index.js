@@ -20,9 +20,9 @@ export default function Header({ children }) {
         <header 
             className={s.header}
             data-pinned={pinned}>
-            {children}
-
             <div className={s.shadow} />
+
+            {children}
         </header>
     )
 }

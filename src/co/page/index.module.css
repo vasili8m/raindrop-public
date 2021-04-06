@@ -1,4 +1,5 @@
 .page {
+    padding-bottom: var(--padding-large);
     min-height: 100%;
 
     display: grid;

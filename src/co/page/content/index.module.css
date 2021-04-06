@@ -1,3 +1,7 @@
 .content {
     grid-area: content;
+
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-gap: var(--padding-large);
 }

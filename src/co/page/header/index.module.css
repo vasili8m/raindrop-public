@@ -14,7 +14,7 @@
 }
 
 .header > :not(:last-child) {
-    margin-right: calc(var(--padding-regular) + var(--padding-small))
+    margin-right: var(--padding-large)
 }
 
 .header[data-pinned='false'] {
@@ -30,10 +30,38 @@
 	}
 }
 
-.header h1 {
-    flex: 1;
+.header h1, .header h2 {
     margin: 0;
     padding: 0;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min-content;
+    grid-gap: calc(var(--padding-regular) + var(--padding-small));
+    align-items: center;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.header h1 {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.header h2 {
+    font-size: var(--font-size-h1);
+    color: var(--text-color-secondary);
+}
+
+.header a:hover h2 {
+    text-decoration: underline;
+}
+
+.header [data-separator]:before {
+    opacity: .4;
+    content: '/';
 }
 
 .shadow {

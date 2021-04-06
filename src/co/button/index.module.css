@@ -20,6 +20,10 @@
     padding: 0 var(--padding-regular);
     transition: background .1s linear;
 }
+.button[data-block='true'] {
+    display: grid;
+    justify-content: center;
+}
 
 /* size */
 .button[data-size='regular'] {
@@ -30,6 +34,10 @@
     --this-button-size: var(--button-size-small);
     font-size: var(--font-size-small);
     font-weight: 600;
+}
+
+.button[data-size='large'] {
+    --this-button-size: var(--button-size-large);
 }
 
 .button[data-single-icon='true'] {
@@ -49,7 +57,8 @@
 }
 
 .button[data-variant='ghost'], 
-.button[data-variant='flat']:hover {
+.button[data-variant='flat']:hover,
+.button[data-variant='regular']:active {
     background: var(--background-color-secondary);
 }
 

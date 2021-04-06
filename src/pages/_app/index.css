@@ -12,6 +12,7 @@
     --icon-size-large: 32px;
     --icon-size-regular: 24px;
 
+    --button-size-large: 48px;
     --button-size-regular: 32px;
     --button-size-small: 24px;
     --line-size: 1px;
@@ -27,7 +28,16 @@
 }
 
 /* Small screen */
-@media screen and (max-width: 1000px) {
+@media screen 
+and (max-width: 1000px) {
+    body {
+        padding: 0 !important;
+    }
+}
+
+@media screen 
+and (max-width: 1000px)
+and (min-device-width: 1000px) {
     :root {
         --padding-large: 16px;
         --padding-regular: 8px;
@@ -42,12 +52,9 @@
         --icon-size-large: 24px;
         --icon-size-regular: 18px;
 
+        --button-size-large: 32px;
         --button-size-regular: 24px;
         --button-size-small: 18px;
-    }
-
-    body {
-        padding: 0 !important;
     }
 }
 

@@ -1,11 +1,16 @@
 import s from './index.module.css'
 import Picture from '~co/picture'
+import { FAVICON_ENDPOINT } from '~config/api'
 
 let sizes = {
     default: {
         ar: '4:3',
         height: 69,
         mode: 'crop'
+    },
+    simple: {
+        ar: '1:1',
+        height: 24
     },
     grid: {
         ar: '16:9',
@@ -17,11 +22,12 @@ let sizes = {
     }
 }
 
-export default function BookmarkCover({ view, src, link }) {
+export default function RaindropsCover({ view, src, link, domain }) {
     return (
         <Picture 
             {...(sizes[view] || sizes.default)}
+            endpoint={view == 'simple' ? FAVICON_ENDPOINT : undefined}
             className={s.cover+' '+s[view]}
-            src={src || link} />
+            src={view == 'simple' ? domain : src || link} />
     )
 }

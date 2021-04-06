@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import Single from '../single'
 
-export default function BookmarkListing({ items=[], view='list' }) {
+export default function RaindropsListing({ items=[], view='list' }) {
     return (
         <div className={s.listing+' '+s[view]}>
             <div className={s.items}>

@@ -3,10 +3,9 @@ import Page from '~co/page'
 import Api from '~api'
 
 import Button from '~co/button'
-import Icon, { Logo, Image, Avatar } from '~co/icon'
-import Info from '~co/helpers/info'
-import Badge from '~co/helpers/badge'
-import Bookmarks from '~co/bookmark/listing'
+import Icon, { Logo, Image } from '~co/icon'
+import CollectionAuthor from '~co/collections/author'
+import Raindrops from '~co/raindrops/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -20,18 +19,20 @@ export async function getStaticProps({ params: { id, query } }) {
 		return { notFound: true }
 
 	const user = await Api.user.get(collection.user.$id)
+	const parent = await Api.collection.get(collection.parent?.$id)
 
 	return {
 		props: {
 			collection,
 			raindrops,
-			user
+			user,
+			parent
 		},
 		revalidate: 3
 	}
 }
 
-export default function Home({ collection, raindrops, user }) {
+export default function Home({ collection, raindrops, user, parent }) {
 	return (
 		<Page.Wrap full={collection.view == 'grid' || collection.view == 'masonry'}>
 			<Head>
@@ -58,13 +59,31 @@ export default function Home({ collection, raindrops, user }) {
 			</Head>
 
 			<Page.Header>
-				{!!collection.cover?.length && (
-					<Image 
-						src={collection.cover[0]}
-						size='large' />
-				)}
+				{!!parent && (<>
+					<a href={`/${parent.slug}-${parent._id}`}>
+						<h2>
+							{!!parent.cover?.length && (
+								<Image 
+									src={parent.cover[0]}
+									size='large' />
+							)}
 
-				<h1>{collection.title}</h1>
+							{parent.title}
+						</h2>
+					</a>
+
+					<span data-separator />
+				</>)}
+
+				<h1>
+					{!!collection.cover?.length && (
+						<Image 
+							src={collection.cover[0]}
+							size='large' />
+					)}
+
+					{collection.title}
+				</h1>
 
 				<Button variant='flat' href={`/${collection.slug}-${collection._id}/embed`}>
 					<Icon name='upload-2' />
@@ -80,29 +99,13 @@ export default function Home({ collection, raindrops, user }) {
 			</Page.Header>
 
 			<Page.Description>
-				{!!collection.description && (
-					<h2>{collection.description}</h2>
-				)}
-				
-				<Info>
-					<Button variant='flat' size='small'>
-						<Avatar 
-							src="https://avatars.githubusercontent.com/u/1203812?v=4" />
-						
-						{user.name}
-
-						{!!user.pro && (
-							<Badge variant='disabled'>Pro</Badge>
-						)}
-					</Button>
-
-					<span>{collection.count} bookmarks</span>
-					<span>last update {collection.lastAction}</span>
-				</Info>
+				<CollectionAuthor
+					collection={collection}
+					user={user} />
 			</Page.Description>
 
 			<Page.Content>
-				<Bookmarks 
+				<Raindrops 
 					view={collection.view}
 					items={raindrops} />
 			</Page.Content>
