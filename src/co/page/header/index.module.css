@@ -1,6 +1,6 @@
 .header {
     margin: 0 calc(var(--padding-large) * -1);
-    padding: var(--padding-large);
+    padding: calc(var(--padding-regular) + var(--padding-small)) var(--padding-large);
     
     position: sticky;
     z-index: 99;
@@ -53,8 +53,11 @@
     font-size: var(--font-size-h1);
     color: var(--text-color-secondary);
 }
+.header h2 a {
+    color: inherit;
+}
 
-.header a:hover h2 {
+.header h2 a:hover {
     text-decoration: underline;
 }
 

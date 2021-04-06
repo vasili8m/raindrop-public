@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Page from '~co/page'
+import Link from 'next/link'
 import Api from '~api'
 
 import Button from '~co/button'
 import Icon, { Logo, Image } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
 import Raindrops from '~co/raindrops/listing'
+import Childrens from '~co/collections/childrens'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -19,20 +21,24 @@ export async function getStaticProps({ params: { id, query } }) {
 		return { notFound: true }
 
 	const user = await Api.user.get(collection.user.$id)
-	const parent = await Api.collection.get(collection.parent?.$id)
+	const [ parent, childrens ] = await Promise.all([
+		Api.collection.get(collection.parent?.$id),
+		Api.collection.childrens(user._id, collection._id)
+	])
 
 	return {
 		props: {
 			collection,
 			raindrops,
 			user,
-			parent
+			parent,
+			childrens
 		},
 		revalidate: 3
 	}
 }
 
-export default function Home({ collection, raindrops, user, parent }) {
+export default function Home({ collection, raindrops, user, parent, childrens }) {
 	return (
 		<Page.Wrap full={collection.view == 'grid' || collection.view == 'masonry'}>
 			<Head>
@@ -60,17 +66,16 @@ export default function Home({ collection, raindrops, user, parent }) {
 
 			<Page.Header>
 				{!!parent && (<>
-					<a href={`/${parent.slug}-${parent._id}`}>
-						<h2>
-							{!!parent.cover?.length && (
-								<Image 
-									src={parent.cover[0]}
-									size='large' />
-							)}
+					<h2>
+						{!!parent.cover?.length && (
+							<Image 
+								src={parent.cover[0]}
+								size='large' />
+						)}
 
-							{parent.title}
-						</h2>
-					</a>
+						<Link href={`/${parent.slug}-${parent._id}`}>{parent.title}</Link>
+					</h2>
+					
 
 					<span data-separator />
 				</>)}
@@ -105,6 +110,9 @@ export default function Home({ collection, raindrops, user, parent }) {
 			</Page.Description>
 
 			<Page.Content>
+				<Childrens 
+					items={childrens} />
+
 				<Raindrops 
 					view={collection.view}
 					items={raindrops} />
