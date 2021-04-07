@@ -51,6 +51,10 @@
     color: var(--text-color-secondary);
 }
 
+.button[data-color='regular'] {
+    color: var(--text-color-regular);
+}
+
 /* variants */
 .button[data-variant='regular'] {
     box-shadow: 0 0 0 var(--line-size) var(--line-color);

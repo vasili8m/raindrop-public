@@ -18,3 +18,7 @@
     content: '·';
     margin-right: var(--padding-regular);
 }
+
+.item:hover .title {
+    text-decoration: underline;
+}
