@@ -117,9 +117,11 @@ export default function Home({ collection, raindrops, user, collections, query }
 			</Page.Description>
 
 			<Page.Content>
-				<Childrens 
-					collection={collection}
-					collections={collections} />
+				{!parseInt(query.page) && (
+					<Childrens 
+						collection={collection}
+						collections={collections} />
+				)}
 
 				<Raindrops 
 					collection={collection}
