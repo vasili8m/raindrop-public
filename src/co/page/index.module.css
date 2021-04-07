@@ -1,20 +1,22 @@
 .page {
-    padding: 0 var(--padding-large);
-    padding-bottom: var(--padding-large);
+    --page-width: 900px;
+
+    /* padding: 0 var(--padding-large); */
+    width: 100%;
+    padding: var(--padding-large) 0;
     min-height: 100%;
 
     display: flex;
     flex-direction: column;
-    width: min(100%, 900px);
-    margin: 0 auto;
 }
 
 .page[data-full='true'] {
-    width: 100%;
+    --page-width: calc(100% - var(--padding-large) * 4);
 }
 
 @media screen and (max-width: 1000px) {
     .page {
-        width: 100% !important;
+        padding: 0;
+        --page-width: calc(100% - var(--padding-large) * 2) !important;
     }
 }

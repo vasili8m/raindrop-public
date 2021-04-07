@@ -33,22 +33,26 @@ export default function Home({ collection, raindrops, user }) {
 	return (
 		<Page.Wrap full>
 			<Page.Header>
-				<h1>
-					{!!collection.cover?.length && (
-						<Image 
-							src={collection.cover[0]}
-							size='large' />
-					)}
+				<Page.Header.Title>
+					<h1>
+						{!!collection.cover?.length && (
+							<Image 
+								src={collection.cover[0]}
+								size='large' />
+						)}
 
-					{collection.title}
-				</h1>
+						{collection.title}
+					</h1>
+				</Page.Header.Title>
 
-				<Button 
-					variant='ghost'
-					href={`/${collection.slug}-${collection._id}/embed`}
-					target='_blank'>
-					<Icon name='arrow-right-up' />
-				</Button>
+				<Page.Header.Buttons>
+					<Button 
+						variant='ghost'
+						href={`/${collection.slug}-${collection._id}/embed`}
+						target='_blank'>
+						<Icon name='arrow-right-up' />
+					</Button>
+				</Page.Header.Buttons>
 			</Page.Header>
 
 			<Page.Description>

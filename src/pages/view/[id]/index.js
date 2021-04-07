@@ -64,57 +64,50 @@ export default function Home({ collection, raindrops, user, parent, childrens })
 				)}
 			</Head>
 
-			<Page.Header>
-				{!!parent && (<>
-					<Link href={`/${parent.slug}-${parent._id}`}>
-						<a>
-							<h2>
-								{!!parent.cover?.length && (
-									<Image 
-										src={parent.cover[0]}
-										size='large' />
-								)}
-
-								{parent.title}
-							</h2>
-						</a>
-					</Link>
-					
-
-					<span data-separator />
-				</>)}
-
-				<h1>
-					{!!collection.cover?.length && (
-						<Image 
-							src={collection.cover[0]}
-							size='large' />
+			<Page.Header.Wrap>
+				<Page.Header.Title>
+					{!!parent && (
+						<h2>
+							<Link href={`/${parent.slug}-${parent._id}`}>
+								<a>{parent.title}</a>
+							</Link>
+						</h2>
 					)}
 
-					{collection.title}
-				</h1>
+					<h1>
+						{!!collection.cover?.length && (
+							<Image 
+								src={collection.cover[0]}
+								size='large' />
+						)}
 
-				<Button 
-					variant='flat' 
-					href={`/${collection.slug}-${collection._id}/export`}
-					title='Export & Share'>
-					<Icon name='upload-2' />
-				</Button>
+						{collection.title}
+					</h1>
+				</Page.Header.Title>
 
-				<Button 
-					variant='flat' 
-					href={`/${collection.slug}-${collection._id}/search`}
-					title='Search'>
-					<Icon name='search' />
-				</Button>
+				<Page.Header.Buttons>
+					<Button 
+						variant='flat' 
+						href={`/${collection.slug}-${collection._id}/export`}
+						title='Export & Share'>
+						<Icon name='upload-2' />
+					</Button>
 
-				<Button 
-					variant='flat' 
-					href='https://raindrop.io'
-					title='Raindrop.io'>
-					<Logo />
-				</Button>
-			</Page.Header>
+					<Button 
+						variant='flat' 
+						href={`/${collection.slug}-${collection._id}/search`}
+						title='Search'>
+						<Icon name='search' />
+					</Button>
+
+					<Button 
+						variant='flat' 
+						href='https://raindrop.io'
+						title='Raindrop.io'>
+						<Logo />
+					</Button>
+				</Page.Header.Buttons>
+			</Page.Header.Wrap>
 
 			<Page.Description>
 				<CollectionAuthor
