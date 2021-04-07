@@ -1,15 +1,19 @@
 import s from './index.module.css'
+import Link from 'next/link'
 import Info from '~co/helpers/info'
 import Cover from './cover'
+import Path from './path'
 import { ShortDate } from '~modules/format/date'
 
-export default function RaindropsSingle({ view, cover, title, excerpt, domain, created, link }) {
+export default function RaindropsSingle({ item, collection, collections }) {
+    const { cover, title, excerpt, domain, created, link, tags } = item
+
     return (
         <article
-            className={s.single+' '+s[view]}>
+            className={s.single+' '+s[collection.view]}>
             <div className={s.item}>
                 <Cover
-                    view={view} 
+                    view={collection.view} 
                     src={cover}
                     domain={domain}
                     link={link} />
@@ -25,7 +29,24 @@ export default function RaindropsSingle({ view, cover, title, excerpt, domain, c
                         </div>
                     )}
 
+                    {!!tags && (
+                        <div className={s.tags}>
+                            {tags.map(tag=>
+                                <Link 
+                                    key={tag}
+                                    href={`${collection.slug}-${collection._id}/search/${encodeURIComponent('#'+tag)}`}>
+                                    <a className={s.tag}>{tag}</a>
+                                </Link>
+                            )}
+                        </div>
+                    )}
+
                     <Info className={s.info}>
+                        <Path 
+                            item={item}
+                            collection={collection}
+                            collections={collections} />
+
                         <span>{domain}</span>
                         <span><ShortDate date={created} /></span>
                     </Info>

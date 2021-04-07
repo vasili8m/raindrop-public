@@ -6,6 +6,13 @@
     height: var(--icon-size-regular);
 }
 
+.icon[data-size='small'] {
+    font-size: var(--icon-size-small);
+    line-height: var(--icon-size-small);
+    width: var(--icon-size-small);
+    height: var(--icon-size-small);
+}
+
 .icon[data-size='large'] {
     font-size: var(--icon-size-large);
     line-height: var(--icon-size-large);

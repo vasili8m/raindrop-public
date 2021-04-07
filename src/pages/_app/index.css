@@ -11,6 +11,7 @@
 
     --icon-size-large: 32px;
     --icon-size-regular: 24px;
+    --icon-size-small: 18px;
 
     --button-size-large: 48px;
     --button-size-regular: 32px;
@@ -23,6 +24,7 @@
     --background-color-regular: hsl(var(--background-hsl-regular));
     --background-color-secondary: #F3F5F6;
 
+    --accent-color: #3169FF;
     --text-color-secondary: #70767A;
     --line-color: rgba(0,0,0,.15);
 }
@@ -44,6 +46,7 @@ and (min-device-width: 1000px) {
 
         --icon-size-large: 24px;
         --icon-size-regular: 18px;
+        --icon-size-small: 14px;
 
         --button-size-large: 32px;
         --button-size-regular: 24px;
@@ -74,6 +77,7 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--accent-color);
 }
 
 h1 {

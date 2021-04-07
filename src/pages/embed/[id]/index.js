@@ -63,13 +63,13 @@ export default function Home({ collection, raindrops, user }) {
 
 			<Page.Content>
 				<Raindrops 
-					view={collection.view}
-					items={raindrops} />
+					collection={collection}
+					items={raindrops.items} />
 
 				<Button 
 					block
 					size='large'
-					href={`https://${user.name}.raindrop.io/${collection.slug}-${collection._id}`}
+					href={`/${collection.slug}-${collection._id}`}
 					target='_blank'>
 					Show more…
 				</Button>

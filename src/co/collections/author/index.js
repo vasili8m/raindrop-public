@@ -13,7 +13,7 @@ export default function CollectionAuthor({ collection, user }) {
             
             <Info>
                 <Button 
-                    href={`https://${user.name}.raindrop.io`}
+                    href='/'
                     variant='flat' 
                     size='small'>
                     <Avatar 
@@ -27,7 +27,7 @@ export default function CollectionAuthor({ collection, user }) {
                 </Button>
 
                 {/*<span>{collection.count} bookmarks</span>*/}
-                <span>created <ShortDate date={collection.created} /></span>
+                <span>updated <ShortDate date={collection.lastAction} /></span>
             </Info>
         </>
     )

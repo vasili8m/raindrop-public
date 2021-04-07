@@ -1,15 +1,16 @@
 import s from './index.module.css'
 import Single from '../single'
 
-export default function RaindropsListing({ items=[], view='list' }) {
+export default function RaindropsListing({ items=[], collection, collections }) {
     return (
-        <div className={s.listing+' '+s[view]}>
+        <div className={s.listing+' '+s[collection.view]}>
             <div className={s.items}>
                 {items.map(item=>(
                     <Single 
                         key={item._id}
-                        view={view}
-                        {...item} />
+                        collection={collection}
+                        collections={collections}
+                        item={item} />
                 ))}
             </div>
         </div>

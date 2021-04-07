@@ -2,47 +2,52 @@ import Head from 'next/head'
 import Page from '~co/page'
 import Link from 'next/link'
 import Api from '~api'
+import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
 import Button from '~co/button'
 import Icon, { Logo, Image } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
-import Raindrops from '~co/raindrops/listing'
 import Childrens from '~co/collections/childrens'
+import Path from '~co/collections/path'
+import Raindrops from '~co/raindrops/listing'
+import Pagination from '~co/pagination'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, query } }) {
+export async function getStaticProps({ params: { id, query={} } }) {
 	const [ collection, raindrops ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, query)
+		Api.raindrops.get(id, {
+			...query,
+			perpage: RAINDROPS_PER_PAGE
+		})
 	])
 
 	if (!collection)
 		return { notFound: true }
 
 	const user = await Api.user.get(collection.user.$id)
-	const [ parent, childrens ] = await Promise.all([
-		Api.collection.get(collection.parent?.$id),
-		Api.collection.childrens(user._id, collection._id)
-	])
+	const collections = await Api.collections.get(user._id)
 
 	return {
 		props: {
 			collection,
+			collections,
 			raindrops,
 			user,
-			parent,
-			childrens
+			query
 		},
 		revalidate: 3
 	}
 }
 
-export default function Home({ collection, raindrops, user, parent, childrens }) {
+export default function Home({ collection, raindrops, user, collections, query }) {
+	const pathname = `/${collection.slug}-${collection._id}`
+
 	return (
 		<Page.Wrap full={collection.view == 'grid' || collection.view == 'masonry'}>
 			<Head>
-				<link rel='canonical' href={`https://${user.name}.raindrop.io/${collection.slug}-${collection._id}`} />
+				<link rel='canonical' href={`https://${user.name}.raindrop.io${pathname}`} />
 
 				<title>{collection.title}</title>
 				<meta name='twitter:title' content={collection.title} />
@@ -66,13 +71,9 @@ export default function Home({ collection, raindrops, user, parent, childrens })
 
 			<Page.Header.Wrap>
 				<Page.Header.Title>
-					{!!parent && (
-						<h2>
-							<Link href={`/${parent.slug}-${parent._id}`}>
-								<a>{parent.title}</a>
-							</Link>
-						</h2>
-					)}
+					<Path 
+						collection={collection}
+						collections={collections} />
 
 					<h1>
 						{!!collection.cover?.length && (
@@ -117,11 +118,19 @@ export default function Home({ collection, raindrops, user, parent, childrens })
 
 			<Page.Content>
 				<Childrens 
-					items={childrens} />
+					collection={collection}
+					collections={collections} />
 
 				<Raindrops 
-					view={collection.view}
-					items={raindrops} />
+					collection={collection}
+					collections={collections}
+					items={raindrops.items} />
+
+				<Pagination 
+					prefix={`${pathname}/page:`}
+					page={query.page}
+					perpage={RAINDROPS_PER_PAGE}
+					count={raindrops.count} />
 			</Page.Content>
 
 			<Page.Footer />

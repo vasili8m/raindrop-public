@@ -67,3 +67,8 @@
     padding-right: 0;
     border-radius: var(--border-radius);
 }
+
+.button[data-variant='active'] {
+    background: var(--accent-color);
+    color: var(--background-color-regular);
+}
