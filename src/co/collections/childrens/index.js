@@ -8,11 +8,13 @@ export default function Childrens({ items=[] }) {
 
     return (
         <div className={s.childrens}>
-            {sortBy(items, ['sort']).map(item=>(
-                <Item 
-                    key={item._id}
-                    {...item} />
-            ))}
+            <div className={s.items}>
+                {sortBy(items, ['sort']).map(item=>(
+                    <Item 
+                        key={item._id}
+                        {...item} />
+                ))}
+            </div>
         </div>
     )
 }

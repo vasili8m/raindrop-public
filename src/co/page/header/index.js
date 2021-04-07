@@ -1,15 +1,20 @@
 import s from './index.module.css'
 import { useState, useEffect } from 'react'
-import debounce from 'lodash/debounce'
 
 export default {
     Wrap: function({ children }) {
         const [pinned, setPinned] = useState(false)
     
         useEffect(()=>{
-            const onScroll = debounce(function(e) {
-                setPinned(window.scrollY ? true : false)
-            }, 50, { leading: true, trailing: true })
+            let pinned = false
+            const onScroll = function(e) {
+                const changed = window.scrollY > 10
+
+                if (pinned != changed){
+                    pinned = changed
+                    setPinned(changed)
+                }
+            }
     
             onScroll()
     

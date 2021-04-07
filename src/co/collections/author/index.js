@@ -26,7 +26,7 @@ export default function CollectionAuthor({ collection, user }) {
                     )}
                 </Button>
 
-                <span>{collection.count} bookmarks</span>
+                {/*<span>{collection.count} bookmarks</span>*/}
                 <span>created <ShortDate date={collection.created} /></span>
             </Info>
         </>

@@ -1,5 +1,15 @@
 .childrens {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: var(--padding-large);
+    box-shadow: 0 calc(var(--line-size) * -1) 0 var(--line-color);
+    padding-top: var(--padding-regular);
+    overflow: hidden;
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--padding-regular) * -1);
+}
+
+.items > * {
+    margin: var(--padding-regular)
 }

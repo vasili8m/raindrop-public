@@ -5,14 +5,15 @@
     
     background: var(--background-color-regular);
     box-shadow: 0 -1px 0 var(--background-color-regular), 0 var(--line-size) 0 rgba(0,0,0,.13), 0 5px 15px rgba(0,0,0,.07);
-    transition: box-shadow .2s ease-in-out;
 }
 
 .header[data-pinned='false'] {
     background: transparent;
-    position: relative;
     backdrop-filter: none;
     box-shadow: none;
+}
+.header[data-pinned='true'] {
+    transition: box-shadow .2s ease-in-out;
 }
 
 @supports (backdrop-filter: none) {

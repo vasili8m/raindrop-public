@@ -14,9 +14,9 @@ export default function ChildrenItem({ _id, title, slug, cover, count }) {
                     {title}
                 </span>
 
-                <span className={s.count}>
+                {/*<span className={s.count}>
                     {count}
-                </span>
+                </span>*/}
             </a>
         </Link>
     )

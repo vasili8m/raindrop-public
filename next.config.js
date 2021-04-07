@@ -5,6 +5,13 @@ module.exports = {
 
     async rewrites() {
         return [
+            //user
+            {
+                source: '/',
+                destination: '/api/map-sub-domain',
+            },
+
+            //view
             {
                 source: '/(.*)-:id(\\d+$)',
                 destination: '/view/:id',
@@ -14,6 +21,7 @@ module.exports = {
                 destination: '/view/:id/:query',
             },
 
+            //collection embed/search/...
             {
                 source: '/(.*)-:id(\\d+)/:section/:path*',
                 destination: '/:section/:id/:path*',
