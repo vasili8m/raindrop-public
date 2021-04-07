@@ -2,7 +2,8 @@ import s from './index.module.css'
 import Button from '~co/button'
 import Icon from '~co/icon'
 
-export default function Pagination({ prefix='', page, count, perpage }) {
+export default function Pagination({ prefix='', count, perpage, ...etc }) {
+    const page = parseInt(etc.page)||0
     const pagesCount = parseInt(count/perpage)
 
     if (pagesCount<=1)
@@ -15,7 +16,8 @@ export default function Pagination({ prefix='', page, count, perpage }) {
                 key={i}
                 href={`${prefix}${i}`}
                 className={s.page}
-                variant={page == i ? 'active' : 'regular'}>
+                variant={page == i ? 'active' : 'regular'}
+                prefetch={false}>
                 {i+1}
             </Button>
         )
@@ -28,13 +30,13 @@ export default function Pagination({ prefix='', page, count, perpage }) {
 
             <div className={s.navigation}>
                 {!!(page > 0) && (
-                    <Button href={`${prefix}${parseInt(page)-1}`}>
+                    <Button href={`${prefix}${page-1}`}>
                         <Icon name='arrow-left' />
                     </Button>
                 )}
 
                 {!!(page < pagesCount) && (
-                    <Button href={`${prefix}${parseInt(page)+1}`}>
+                    <Button href={`${prefix}${page+1}`}>
                         <Icon name='arrow-right' />
                     </Button>
                 )}

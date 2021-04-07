@@ -49,6 +49,7 @@ export default function Home({ collection, raindrops, user }) {
 					<Button 
 						variant='ghost'
 						href={`/${collection.slug}-${collection._id}/embed`}
+						prefetch={false}
 						target='_blank'>
 						<Icon name='arrow-right-up' />
 					</Button>
@@ -70,6 +71,7 @@ export default function Home({ collection, raindrops, user }) {
 					block
 					size='large'
 					href={`/${collection.slug}-${collection._id}`}
+					prefetch={false}
 					target='_blank'>
 					Show more…
 				</Button>
