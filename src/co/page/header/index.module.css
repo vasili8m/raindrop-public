@@ -12,9 +12,6 @@
     backdrop-filter: none;
     box-shadow: none;
 }
-.header[data-pinned='true'] {
-    transition: box-shadow .2s ease-in-out;
-}
 
 @supports (backdrop-filter: none) {
 	.header {

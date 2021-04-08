@@ -19,19 +19,23 @@
     margin: 0 auto;
     padding: var(--padding-large) 0;
 
-    
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-gap: var(--padding-large);
 }
 
 .pages {
     display: grid;
-    grid-template-columns: repeat(auto-fit, var(--button-size-regular));
+    grid-auto-flow: column;
+    grid-template-columns: var(--button-size-regular);
     grid-template-rows: 1fr;
     grid-gap: var(--padding-large);
+    justify-content: flex-start;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, var(--background-color-regular) calc(100% - var(--button-size-regular)), transparent)
 }
 
-.page {
+.page, .pages .space {
     width: var(--button-size-regular);
     justify-content: center;
     text-align: center;

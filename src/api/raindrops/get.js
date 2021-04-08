@@ -8,10 +8,19 @@ export async function get(id, options={}) {
         params.set('sort', '-created')
 
     const res = await fetch(`${API_ENDPOINT}/raindrops/${id}?${params.toString()}`)
+    if (!res.ok)
+        return {
+            items: [],
+            count: 0
+        }
+
     const { result, items, count=0 } = await res.json()
 
     if (!result)
-        return []
+        return {
+            items: [],
+            count: 0
+        }
 
     return {
         items,

@@ -1,7 +1,10 @@
 .childrens {
-    box-shadow: 0 calc(var(--line-size) * -1) 0 var(--line-color);
-    padding-top: var(--padding-regular);
     overflow: hidden;
+}
+
+.childrens[data-inline='false'] {
+    padding-top: var(--padding-regular);
+    box-shadow: 0 calc(var(--line-size) * -1) 0 var(--line-color);
 }
 
 .items {

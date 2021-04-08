@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Error from 'next/error'
-import Page from '~co/page'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
+import Page from '~co/page'
 import Button from '~co/button'
 import Icon, { Logo, Image } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
@@ -53,7 +53,9 @@ export default function Home({ statusCode, collection, raindrops, user, collecti
 	const pathname = `/${collection.slug}-${collection._id}`
 
 	return (
-		<Page.Wrap full={collection.view == 'grid' || collection.view == 'masonry'}>
+		<Page.Wrap 
+			full={collection.view == 'grid' || collection.view == 'masonry'}
+			accentColor={collection.color}>
 			<Head>
 				<link rel='canonical' href={`https://${user.name}.raindrop.io${pathname}`} />
 

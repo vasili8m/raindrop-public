@@ -14,8 +14,3 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-.info >:not(:first-child)::before {
-    content: '·';
-    margin-right: var(--padding-regular);
-}

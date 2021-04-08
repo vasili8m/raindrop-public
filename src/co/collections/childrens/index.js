@@ -2,7 +2,7 @@ import s from './index.module.css'
 import sortBy from 'lodash/sortBy'
 import Item from './item'
 
-export default function Childrens({ collection={}, collections=[] }) {
+export default function Childrens({ collection={}, collections=[], inline=false }) {
     if (!collection ||
         !collection._id ||
         !collections.length)
@@ -17,7 +17,7 @@ export default function Childrens({ collection={}, collections=[] }) {
         return null
 
     return (
-        <div className={s.childrens}>
+        <div className={s.childrens} data-inline={inline}>
             <div className={s.items}>
                 {childrens.map(item=>(
                     <Item 

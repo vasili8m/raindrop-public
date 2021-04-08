@@ -1,4 +1,5 @@
 import s from './index.module.css'
+import { Fragment } from 'react'
 import Link from 'next/link'
 import Icon from '~co/icon'
 
@@ -23,7 +24,7 @@ export default function CollectionsPath({ collection, collections }) {
     return (
         <h2>
             {parents.map(({ _id, slug, title })=>(
-                <>
+                <Fragment key={_id}>
                     <Link href={`/${slug}-${_id}`}>
                         <a>{title}</a>
                     </Link>
@@ -32,7 +33,7 @@ export default function CollectionsPath({ collection, collections }) {
                         className={s.chevron}
                         name='arrow-right-s' 
                         size='small' />
-                </>
+                </Fragment>
             ))}
         </h2>
     )

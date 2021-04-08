@@ -16,8 +16,7 @@ export default function CollectionAuthor({ collection, user }) {
                     href='/'
                     variant='flat' 
                     size='small'>
-                    <Avatar 
-                        src="https://avatars.githubusercontent.com/u/1203812?v=4" />
+                    {!!user.avatar && <Avatar src={user.avatar} />}
                     
                     {user.name}
 
