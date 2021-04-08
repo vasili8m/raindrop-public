@@ -16,7 +16,8 @@ export default function RaindropsSingle({ item, collection, collections }) {
                     view={collection.view} 
                     src={cover}
                     domain={domain}
-                    link={link} />
+                    link={link}
+                    alt={title} />
 
                 <div className={s.about}>
                     <div className={s.title}>
@@ -54,7 +55,7 @@ export default function RaindropsSingle({ item, collection, collections }) {
                 </div>
             </div>
 
-            <a href={link} className={s.permalink} />
+            <a href={link} className={s.permalink}>{title}</a>
         </article>
     )
 }

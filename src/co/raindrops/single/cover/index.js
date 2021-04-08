@@ -22,12 +22,13 @@ let sizes = {
     }
 }
 
-export default function RaindropsCover({ view, src, link, domain }) {
+export default function RaindropsCover({ view, src, link, domain, alt }) {
     return (
         <Picture 
             {...(sizes[view] || sizes.default)}
             endpoint={view == 'simple' ? FAVICON_ENDPOINT : undefined}
             className={s.cover+' '+s[view]}
-            src={view == 'simple' ? domain : src || link} />
+            src={view == 'simple' ? domain : src || link}
+            alt={alt} />
     )
 }

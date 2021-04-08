@@ -48,6 +48,7 @@ export default function Home({ statusCode, collection, raindrops, user }) {
 						{!!collection.cover?.length && (
 							<Image 
 								src={collection.cover[0]}
+								alt={collection.title}
 								size='large' />
 						)}
 

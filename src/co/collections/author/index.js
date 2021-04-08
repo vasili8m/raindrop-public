@@ -16,7 +16,7 @@ export default function CollectionAuthor({ collection, user }) {
                     href='/'
                     variant='flat' 
                     size='small'>
-                    {!!user.avatar && <Avatar src={user.avatar} />}
+                    {!!user.avatar && <Avatar src={user.avatar} alt={user.name} />}
                     
                     {user.name}
 

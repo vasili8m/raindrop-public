@@ -16,6 +16,7 @@ export default function CollectionsListing({ items }) {
                         {!!item.cover?.length && (
 							<Image 
 								src={item.cover[0]}
+                                alt={item.title}
 								size='large' />
 						)}
                     </div>

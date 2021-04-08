@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import { THUMBNAILS_ENDPOINT } from '~config/api'
 
-export default function Image({ className='', src, width, height, ar, mode, endpoint=THUMBNAILS_ENDPOINT }) {
+export default function Image({ className='', src, width, height, ar, mode, alt, endpoint=THUMBNAILS_ENDPOINT }) {
     let link
 
     if (src)
@@ -26,7 +26,8 @@ export default function Image({ className='', src, width, height, ar, mode, endp
 
             <img 
                 loading='lazy'
-                decoding='async' />
+                decoding='async'
+                alt={alt} />
         </picture>
     )
 }

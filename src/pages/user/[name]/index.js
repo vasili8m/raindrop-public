@@ -60,6 +60,7 @@ export default function UserPage({ statusCode, user, collections }) {
 						{!!user.avatar && (
 							<Avatar 
 								src={user.avatar}
+								alt={user.name}
 								size='large' />
 						)}
 
