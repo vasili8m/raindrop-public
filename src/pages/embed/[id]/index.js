@@ -1,3 +1,4 @@
+import Error from 'next/error'
 import Page from '~co/page'
 import Api from '~api'
 
@@ -14,8 +15,14 @@ export async function getStaticProps({ params: { id, query } }) {
 		Api.raindrops.get(id, query)
 	])
 
+	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection)
-		return { notFound: true }
+		return {
+			props: {
+				statusCode: 404
+			},
+			revalidate: 10
+		}
 
 	const user = await Api.user.get(collection.user.$id)
 
@@ -29,7 +36,10 @@ export async function getStaticProps({ params: { id, query } }) {
 	}
 }
 
-export default function Home({ collection, raindrops, user }) {
+export default function Home({ statusCode, collection, raindrops, user }) {
+	if (statusCode)
+		return <Error statusCode={statusCode} />
+		
 	return (
 		<Page.Wrap full>
 			<Page.Header>

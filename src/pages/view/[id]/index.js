@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Error from 'next/error'
 import Page from '~co/page'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
@@ -21,13 +22,13 @@ export async function getStaticProps({ params: { id, query={} } }) {
 		})
 	])
 
-	//notFound: true doesn't clear cached version so instead use redirect :(
+	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection)
 		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
+			props: {
+				statusCode: 404
+			},
+			revalidate: 10
 		}
 
 	const user = await Api.user.get(collection.user.$id)
@@ -45,7 +46,10 @@ export async function getStaticProps({ params: { id, query={} } }) {
 	}
 }
 
-export default function Home({ collection, raindrops, user, collections, query }) {
+export default function Home({ statusCode, collection, raindrops, user, collections, query }) {
+	if (statusCode)
+		return <Error statusCode={statusCode} />
+
 	const pathname = `/${collection.slug}-${collection._id}`
 
 	return (
