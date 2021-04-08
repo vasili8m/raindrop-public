@@ -1,6 +1,7 @@
 .content {
     width: var(--page-width);
     margin: 0 auto;
+    padding: var(--padding-regular) 0;
     flex: 1;
     display: grid;
     grid-auto-rows: min-content;

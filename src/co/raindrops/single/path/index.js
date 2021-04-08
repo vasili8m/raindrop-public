@@ -1,5 +1,6 @@
 import s from './index.module.css'
 import { Image } from '~co/icon'
+import Button from '~co/button'
 
 export default function RaindropsSinglePath({ item, collection, collections }) {
     if (!collection ||
@@ -13,9 +14,12 @@ export default function RaindropsSinglePath({ item, collection, collections }) {
         return null
 
     return (
-        <a 
+        <Button 
             href={`/${parent.slug}-${parent._id}`}
-            className={s.path}>
+            className={s.path}
+            variant='flat' 
+            size='small'
+            prefetch={false}>
             {!!parent.cover?.length && (
                 <Image 
                     src={parent.cover[0]}
@@ -23,6 +27,6 @@ export default function RaindropsSinglePath({ item, collection, collections }) {
             )}
 
             {parent.title}
-        </a>
+        </Button>
     )
 }

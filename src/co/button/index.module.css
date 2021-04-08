@@ -20,6 +20,7 @@
     padding: 0 var(--padding-regular);
     transition: background .1s linear;
 }
+
 .button[data-block='true'] {
     display: grid;
     justify-content: center;
@@ -75,4 +76,10 @@
 .button[data-variant='active'] {
     background: var(--accent-color);
     color: var(--background-color-regular);
+}
+
+.button[data-variant='disabled'] {
+    pointer-events: none;
+    background: var(--background-color-disabled);
+    color: var(--text-color-disabled);
 }

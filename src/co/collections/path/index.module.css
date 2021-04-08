@@ -1,0 +1,7 @@
+.chevron {
+    opacity: .7;
+}
+
+.chevron:last-child {
+    display: none;
+}

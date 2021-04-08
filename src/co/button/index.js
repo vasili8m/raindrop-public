@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import Icon, { Logo } from '~co/icon'
 
-export default function Button({ className='', variant, color, size, block=false, href, ...props }) {
+export default function Button({ className='', variant, color, size, block=false, href, disabled=false, ...props }) {
     const Wrap = href ? Link : Fragment 
 
     return (
@@ -11,7 +11,7 @@ export default function Button({ className='', variant, color, size, block=false
             <a 
                 {...props} 
                 className={s.button+' '+className}
-                data-variant={variant || 'regular'}
+                data-variant={disabled ? 'disabled' : (variant || 'regular')}
                 data-color={color || 'secondary'}
                 data-size={size || 'regular'}
                 data-block={block}

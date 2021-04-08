@@ -4,6 +4,7 @@ import Header from './header'
 import Description from './description'
 import Content from './content'
 import Footer from './footer'
+import Pagination from './pagination'
 
 export default {
     Wrap: function({ children, full=false }) {
@@ -19,5 +20,6 @@ export default {
     Header,
     Description,
     Content,
-    Footer
+    Footer,
+    Pagination
 }

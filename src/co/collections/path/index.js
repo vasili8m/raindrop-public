@@ -1,4 +1,6 @@
+import s from './index.module.css'
 import Link from 'next/link'
+import Icon from '~co/icon'
 
 export default function CollectionsPath({ collection, collections }) {
     const parents = []
@@ -21,9 +23,16 @@ export default function CollectionsPath({ collection, collections }) {
     return (
         <h2>
             {parents.map(({ _id, slug, title })=>(
-                <Link href={`/${slug}-${_id}`}>
-                    <a>{title}</a>
-                </Link>
+                <>
+                    <Link href={`/${slug}-${_id}`}>
+                        <a>{title}</a>
+                    </Link>
+
+                    <Icon 
+                        className={s.chevron}
+                        name='arrow-right-s' 
+                        size='small' />
+                </>
             ))}
         </h2>
     )

@@ -1,14 +1,14 @@
 import s from './index.module.css'
 import BrandIcon from '~assets/brand/icon_48.svg'
 
-function Base({ as='span', size, ...etc }) {
+function Base({ as='span', size, className='', ...etc }) {
     const Component = as
 
     return (
         <Component 
             {...etc}
             data-size={size||'regular'}
-            className={s.icon} />
+            className={s.icon+' '+className} />
     )
 }
 

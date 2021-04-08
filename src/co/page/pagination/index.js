@@ -16,7 +16,7 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
                 key={i}
                 href={`${prefix}${i}`}
                 className={s.page}
-                variant={page == i ? 'active' : 'regular'}
+                variant={page == i ? 'active' : 'flat'}
                 prefetch={false}>
                 {i+1}
             </Button>
@@ -24,22 +24,24 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
 
     return (
         <div className={s.pagination}>
-            <div className={s.pages}>
-                {pages}
-            </div>
+            <div className={s.inner}>
+                <div className={s.pages}>
+                    {pages}
+                </div>
 
-            <div className={s.navigation}>
-                {!!(page > 0) && (
-                    <Button href={`${prefix}${page-1}`}>
+                <div className={s.navigation}>
+                    <Button 
+                        href={`${prefix}${page-1}`}
+                        disabled={!page}>
                         <Icon name='arrow-left' />
                     </Button>
-                )}
 
-                {!!(page < pagesCount) && (
-                    <Button href={`${prefix}${page+1}`}>
+                    <Button 
+                        href={`${prefix}${page+1}`}
+                        disabled={page >= pagesCount}>
                         <Icon name='arrow-right' />
                     </Button>
-                )}
+                </div>
             </div>
         </div>
     )

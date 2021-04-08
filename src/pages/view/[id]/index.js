@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Page from '~co/page'
-import Link from 'next/link'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
@@ -10,7 +9,6 @@ import CollectionAuthor from '~co/collections/author'
 import Childrens from '~co/collections/childrens'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
-import Pagination from '~co/pagination'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -23,8 +21,14 @@ export async function getStaticProps({ params: { id, query={} } }) {
 		})
 	])
 
+	//notFound: true doesn't clear cached version so instead use redirect :(
 	if (!collection)
-		return { notFound: true }
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		}
 
 	const user = await Api.user.get(collection.user.$id)
 	const collections = await Api.collections.get(user._id)
@@ -127,13 +131,13 @@ export default function Home({ collection, raindrops, user, collections, query }
 					collection={collection}
 					collections={collections}
 					items={raindrops.items} />
-
-				<Pagination 
-					prefix={`${pathname}/page:`}
-					page={query.page}
-					perpage={RAINDROPS_PER_PAGE}
-					count={raindrops.count} />
 			</Page.Content>
+
+			<Page.Pagination 
+				prefix={`${pathname}/page:`}
+				page={query.page}
+				perpage={RAINDROPS_PER_PAGE}
+				count={raindrops.count} />
 
 			<Page.Footer />
 		</Page.Wrap>

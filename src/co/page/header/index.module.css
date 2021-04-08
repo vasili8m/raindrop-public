@@ -58,6 +58,7 @@
 .title h2 {
     color: var(--text-color-secondary);
     padding-bottom: var(--padding-regular);
+    grid-gap: var(--padding-regular);
 }
 
 .title h2 a {

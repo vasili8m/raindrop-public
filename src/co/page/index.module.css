@@ -1,7 +1,6 @@
 .page {
     --page-width: 900px;
 
-    /* padding: 0 var(--padding-large); */
     width: 100%;
     padding: var(--padding-large) 0;
     min-height: 100%;
