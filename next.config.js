@@ -1,4 +1,6 @@
 module.exports = {
+    assetPrefix: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    
     future: {
         webpack5: true
     },
