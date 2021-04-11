@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import Icon from '~co/icon'
 
-export default function CollectionsPath({ collection, collections }) {
+export default function CollectionsPath({ collection, collections, user }) {
     const parents = []
 
     const find = (findId)=>{
@@ -25,7 +25,7 @@ export default function CollectionsPath({ collection, collections }) {
         <h2>
             {parents.map(({ _id, slug, title })=>(
                 <Fragment key={_id}>
-                    <Link href={`/${slug}-${_id}`}>
+                    <Link href={`/${user.name}/${slug}-${_id}`}>
                         <a>{title}</a>
                     </Link>
 

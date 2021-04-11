@@ -12,8 +12,8 @@ import Collections from '~co/collections/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { name } }) {
-	const user = await Api.user.get(name)
+export async function getStaticProps({ params: { user_name } }) {
+	const user = await Api.user.get(user_name)
 
 	if (!user)
 		return { props: { statusCode: 404 }, revalidate: 10 }
@@ -39,7 +39,7 @@ export default function UserPage({ statusCode, user, collections }) {
     return (
 		<Page.Wrap>
 			<Head>
-				<link rel='canonical' href={`https://${user.name}.raindrop.io/`} />
+				<link rel='canonical' href={`https://raindrop.io/${user.name}`} />
 
 				<title>{user.name}</title>
 				<meta name='twitter:title' content={user.name} />
@@ -120,7 +120,8 @@ export default function UserPage({ statusCode, user, collections }) {
 
 			<Page.Content>
 				<Collections 
-					items={collections} />
+					items={collections}
+					user={user} />
 			</Page.Content>
 
 			<Page.Footer />

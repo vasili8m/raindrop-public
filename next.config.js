@@ -5,26 +5,20 @@ module.exports = {
 
     async rewrites() {
         return [
-            //user
-            {
-                source: '/',
-                destination: '/api/map-sub-domain',
-            },
-
             //view
             {
-                source: '/(.*)-:id(\\d+$)',
-                destination: '/view/:id',
+                source: '/:user_name/(.*)-:id(\\d+$)',
+                destination: '/:user_name/view/:id',
             },
             {
-                source: '/(.*)-:id(\\d+)/:query(.+:.+)',
-                destination: '/view/:id/:query',
+                source: '/:user_name/(.*)-:id(\\d+)/:query(.+:.+)',
+                destination: '/:user_name/view/:id/:query',
             },
 
             //collection embed/search/...
             {
-                source: '/(.*)-:id(\\d+)/:section/:path*',
-                destination: '/:section/:id/:path*',
+                source: '/:user_name/(.*)-:id(\\d+)/:section/:path*',
+                destination: '/:user_name/:section/:id/:path*',
             },
         ]
     },

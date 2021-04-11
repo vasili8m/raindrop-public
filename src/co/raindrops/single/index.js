@@ -5,7 +5,7 @@ import Cover from './cover'
 import Path from './path'
 import { ShortDate } from '~modules/format/date'
 
-export default function RaindropsSingle({ item, collection, collections }) {
+export default function RaindropsSingle({ item, collection, collections, user }) {
     const { cover, title, excerpt, domain, created, link, tags } = item
 
     return (
@@ -47,7 +47,8 @@ export default function RaindropsSingle({ item, collection, collections }) {
                         <Path 
                             item={item}
                             collection={collection}
-                            collections={collections} />
+                            collections={collections}
+                            user={user} />
 
                         <span>{domain}</span>
                         <span><ShortDate date={created} /></span>

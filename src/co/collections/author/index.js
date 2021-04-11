@@ -13,7 +13,7 @@ export default function CollectionAuthor({ collection, user }) {
             
             <Info>
                 <Button 
-                    href='/'
+                    href={`/${user.name}`}
                     variant='flat' 
                     size='small'>
                     {!!user.avatar && <Avatar src={user.avatar} alt={user.name} />}

@@ -2,7 +2,7 @@ import s from './index.module.css'
 import { Image } from '~co/icon'
 import Button from '~co/button'
 
-export default function RaindropsSinglePath({ item, collection, collections }) {
+export default function RaindropsSinglePath({ item, collection, collections, user }) {
     if (!collection ||
         item.collection?.$id == collection._id)
         return null
@@ -15,7 +15,7 @@ export default function RaindropsSinglePath({ item, collection, collections }) {
 
     return (
         <Button 
-            href={`/${parent.slug}-${parent._id}`}
+            href={`/${user.name}/${parent.slug}-${parent._id}`}
             className={s.path}
             variant='flat' 
             size='small'

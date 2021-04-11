@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Childrens from '../childrens'
 import Icon, { Logo, Image } from '~co/icon'
 
-export default function CollectionsListing({ items }) {
+export default function CollectionsListing({ items, user }) {
     const root = sortBy(items.filter(({parent})=>!parent), ['title'])
 
     return (
@@ -21,7 +21,7 @@ export default function CollectionsListing({ items }) {
 						)}
                     </div>
                     
-                    <Link href={`/${item.slug}-${item._id}`}>
+                    <Link href={`/${user.name}/${item.slug}-${item._id}`}>
                         <a className={s.title}>
                             {item.title}
                         </a>
@@ -31,7 +31,8 @@ export default function CollectionsListing({ items }) {
                         inline={true}
                         className={s.childrens}
                         collection={item}
-                        collections={items} />
+                        collections={items}
+                        user={user} />
                 </div>
             ))}
         </div>

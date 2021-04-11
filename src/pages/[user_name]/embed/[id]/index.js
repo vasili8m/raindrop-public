@@ -9,10 +9,11 @@ import Raindrops from '~co/raindrops/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, query } }) {
-	const [ collection, raindrops ] = await Promise.all([
+export async function getStaticProps({ params: { id, user_name, query } }) {
+	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, query)
+		Api.raindrops.get(id, query),
+		Api.user.get(user_name)
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
@@ -23,8 +24,6 @@ export async function getStaticProps({ params: { id, query } }) {
 			},
 			revalidate: 10
 		}
-
-	const user = await Api.user.get(collection.user.$id)
 
 	return {
 		props: {
@@ -59,7 +58,7 @@ export default function Home({ statusCode, collection, raindrops, user }) {
 				<Page.Header.Buttons>
 					<Button 
 						variant='ghost'
-						href={`/${collection.slug}-${collection._id}/embed`}
+						href={`/${user.name}/${collection.slug}-${collection._id}/embed`}
 						prefetch={false}
 						target='_blank'>
 						<Icon name='arrow-right-up' />
@@ -81,7 +80,7 @@ export default function Home({ statusCode, collection, raindrops, user }) {
 				<Button 
 					block
 					size='large'
-					href={`/${collection.slug}-${collection._id}`}
+					href={`/${user.name}/${collection.slug}-${collection._id}`}
 					prefetch={false}
 					target='_blank'>
 					Show more…

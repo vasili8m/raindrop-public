@@ -2,9 +2,9 @@ import s from './index.module.css'
 import Link from 'next/link'
 import { Image } from '~co/icon'
 
-export default function ChildrenItem({ _id, title, slug, cover, count }) {
+export default function ChildrenItem({ _id, title, slug, cover, count, user }) {
     return (
-        <Link href={`/${slug}-${_id}`}>
+        <Link href={`/${user.name}/${slug}-${_id}`}>
             <a className={s.item}>
                 {!!(cover && cover.length) && (
                     <Image 

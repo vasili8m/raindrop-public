@@ -7,7 +7,7 @@ export default function Info({ className='', children, ...etc }) {
             {Array.isArray(children) ?
                 children.filter(child=>!!child).map((child, i, { length })=>(
                     <Fragment key={child.key||i}>
-                        {child}
+                        <span className={s.part}>{child}</span>
                         {i<length-1 && <span className={s.divider}>·</span>}
                     </Fragment>
                 ))

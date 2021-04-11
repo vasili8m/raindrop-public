@@ -14,3 +14,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.part:empty,
+.part:empty + .divider {
+    display: none;
+}
