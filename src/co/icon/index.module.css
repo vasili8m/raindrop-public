@@ -43,7 +43,7 @@
 }
 
 .activityIndicator {
-    color: var(--accent-color);
+    fill: currentColor;
 	position: relative;
 }
 

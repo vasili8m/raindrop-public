@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Icon, { ActivityIndicator } from '~co/icon'
 import Button from '~co/button'
 
-export default function RaindropsSearchField() {
+export default function SearchField({ option='search' }) {
     const router = useRouter()
     const input = useRef(null)
     const [value, setValue] = useState('')
@@ -12,7 +12,7 @@ export default function RaindropsSearchField() {
 
     useEffect(()=>{
         setValue(
-            new URLSearchParams(router.query.options).get('search')
+            new URLSearchParams(router.query.options).get(option) || ''
         )
     }, [router.query.options])
 
@@ -36,7 +36,7 @@ export default function RaindropsSearchField() {
             pathname: router.pathname.endsWith('[options]') ? router.pathname : `${router.pathname}/[options]`,
             query: {
                 ...router.query,
-                options: new URLSearchParams({ search: value }).toString()
+                options: new URLSearchParams({ [option]: value }).toString()
             }
         })
     }, [value])

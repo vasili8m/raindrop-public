@@ -1,11 +1,11 @@
 import s from './index.module.css'
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import Button from '~co/button'
 import Icon from '~co/icon'
 
-export default function Pagination({ count, perpage, ...etc }) {
+export default function Pagination({ count, perpage, force=false, ...etc }) {
     const router = useRouter()
 
     const _pagesRef = useRef(null)
@@ -33,7 +33,7 @@ export default function Pagination({ count, perpage, ...etc }) {
         }
     }, [router])
 
-    if (pagesCount<=1)
+    if (!force && pagesCount<=1)
         return null
 
     let pages = []
@@ -69,7 +69,7 @@ export default function Pagination({ count, perpage, ...etc }) {
 
                     <Button 
                         href={getHref(page+1)}
-                        disabled={page >= pagesCount}>
+                        disabled={page >= pagesCount-1 && force != 'next'}>
                         <Icon name='arrow-right' />
                     </Button>
                 </div>

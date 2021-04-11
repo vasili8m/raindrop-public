@@ -7,9 +7,7 @@ export default function Button({ className='', prefetch, variant, color, size, b
     const Wrap = href ? Link : Fragment 
 
     return (
-        <Wrap 
-            href={href}
-            prefetch={prefetch}>
+        <Wrap {...Wrap == Link ? { href, prefetch } : {}}>
             <a 
                 {...props} 
                 className={s.button+' '+className}

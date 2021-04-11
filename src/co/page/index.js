@@ -5,6 +5,7 @@ import Description from './description'
 import Content from './content'
 import Footer from './footer'
 import Pagination from './pagination'
+import Loading from './loading'
 
 export default {
     Wrap: function({ children, full=false, accentColor }) {
@@ -17,6 +18,8 @@ export default {
                         '--accent-color': accentColor
                     } : {})
                 }}>
+                <Loading />
+                
                 {children}
             </div>
         )

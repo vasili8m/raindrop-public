@@ -3,6 +3,7 @@
     position: relative;
     max-width: 100%;
     align-self: flex-start;
+    color: transparent;
 }
 
 .cover img {

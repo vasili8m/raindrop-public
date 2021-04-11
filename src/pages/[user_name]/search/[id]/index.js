@@ -7,7 +7,7 @@ import Page from '~co/page'
 import Link from 'next/link'
 import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
-import Field from '~co/raindrops/search/field'
+import Field from '~co/search/field'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -81,7 +81,8 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 			<Page.Pagination 
 				page={options.page}
 				perpage={options.perpage}
-				count={raindrops.count} />
+				count={raindrops.count}
+				force={raindrops.items.length ? 'next' : true} />
 
 			<Page.Footer />
 		</Page.Wrap>
