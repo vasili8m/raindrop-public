@@ -13,12 +13,13 @@ import Raindrops from '~co/raindrops/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, user_name, query={} } }) {
-	query.perpage = RAINDROPS_PER_PAGE
+export async function getStaticProps({ params: { id, user_name, options } }) {
+	options = Object.fromEntries(new URLSearchParams(options))
+	options.perpage = RAINDROPS_PER_PAGE
 
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, query),
+		Api.raindrops.get(id, options),
 		Api.user.get(user_name)
 	])
 
@@ -39,13 +40,13 @@ export async function getStaticProps({ params: { id, user_name, query={} } }) {
 			collections,
 			raindrops,
 			user,
-			query
+			options
 		},
 		revalidate: 3
 	}
 }
 
-export default function ViewScreen({ statusCode, collection, raindrops, user, collections, query }) {
+export default function ViewScreen({ statusCode, collection, raindrops, user, collections, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
@@ -130,7 +131,7 @@ export default function ViewScreen({ statusCode, collection, raindrops, user, co
 			</Page.Description>
 
 			<Page.Content>
-				{!parseInt(query.page) && (
+				{!parseInt(options.page) && (
 					<Childrens 
 						collection={collection}
 						collections={collections}
@@ -145,9 +146,8 @@ export default function ViewScreen({ statusCode, collection, raindrops, user, co
 			</Page.Content>
 
 			<Page.Pagination 
-				prefix={`${pathname}/page:`}
-				page={query.page}
-				perpage={query.perpage}
+				page={options.page}
+				perpage={options.perpage}
 				count={raindrops.count} />
 
 			<Page.Footer />

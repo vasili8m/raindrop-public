@@ -1,10 +1,13 @@
 import s from './index.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Image } from '~co/icon'
 
-export default function ChildrenItem({ _id, title, slug, cover, count, user }) {
+export default function ChildrenItem({ _id, title, slug, cover, count }) {
+    const router = useRouter()
+
     return (
-        <Link href={`/${user.name}/${slug}-${_id}`}>
+        <Link href={`/${router.query.user_name}/${slug}-${_id}`}>
             <a className={s.item}>
                 {!!(cover && cover.length) && (
                     <Image 

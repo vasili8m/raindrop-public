@@ -1,10 +1,13 @@
 import s from './index.module.css'
+import { useRouter } from 'next/router'
 import { Image } from '~co/icon'
 import Button from '~co/button'
 
-export default function RaindropsSinglePath({ item, collection, collections, user }) {
-    if (!collection ||
-        item.collection?.$id == collection._id)
+export default function RaindropsSinglePath({ item, collections }) {
+    const { query: { user_name, id } } = useRouter()
+
+    if (!id ||
+        item.collection?.$id == id)
         return null
 
     const parent = (collections||[])
@@ -15,7 +18,7 @@ export default function RaindropsSinglePath({ item, collection, collections, use
 
     return (
         <Button 
-            href={`/${user.name}/${parent.slug}-${parent._id}`}
+            href={`/${user_name}/${parent.slug}-${parent._id}`}
             className={s.path}
             variant='flat' 
             size='small'

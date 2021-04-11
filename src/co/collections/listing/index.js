@@ -1,11 +1,14 @@
 import s from './index.module.css'
 import sortBy from 'lodash/sortBy'
+import { useRouter } from 'next/router'
 
 import Link from 'next/link'
 import Childrens from '../childrens'
-import Icon, { Logo, Image } from '~co/icon'
+import { Image } from '~co/icon'
 
-export default function CollectionsListing({ items, user }) {
+export default function CollectionsListing({ items }) {
+    const router = useRouter()
+    
     const root = sortBy(
         items.filter(({parent})=>{
             if (parent)
@@ -31,7 +34,7 @@ export default function CollectionsListing({ items, user }) {
 						)}
                     </div>
                     
-                    <Link href={`/${user.name}/${item.slug}-${item._id}`}>
+                    <Link href={`/${router.query.user_name}/${item.slug}-${item._id}`}>
                         <a className={s.title}>
                             {item.title}
                         </a>
@@ -41,8 +44,7 @@ export default function CollectionsListing({ items, user }) {
                         inline={true}
                         className={s.childrens}
                         collection={item}
-                        collections={items}
-                        user={user} />
+                        collections={items} />
                 </div>
             ))}
         </div>

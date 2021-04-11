@@ -1,9 +1,13 @@
 import s from './index.module.css'
 import { Fragment } from 'react'
+import { useRouter } from 'next/router'
+
 import Link from 'next/link'
 import Icon from '~co/icon'
 
-export default function CollectionsPath({ collection, collections, user }) {
+export default function CollectionsPath({ collection, collections }) {
+    const router = useRouter()
+
     const parents = []
 
     const find = (findId)=>{
@@ -25,7 +29,7 @@ export default function CollectionsPath({ collection, collections, user }) {
         <h2>
             {parents.map(({ _id, slug, title })=>(
                 <Fragment key={_id}>
-                    <Link href={`/${user.name}/${slug}-${_id}`}>
+                    <Link href={`/${router.query.user_name}/${slug}-${_id}`}>
                         <a>{title}</a>
                     </Link>
 

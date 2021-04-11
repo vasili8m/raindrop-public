@@ -1,7 +1,8 @@
 import Error from 'next/error'
-import Page from '~co/page'
 import Api from '~api'
+import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
+import Page from '~co/page'
 import Button from '~co/button'
 import Icon, { Image } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
@@ -9,10 +10,13 @@ import Raindrops from '~co/raindrops/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, user_name, query } }) {
+export async function getStaticProps({ params: { id, user_name, options } }) {
+	options = Object.fromEntries(new URLSearchParams(options))
+	options.perpage = RAINDROPS_PER_PAGE
+
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, query),
+		Api.raindrops.get(id, options),
 		Api.user.get(user_name)
 	])
 

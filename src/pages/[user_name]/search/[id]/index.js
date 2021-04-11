@@ -1,8 +1,8 @@
 import Error from 'next/error'
-import Page from '~co/page'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
+import Page from '~co/page'
 import Link from 'next/link'
 import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
@@ -10,13 +10,14 @@ import Field from '~co/raindrops/search/field'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, user_name, query={} } }) {
-	query.sort = query.sort || (query.search?.length ? 'score' : '-created')
-	query.perpage = RAINDROPS_PER_PAGE
+export async function getStaticProps({ params: { id, user_name, options } }) {
+	options = Object.fromEntries(new URLSearchParams(options))
+	options.sort = options.sort || (options.search?.length ? 'score' : '-created')
+	options.perpage = RAINDROPS_PER_PAGE
 
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, query),
+		Api.raindrops.get(id, options),
 		Api.user.get(user_name)
 	])
 
@@ -34,13 +35,13 @@ export async function getStaticProps({ params: { id, user_name, query={} } }) {
 			collection,
 			raindrops,
 			user,
-			query,
+			options
 		},
 		revalidate: 3
 	}
 }
 
-export default function SearchScreen({ statusCode, collection, raindrops, user, query }) {
+export default function SearchScreen({ statusCode, collection, raindrops, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -54,17 +55,11 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 						<Icon name='arrow-left' size='small' />
 
 						<Link href={`/${user.name}/${collection.slug}-${collection._id}`}>
-							<a>
-								
-								{collection.title}
-							</a>
+							<a>{collection.title}</a>
 						</Link>
 					</h2>
 
-					<Field 
-						query={query}
-						collection={collection}
-						user={user} />
+					<Field />
 				</Page.Header.Title>
 			</Page.Header.Wrap>
 
@@ -73,13 +68,12 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 					collection={collection}
 					items={raindrops.items}
 					user={user} />
-
-				<Page.Pagination 
-					prefix={``}
-					page={query.page}
-					perpage={query.perpage}
-					count={raindrops.count} />
 			</Page.Content>
+
+			<Page.Pagination 
+				page={options.page}
+				perpage={options.perpage}
+				count={raindrops.count} />
 
 			<Page.Footer />
 		</Page.Wrap>

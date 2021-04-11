@@ -3,28 +3,22 @@ import { useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Icon from '~co/icon'
 
-export default function RaindropsSearchField({ query: { search=[], ...query }, collection, user }) {
+export default function RaindropsSearchField() {
     const router = useRouter()
-
     const [value, setValue] = useState(()=>
-        search
-            .map(({key, val})=>{
-                switch(key) {
-                    case 'word': return val
-                    case 'tag': return `#${val}`
-                    default: `${key}:${val}`
-                }
-            })
-            .join(' ')
+        new URLSearchParams(router.query.options).get('search')
     )
 
     const onSubmit = useCallback(e=>{
         e.preventDefault()
 
-        const path = `/${user.name}/${collection.slug}-${collection._id}/search`
-        router.push(value ? 
-            `${path}/${encodeURIComponent(value)}/${new URLSearchParams(query)}` :
-            path)
+        router.push({
+            pathname: router.pathname.endsWith('[options]') ? router.pathname : `${router.pathname}/[options]`,
+            query: {
+                ...router.query,
+                options: new URLSearchParams({ search: value }).toString()
+            }
+        })
     }, [value])
     
     return (

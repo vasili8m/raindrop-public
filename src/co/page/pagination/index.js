@@ -1,9 +1,13 @@
 import s from './index.module.css'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
+import { useRouter } from 'next/router'
+
 import Button from '~co/button'
 import Icon from '~co/icon'
 
-export default function Pagination({ prefix='', count, perpage, ...etc }) {
+export default function Pagination({ count, perpage, ...etc }) {
+    const router = useRouter()
+
     const _pagesRef = useRef(null)
     const page = parseInt(etc.page)||0
     const pagesCount = Math.ceil(count/perpage)
@@ -16,6 +20,19 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
         }
     }, [page])
 
+    const getHref = useCallback((page)=>{
+        const options = new URLSearchParams(router.query.options)
+        options.set('page', page)
+    
+        return {
+            pathname: router.pathname.endsWith('[options]') ? router.pathname : `${router.pathname}/[options]`,
+            query: {
+                ...router.query,
+                options: options.toString()
+            }
+        }
+    }, [router])
+
     if (pagesCount<=1)
         return null
 
@@ -25,7 +42,7 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
             <Button
                 key={i}
                 id={`page-${i}`}
-                href={`${prefix}${i}`}
+                href={getHref(i)}
                 className={s.page}
                 variant={page == i ? 'active' : 'flat'}
                 prefetch={false}>
@@ -45,13 +62,13 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
 
                 <div className={s.navigation}>
                     <Button 
-                        href={`${prefix}${page-1}`}
+                        href={getHref(page-1)}
                         disabled={!page}>
                         <Icon name='arrow-left' />
                     </Button>
 
                     <Button 
-                        href={`${prefix}${page+1}`}
+                        href={getHref(page+1)}
                         disabled={page >= pagesCount}>
                         <Icon name='arrow-right' />
                     </Button>

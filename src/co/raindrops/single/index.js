@@ -1,12 +1,15 @@
 import s from './index.module.css'
+import { useRouter } from 'next/router'
+
 import Link from 'next/link'
 import Info from '~co/helpers/info'
 import Cover from './cover'
 import Path from './path'
 import { ShortDate } from '~modules/format/date'
 
-export default function RaindropsSingle({ item, collection, collections, user }) {
+export default function RaindropsSingle({ item, collection, collections }) {
     const { cover, title, excerpt, domain, created, link, tags } = item
+    const { query } = useRouter()
 
     return (
         <article
@@ -35,7 +38,13 @@ export default function RaindropsSingle({ item, collection, collections, user })
                             {tags.map(tag=>
                                 <Link 
                                     key={tag}
-                                    href={`/${user.name}/${collection.slug}-${collection._id}/search/${encodeURIComponent('#'+tag)}`}
+                                    href={{
+                                        pathname: '/[user_name]/search/[id]/[options]',
+                                        query: {
+                                            ...query,
+                                            options: new URLSearchParams({ search: `#${tag}` }).toString()
+                                        }
+                                    }}
                                     prefetch={false}>
                                     <a className={s.tag}>{tag}</a>
                                 </Link>
@@ -46,9 +55,7 @@ export default function RaindropsSingle({ item, collection, collections, user })
                     <Info className={s.info}>
                         <Path 
                             item={item}
-                            collection={collection}
-                            collections={collections}
-                            user={user} />
+                            collections={collections} />
 
                         <span>{domain}</span>
                         <span><ShortDate date={created} /></span>

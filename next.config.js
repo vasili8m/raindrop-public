@@ -12,11 +12,7 @@ module.exports = {
                 source: '/:user_name/(.*)-:id(\\d+$)',
                 destination: '/:user_name/view/:id',
             },
-            {
-                source: '/:user_name/(.*)-:id(\\d+)/:query(.+:.+)',
-                destination: '/:user_name/view/:id/:query',
-            },
-
+            
             //collection embed/search/...
             {
                 source: '/:user_name/(.*)-:id(\\d+)/:section/:path*',
