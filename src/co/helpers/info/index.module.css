@@ -15,7 +15,8 @@
     white-space: nowrap;
 }
 
-.part:empty,
-.part:empty + .divider {
+.divider:first-child,
+.info > *:empty,
+.info > *:empty + .divider {
     display: none;
 }

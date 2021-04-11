@@ -14,17 +14,16 @@ import Raindrops from '~co/raindrops/listing'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name, query={} } }) {
+	query.perpage = RAINDROPS_PER_PAGE
+
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
-		Api.raindrops.get(id, {
-			...query,
-			perpage: RAINDROPS_PER_PAGE
-		}),
+		Api.raindrops.get(id, query),
 		Api.user.get(user_name)
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
-	if (!collection)
+	if (!collection || !user)
 		return {
 			props: {
 				statusCode: 404
@@ -46,7 +45,7 @@ export async function getStaticProps({ params: { id, user_name, query={} } }) {
 	}
 }
 
-export default function Home({ statusCode, collection, raindrops, user, collections, query }) {
+export default function ViewScreen({ statusCode, collection, raindrops, user, collections, query }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
@@ -58,6 +57,8 @@ export default function Home({ statusCode, collection, raindrops, user, collecti
 			accentColor={collection.color}>
 			<Head>
 				<link rel='canonical' href={`https://raindrop.io${pathname}`} />
+				<meta name='twitter:url' content={`https://raindrop.io${pathname}`} />
+				<meta name='og:url' content={`https://raindrop.io${pathname}`} />
 
 				<title>{collection.title}</title>
 				<meta name='twitter:title' content={collection.title} />
@@ -146,7 +147,7 @@ export default function Home({ statusCode, collection, raindrops, user, collecti
 			<Page.Pagination 
 				prefix={`${pathname}/page:`}
 				page={query.page}
-				perpage={RAINDROPS_PER_PAGE}
+				perpage={query.perpage}
 				count={raindrops.count} />
 
 			<Page.Footer />

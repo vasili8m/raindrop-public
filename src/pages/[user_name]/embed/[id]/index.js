@@ -17,7 +17,7 @@ export async function getStaticProps({ params: { id, user_name, query } }) {
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
-	if (!collection)
+	if (!collection || !user)
 		return {
 			props: {
 				statusCode: 404
@@ -35,13 +35,15 @@ export async function getStaticProps({ params: { id, user_name, query } }) {
 	}
 }
 
-export default function Home({ statusCode, collection, raindrops, user }) {
+export default function EmbedScreen({ statusCode, collection, raindrops, user }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
 	return (
-		<Page.Wrap full>
-			<Page.Header>
+		<Page.Wrap 
+			full
+			accentColor={collection.color}>
+			<Page.Header.Wrap>
 				<Page.Header.Title>
 					<h1>
 						{!!collection.cover?.length && (
@@ -58,13 +60,12 @@ export default function Home({ statusCode, collection, raindrops, user }) {
 				<Page.Header.Buttons>
 					<Button 
 						variant='ghost'
-						href={`/${user.name}/${collection.slug}-${collection._id}/embed`}
-						prefetch={false}
+						href={`/${user.name}/${collection.slug}-${collection._id}`}
 						target='_blank'>
 						<Icon name='arrow-right-up' />
 					</Button>
 				</Page.Header.Buttons>
-			</Page.Header>
+			</Page.Header.Wrap>
 
 			<Page.Description>
 				<CollectionAuthor

@@ -6,12 +6,22 @@ import Childrens from '../childrens'
 import Icon, { Logo, Image } from '~co/icon'
 
 export default function CollectionsListing({ items, user }) {
-    const root = sortBy(items.filter(({parent})=>!parent), ['title'])
+    const root = sortBy(
+        items.filter(({parent})=>{
+            if (parent)
+                return !items.find(({_id})=>_id==parent.$id)
+
+            return true
+        }),
+        ['title']
+    )
 
     return (
         <div className={s.listing}>
             {root.map(item=>(
-                <div className={s.item}>
+                <div 
+                    key={item._id}
+                    className={s.item}>
                     <div className={s.cover}>
                         {!!item.cover?.length && (
 							<Image 

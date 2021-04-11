@@ -6,7 +6,7 @@ import Icon from '~co/icon'
 export default function Pagination({ prefix='', count, perpage, ...etc }) {
     const _pagesRef = useRef(null)
     const page = parseInt(etc.page)||0
-    const pagesCount = parseInt(count/perpage)
+    const pagesCount = Math.ceil(count/perpage)
 
     useEffect(()=>{
         const elem = document.getElementById(`page-${page}`)
@@ -20,7 +20,7 @@ export default function Pagination({ prefix='', count, perpage, ...etc }) {
         return null
 
     let pages = []
-    for(var i=0;i<=pagesCount;i++)
+    for(var i=0;i<pagesCount;i++)
         pages.push(
             <Button
                 key={i}

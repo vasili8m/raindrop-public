@@ -35,7 +35,7 @@ export default function RaindropsSingle({ item, collection, collections, user })
                             {tags.map(tag=>
                                 <Link 
                                     key={tag}
-                                    href={`${collection.slug}-${collection._id}/search/${encodeURIComponent('#'+tag)}`}
+                                    href={`/${user.name}/${collection.slug}-${collection._id}/search/${encodeURIComponent('#'+tag)}`}
                                     prefetch={false}>
                                     <a className={s.tag}>{tag}</a>
                                 </Link>
