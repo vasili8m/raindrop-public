@@ -2,7 +2,7 @@
     background: var(--background-color-secondary);
     border-radius: calc(var(--padding-large) * 2);
     display: grid;
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: min-content 1fr min-content;
     padding: 0 var(--padding-regular);
     grid-gap: var(--padding-regular);
     align-items: center;

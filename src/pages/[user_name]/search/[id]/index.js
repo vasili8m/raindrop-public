@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
@@ -49,6 +50,13 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 		<Page.Wrap
 			full={collection.view == 'grid' || collection.view == 'masonry'}
 			accentColor={collection.color}>
+			<Head>
+				<title>Search {collection.title}</title>
+				{!!collection.cover?.length && (
+					<link rel='icon' type='image/png' href={collection.cover[0]} />
+				)}
+			</Head>
+
 			<Page.Header.Wrap>
 				<Page.Header.Title>
 					<h2>
