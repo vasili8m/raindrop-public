@@ -37,18 +37,20 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
         return null
 
     let pages = []
-    for(var i=0;i<pagesCount;i++)
-        pages.push(
-            <Button
-                key={i}
-                id={`page-${i}`}
-                href={getHref(i)}
-                className={s.page}
-                variant={page == i ? 'active' : 'flat'}
-                prefetch={false}>
-                {i+1}
-            </Button>
-        )
+
+    if (pagesCount>1)
+        for(var i=0;i<=pagesCount-1;i++)
+            pages.push(
+                <Button
+                    key={i}
+                    id={`page-${i}`}
+                    href={getHref(i)}
+                    className={s.page}
+                    variant={page == i ? 'active' : 'flat'}
+                    prefetch={false}>
+                    {i+1}
+                </Button>
+            )
 
     return (
         <div className={s.pagination}>

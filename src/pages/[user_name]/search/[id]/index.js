@@ -82,7 +82,7 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 				page={options.page}
 				perpage={options.perpage}
 				count={raindrops.count}
-				force={raindrops.items.length ? 'next' : true} />
+				force={raindrops.items.length==options.perpage ? 'next' : true} />
 
 			<Page.Footer />
 		</Page.Wrap>

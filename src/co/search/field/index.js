@@ -10,12 +10,17 @@ export default function SearchField({ option='search' }) {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
 
+    //on search change
     useEffect(()=>{
         setValue(
             new URLSearchParams(router.query.options).get(option) || ''
         )
+
+        if (input.current)
+            input.current.focus()
     }, [router.query.options])
 
+    //on loading screen
     useEffect(() => {
         const routeChangeStart = () => setLoading(true)
         const routeChangeComplete = () => setLoading(false)
@@ -29,6 +34,7 @@ export default function SearchField({ option='search' }) {
         }
     }, [setLoading])
 
+    //on submit
     const onSubmit = useCallback(e=>{
         e.preventDefault()
 
