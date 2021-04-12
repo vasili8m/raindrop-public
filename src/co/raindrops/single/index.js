@@ -64,7 +64,8 @@ export default function RaindropsSingle({ item, collection, collections, target 
             <a 
                 target={target}
                 href={link} 
-                className={s.permalink}>
+                className={s.permalink}
+                rel='nofollow'>
                 {title}
             </a>
         </article>
