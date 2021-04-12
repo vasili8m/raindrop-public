@@ -53,16 +53,22 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
-	const pathname = `/${user.name}/${collection.slug}-${collection._id}`
+	const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}`
 
 	return (
 		<Page.Wrap 
 			full={collection.view == 'grid' || collection.view == 'masonry'}
 			accentColor={collection.color}>
 			<Head>
-				<link rel='canonical' href={`https://raindrop.io${pathname}`} />
-				<meta name='twitter:url' content={`https://raindrop.io${pathname}`} />
-				<meta name='og:url' content={`https://raindrop.io${pathname}`} />
+				<link 
+					rel='alternate'
+					type='application/json+oembed'
+					href={`${url}/oembed`}
+  					title={collection.title} />
+
+				<link rel='canonical' href={url} />
+				<meta name='twitter:url' content={url} />
+				<meta name='og:url' content={url} />
 
 				<title>{collection.title}</title>
 				<meta name='twitter:title' content={collection.title} />
@@ -127,7 +133,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 
 			<Page.Description>
 				<CollectionAuthor
-					collection={collection}
+					collection={{...collection, count: raindrops.count}}
 					user={user} />
 			</Page.Description>
 

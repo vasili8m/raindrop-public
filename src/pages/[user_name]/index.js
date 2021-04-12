@@ -73,12 +73,12 @@ export default function UserPage({ statusCode, user, collections }) {
 				</Page.Header.Title>
 
 				<Page.Header.Buttons>
-					<Button 
+					{/* {<Button 
 						variant='flat' 
 						href={`/user/${user.name}/export`}
 						title='Export & Share'>
 						<Icon name='upload-2' />
-					</Button>
+					</Button>} */}
 
 					<Button 
 						variant='flat' 

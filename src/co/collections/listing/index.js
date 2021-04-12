@@ -2,6 +2,7 @@ import s from './index.module.css'
 import sortBy from 'lodash/sortBy'
 import { useRouter } from 'next/router'
 
+import { Buttons } from '~co/button'
 import Link from 'next/link'
 import Childrens from '../childrens'
 import CollectionCover from '~co/collections/cover'
@@ -37,11 +38,12 @@ export default function CollectionsListing({ items }) {
                         </a>
                     </Link>
 
-                    <Childrens
-                        inline={true}
-                        className={s.childrens}
-                        collection={item}
-                        collections={items} />
+                    <Buttons className={s.childrens}>
+                        <Childrens
+                            inline={true}
+                            collection={item}
+                            collections={items} />
+                    </Buttons>
                 </div>
             ))}
         </div>

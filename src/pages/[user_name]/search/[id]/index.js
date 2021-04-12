@@ -17,12 +17,13 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || (options.search?.length ? 'score' : '-created')
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, raindrops, filters, user ] = await Promise.all([
+	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
-		Api.filters.get(id, options),
 		Api.user.get(user_name)
 	])
+
+	const filters = !options.page ? await Api.filters.get(id, options) : {}
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection || !user)
