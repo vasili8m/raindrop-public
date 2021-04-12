@@ -20,10 +20,8 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
-		Api.user.get(user_name)
+		Api.user.getByName(user_name)
 	])
-
-	const filters = !options.page ? await Api.filters.get(id, options) : {}
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection || !user)
@@ -34,9 +32,13 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 			revalidate: 10
 		}
 
+	const filters = !options.page ? await Api.filters.get(id, options) : {}
+	const collections = await Api.collections.get(user._id)
+
 	return {
 		props: {
 			collection,
+			collections,
 			raindrops,
 			filters,
 			user,
@@ -46,7 +48,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function SearchScreen({ statusCode, collection, raindrops, filters, user, options }) {
+export default function SearchScreen({ statusCode, collection, collections, raindrops, filters, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -83,6 +85,7 @@ export default function SearchScreen({ statusCode, collection, raindrops, filter
 
 				<Raindrops 
 					collection={collection}
+					collections={collections}
 					items={raindrops.items}
 					user={user} />
 			</Page.Content>

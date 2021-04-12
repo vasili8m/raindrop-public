@@ -5,7 +5,7 @@ const cache = {}
 async function getUrl(id) {
     if (cache[id]) return cache[id]
 
-    const user = await Api.user.get(id)
+    const user = await Api.user.getById(id)
     if (!user) return cache[id]=null
 
     return cache[id]=`https://raindrop.io/${user.name}`

@@ -8,7 +8,7 @@ async function getUrl(id) {
     const collection = await Api.collection.get(id)
     if (!collection) return null
 
-    const user = await Api.user.get(collection.user?.$id)
+    const user = await Api.user.getById(collection.user?.$id)
     if (!user) return null
 
     return cache[id]=`https://raindrop.io/${user.name}/${collection.slug}-${collection._id}`

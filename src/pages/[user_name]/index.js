@@ -13,7 +13,7 @@ import Collections from '~co/collections/listing'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { user_name } }) {
-	const user = await Api.user.get(user_name)
+	const user = await Api.user.getByName(user_name)
 
 	if (!user)
 		return { props: { statusCode: 404 }, revalidate: 10 }
@@ -91,9 +91,9 @@ export default function UserPage({ statusCode, user, collections }) {
 
 			<Page.Description>
 				<Info>
-					<span>Member since <ShortDate date={user.registered} /></span>
 					<span>{collections.length} public collections</span>
-					
+					<span>Member since <ShortDate date={user.registered} /></span>
+
 					{!!user.twitter?.screen_name && (
 						<Button
 							href={`https://twitter.com/${user.twitter?.screen_name}`}

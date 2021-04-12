@@ -19,7 +19,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
-		Api.user.get(user_name)
+		Api.user.getByName(user_name)
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:

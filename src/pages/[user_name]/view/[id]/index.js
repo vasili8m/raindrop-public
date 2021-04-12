@@ -22,7 +22,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
 		Api.filters.get(id),
-		Api.user.get(user_name)
+		Api.user.getByName(user_name)
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
