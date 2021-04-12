@@ -1,5 +1,6 @@
 .toolbar {
     position: relative;
+    overflow: hidden;
 }
 .toolbar:after {
     content: '';
@@ -16,6 +17,17 @@
 
 .inner {
     width: var(--page-width);
-    margin: 0 auto;
-    padding: calc(var(--padding-regular) + var(--padding-small)) 0;
+    margin: calc(var(--padding-regular) + var(--padding-small)) auto;
+    padding: 1px;
+
+    display: flex;
+    gap: calc(var(--padding-regular) + var(--padding-small));
+    flex-wrap: wrap;
+
+    height: calc(var(--button-size-regular) + 2px);
+    overflow: hidden;
+}
+
+.inner:empty {
+    display: none;
 }

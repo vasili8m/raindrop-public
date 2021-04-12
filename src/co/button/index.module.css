@@ -91,7 +91,6 @@
 /* group */
 .buttons {
     display: flex;
-}
-.buttons .button:not(:last-child) {
-    margin-right: calc(var(--padding-regular) + var(--padding-small));
+    flex-wrap: wrap;
+    gap: var(--padding-regular)
 }

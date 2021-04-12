@@ -18,9 +18,10 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, raindrops, user ] = await Promise.all([
+	const [ collection, raindrops, filters, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
+		Api.filters.get(id),
 		Api.user.get(user_name)
 	])
 
@@ -40,6 +41,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 			collection,
 			collections,
 			raindrops,
+			filters,
 			user,
 			options
 		},
@@ -47,7 +49,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function ViewScreen({ statusCode, collection, raindrops, user, collections, options }) {
+export default function ViewScreen({ statusCode, collection, collections, raindrops, filters, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
@@ -134,6 +136,7 @@ export default function ViewScreen({ statusCode, collection, raindrops, user, co
 					<Filters 
 						collection={collection}
 						collections={collections}
+						filters={filters}
 						user={user} />
 				</Page.Toolbar>
 			)}

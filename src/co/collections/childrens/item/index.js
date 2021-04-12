@@ -1,26 +1,20 @@
-import s from './index.module.css'
-import Link from 'next/link'
+import Button from '~co/button'
 import { useRouter } from 'next/router'
 import CollectionCover from '~co/collections/cover'
 
-export default function ChildrenItem({ _id, title, slug, cover, count }) {
+export default function ChildrenItem({ _id, title, slug, cover, variant }) {
     const router = useRouter()
 
     return (
-        <Link href={`/${router.query.user_name}/${slug}-${_id}`}>
-            <a className={s.item}>
-                <CollectionCover
-                    cover={cover}
-                    title={title} />
+        <Button 
+            href={`/${router.query.user_name}/${slug}-${_id}`}
+            variant={variant}>
+            <CollectionCover
+                cover={cover}
+                title={title}
+                size='small' />
 
-                <span className={s.title}>
-                    {title}
-                </span>
-
-                {/*<span className={s.count}>
-                    {count}
-                </span>*/}
-            </a>
-        </Link>
+            {title}
+        </Button>
     )
 }
