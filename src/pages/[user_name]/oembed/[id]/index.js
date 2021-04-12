@@ -1,7 +1,24 @@
 import Api from '~api'
 
-export function getHTML(json) {
-    return `<iframe width="${json.width}" height="${json.height}" src="${json.author_url}/design-66/embed" title="${json.title}" frameborder="0" allowfullscreen></iframe>`
+const base = {
+    success: true,
+    version: '1.0',
+    type: 'rich',
+    provider_name: 'Raindrop.io',
+    provider_url: 'https://raindrop.io/',
+    width: 500,
+    height: 400
+}
+
+export function getHTML(user_name, { title, slug, _id }) {
+    return (`<iframe 
+        width="${base.width}" 
+        height="${base.height}" 
+        src="https://raindrop.io/${user_name}/${slug}-${_id}/embed" 
+        title="${title}"
+        frameborder="0"
+        allowfullscreen></iframe>`)
+        .replace(/\s+/g, ' ')
 }
 
 export async function getServerSideProps({ params: { id, user_name }, res }) {
@@ -12,24 +29,22 @@ export async function getServerSideProps({ params: { id, user_name }, res }) {
         }
 
     const json = {
-        success: true,
-        version: '1.0',
-        type: 'rich',
-        provider_name: 'Raindrop.io',
-        provider_url: 'https://raindrop.io/',
-        width: 500,
-        height: 400,
+        ...base,
         title: collection.title,
         author_name: user_name,
         author_url: `https://raindrop.io/${user_name}`,
-        thumbnail_url: collection.cover?.length ? collection.cover[0] : '',
+        thumbnail_url: collection.cover?.length ? 
+            collection.cover[0] : 
+            `https://${process.env.VERCEL_URL}/icon_128.png`,
+        thumbnail_width: 128,
+        thumbnail_height: 128,
         cache_age: 3600
     }
 
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
     res.write(JSON.stringify({
         ...json,
-        html: getHTML(json)
+        html: getHTML(user_name, collection)
     }, null, 4))
     res.end()
 

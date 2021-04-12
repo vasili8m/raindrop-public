@@ -22,28 +22,20 @@ module.exports = {
         ]
     },
 
-    // async headers() {
-    //     return [
-    //         {
-    //             source: '/(.*)',
-    //             headers: [
-    //                 {
-    //                     key: 'X-Frame-Options',
-    //                     value: 'DENY'
-    //                 }
-    //             ]
-    //         },
-    //         {
-    //             source: '/(.*)embed',
-    //             headers: [
-    //                 {
-    //                     key: 'X-Frame-Options',
-    //                     value: ''
-    //                 }
-    //             ]
-    //         }
-    //     ]
-    // },
+    async headers() {
+        return [
+            //deny iframe all except /embed routes
+            {
+                source: '/((?!.+\/embed).+)',
+                headers: [
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'DENY'
+                    }
+                ]
+            }
+        ]
+    },
 
     webpack(config) {
         config.module.rules.push({
