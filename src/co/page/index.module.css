@@ -1,6 +1,7 @@
 .page {
     --page-width: 900px;
 
+    background: var(--background-color-regular);
     position: relative;
     width: 100%;
     padding: var(--padding-large) 0;

@@ -77,7 +77,6 @@ body {
     margin: 0;
     padding: 0;
     color: var(--text-color-regular);
-    background: var(--background-color-regular);
 }
 
 a {

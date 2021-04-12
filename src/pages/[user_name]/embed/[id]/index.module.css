@@ -1,3 +1,7 @@
+.page, .page:after {
+    border-radius: var(--border-radius);
+}
+
 .page:after {
     position: fixed;
     top: 0;
@@ -8,4 +12,9 @@
     pointer-events: none;
     box-shadow: inset 0 0 0 var(--line-size) var(--line-color);
     content: '';
+}
+
+.header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }

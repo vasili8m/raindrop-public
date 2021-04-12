@@ -2,11 +2,10 @@ import s from './index.module.css'
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
-import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
 import Page from '~co/page'
 import Button from '~co/button'
-import Icon, { Image } from '~co/icon'
+import Icon from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
 import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
@@ -15,7 +14,7 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
-	options.perpage = RAINDROPS_PER_PAGE
+	options.perpage = 15
 
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
@@ -55,7 +54,7 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 				<meta name='robots' content='noindex' />
 			</Head>
 
-			<Page.Header.Wrap>
+			<Page.Header.Wrap className={s.header}>
 				<Page.Header.Title>
 					<h1>
 						<CollectionCover 
