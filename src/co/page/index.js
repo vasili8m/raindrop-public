@@ -9,10 +9,10 @@ import Loading from './loading'
 import Toolbar from './toolbar'
 
 export default {
-    Wrap: function({ children, full=false, accentColor }) {
+    Wrap: function({ children, full=false, accentColor, className='' }) {
         return (
             <div 
-                className={s.page} 
+                className={s.page+' '+className}
                 data-full={full}
                 style={{
                     ...(accentColor ? {

@@ -1,3 +1,4 @@
+import s from './index.module.css'
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
@@ -48,7 +49,8 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 	return (
 		<Page.Wrap 
 			full
-			accentColor={collection.color}>
+			accentColor={collection.color}
+			className={s.page}>
 			<Head>
 				<meta name='robots' content='noindex' />
 			</Head>
