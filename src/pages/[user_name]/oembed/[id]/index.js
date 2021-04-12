@@ -12,6 +12,7 @@ export async function getServerSideProps({ params: { id, user_name }, res }) {
         }
 
     const json = {
+        success: true,
         version: '1.0',
         type: 'rich',
         provider_name: 'Raindrop.io',
@@ -21,6 +22,8 @@ export async function getServerSideProps({ params: { id, user_name }, res }) {
         title: collection.title,
         author_name: user_name,
         author_url: `https://raindrop.io/${user_name}`,
+        thumbnail_url: collection.cover?.length ? collection.cover[0] : '',
+        cache_age: 3600
     }
 
     res.setHeader('Content-Type', 'application/json; charset=utf-8')

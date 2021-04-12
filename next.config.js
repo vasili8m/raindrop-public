@@ -22,28 +22,28 @@ module.exports = {
         ]
     },
 
-    async headers() {
-        return [
-            {
-                source: '/(.*)',
-                headers: [
-                    {
-                        key: 'X-Frame-Options',
-                        value: 'DENY'
-                    }
-                ]
-            },
-            {
-                source: '/(.*)embed',
-                headers: [
-                    {
-                        key: 'X-Frame-Options',
-                        value: ''
-                    }
-                ]
-            }
-        ]
-    },
+    // async headers() {
+    //     return [
+    //         {
+    //             source: '/(.*)',
+    //             headers: [
+    //                 {
+    //                     key: 'X-Frame-Options',
+    //                     value: 'DENY'
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             source: '/(.*)embed',
+    //             headers: [
+    //                 {
+    //                     key: 'X-Frame-Options',
+    //                     value: ''
+    //                 }
+    //             ]
+    //         }
+    //     ]
+    // },
 
     webpack(config) {
         config.module.rules.push({
