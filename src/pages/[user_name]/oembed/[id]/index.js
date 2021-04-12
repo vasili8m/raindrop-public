@@ -11,13 +11,15 @@ const base = {
 }
 
 export function getHTML(user_name, { title, slug, _id }) {
+    const url = `https://raindrop.io/${user_name}/${slug}-${_id}/embed`
+
     return (`<iframe 
         width="${base.width}" 
         height="${base.height}" 
-        src="https://raindrop.io/${user_name}/${slug}-${_id}/embed" 
+        src="${url}" 
         title="${title}"
         frameborder="0"
-        allowfullscreen></iframe>`)
+        allowfullscreen><a href="${url}" target="_blank">${title}</a></iframe>`)
         .replace(/\s+/g, ' ')
 }
 
