@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import Tag from './tag'
 
-export default function RaindropsSingleTags({ tags }) {
+export default function RaindropsSingleTags({ target, tags }) {
     if (!tags.length)
         return null
 
@@ -10,6 +10,7 @@ export default function RaindropsSingleTags({ tags }) {
             {tags.map(_id=>
                 <Tag 
                     key={_id}
+                    target={target}
                     _id={_id} />
             )}
         </div>

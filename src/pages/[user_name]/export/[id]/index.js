@@ -61,6 +61,8 @@ export default function EmbedScreen({ statusCode, collection, user_name, html })
 
 			<Page.Content>
 				<textarea value={html} />
+
+				<div dangerouslySetInnerHTML={{__html: html}} />
 			</Page.Content>
 
 			<Page.Footer />

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import CollectionCover from '~co/collections/cover'
 import Button from '~co/button'
 
-export default function RaindropsSinglePath({ item, collections }) {
+export default function RaindropsSinglePath({ target, item, collections }) {
     const { query: { user_name, id } } = useRouter()
 
     const parent = (collections||[])
@@ -14,6 +14,7 @@ export default function RaindropsSinglePath({ item, collections }) {
 
     return (
         <Button 
+            target={target}
             href={`/${user_name}/${parent.slug}-${parent._id}`}
             className={s.path}
             variant='flat' 

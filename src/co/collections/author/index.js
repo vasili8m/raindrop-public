@@ -4,7 +4,7 @@ import Info from '~co/helpers/info'
 import Badge from '~co/helpers/badge'
 import { ShortDate } from '~modules/format/date'
 
-export default function CollectionAuthor({ collection, user }) {
+export default function CollectionAuthor({ collection, user, target }) {
     return (
         <>
             {!!collection.description && (
@@ -13,6 +13,7 @@ export default function CollectionAuthor({ collection, user }) {
             
             <Info>
                 <Button 
+                    target={target}
                     href={`/${user.name}`}
                     variant='flat' 
                     size='small'>

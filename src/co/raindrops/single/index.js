@@ -9,7 +9,7 @@ import Cover from './cover'
 import Path from './path'
 import Tags from './tags'
 
-export default function RaindropsSingle({ item, collection, collections }) {
+export default function RaindropsSingle({ item, collection, collections, target }) {
     const { cover, title, excerpt, domain, created, link, tags, important } = item
     const { query } = useRouter()
 
@@ -44,11 +44,13 @@ export default function RaindropsSingle({ item, collection, collections }) {
                     )}
 
                     <Tags 
+                        target={target}
                         tags={tags} />
 
                     <Info className={s.info}>
                         {!!(query.id && item.collection?.$id != query.id) && (
                             <Path 
+                                target={target}
                                 item={item}
                                 collections={collections} />
                         )}
@@ -59,7 +61,12 @@ export default function RaindropsSingle({ item, collection, collections }) {
                 </div>
             </div>
 
-            <a href={link} className={s.permalink}>{title}</a>
+            <a 
+                target={target}
+                href={link} 
+                className={s.permalink}>
+                {title}
+            </a>
         </article>
     )
 }
