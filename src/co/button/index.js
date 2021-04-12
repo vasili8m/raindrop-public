@@ -19,3 +19,9 @@ export default function Button({ className='', prefetch, variant, color, size, b
         </Wrap>
     )
 }
+
+export function Buttons({ className='', ...etc }) {
+    return (
+        <div {...etc} className={s.buttons+' '+className} />
+    )
+}

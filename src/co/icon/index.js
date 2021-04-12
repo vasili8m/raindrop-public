@@ -12,10 +12,10 @@ function Base({ as='span', size, className='', ...etc }) {
     )
 }
 
-export default function Icon({ name, variant, ...etc }) {
+export default function Icon({ name, variant='line', ...etc }) {
     return (
         <Base {...etc}>
-            <i className={`ri-${name}-${variant||'line'}`}></i>
+            <i className={`ri-${name}${variant ? '-'+variant : ''}`}></i>
         </Base>
     )
 }

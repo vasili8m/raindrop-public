@@ -1,6 +1,6 @@
 import s from './index.module.css'
 import { useRouter } from 'next/router'
-import { Image } from '~co/icon'
+import CollectionCover from '~co/collections/cover'
 import Button from '~co/button'
 
 export default function RaindropsSinglePath({ item, collections }) {
@@ -23,11 +23,9 @@ export default function RaindropsSinglePath({ item, collections }) {
             variant='flat' 
             size='small'
             prefetch={false}>
-            {!!parent.cover?.length && (
-                <Image 
-                    src={parent.cover[0]}
-                    size='small' />
-            )}
+            <CollectionCover 
+                {...parent}
+                size='small' />
 
             {parent.title}
         </Button>

@@ -6,6 +6,7 @@ import Content from './content'
 import Footer from './footer'
 import Pagination from './pagination'
 import Loading from './loading'
+import Toolbar from './toolbar'
 
 export default {
     Wrap: function({ children, full=false, accentColor }) {
@@ -29,5 +30,6 @@ export default {
     Description,
     Content,
     Footer,
-    Pagination
+    Pagination,
+    Toolbar
 }

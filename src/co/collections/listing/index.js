@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import Link from 'next/link'
 import Childrens from '../childrens'
-import { Image } from '~co/icon'
+import CollectionCover from '~co/collections/cover'
 
 export default function CollectionsListing({ items }) {
     const router = useRouter()
@@ -26,12 +26,9 @@ export default function CollectionsListing({ items }) {
                     key={item._id}
                     className={s.item}>
                     <div className={s.cover}>
-                        {!!item.cover?.length && (
-							<Image 
-								src={item.cover[0]}
-                                alt={item.title}
-								size='large' />
-						)}
+                        <CollectionCover
+                            {...item}
+                            size='large' />
                     </div>
                     
                     <Link href={`/${router.query.user_name}/${item.slug}-${item._id}`}>

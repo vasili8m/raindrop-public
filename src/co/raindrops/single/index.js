@@ -6,6 +6,7 @@ import Info from '~co/helpers/info'
 import Cover from './cover'
 import Path from './path'
 import { ShortDate } from '~modules/format/date'
+import { compactDomain } from '~modules/format/url'
 
 export default function RaindropsSingle({ item, collection, collections }) {
     const { cover, title, excerpt, domain, created, link, tags } = item
@@ -57,7 +58,7 @@ export default function RaindropsSingle({ item, collection, collections }) {
                             item={item}
                             collections={collections} />
 
-                        <span>{domain}</span>
+                        <span>{compactDomain(domain)}</span>
                         <span><ShortDate date={created} /></span>
                     </Info>
                 </div>

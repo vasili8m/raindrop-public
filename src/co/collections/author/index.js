@@ -26,7 +26,7 @@ export default function CollectionAuthor({ collection, user }) {
                 </Button>
 
                 {/*<span>{collection.count} bookmarks</span>*/}
-                <span>updated <ShortDate date={collection.lastAction} /></span>
+                <span>updated <ShortDate date={collection.lastAction || collection.lastUpdate} /></span>
             </Info>
         </>
     )

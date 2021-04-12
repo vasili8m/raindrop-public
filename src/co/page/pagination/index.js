@@ -15,8 +15,7 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
     useEffect(()=>{
         const elem = document.getElementById(`page-${page}`)
         if (elem){
-            const { left } = elem.getBoundingClientRect()
-            _pagesRef.current.scrollLeft = left
+            _pagesRef.current.scrollLeft = elem.offsetLeft - (_pagesRef.current.clientWidth / 2)
         }
     }, [page])
 
@@ -57,7 +56,8 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
             <div className={s.inner}>
                 <div 
                     ref={_pagesRef}
-                    className={s.pages}>
+                    className={s.pages}
+                    data-page={page}>
                     {pages}
                     <div className={s.space} />
                 </div>

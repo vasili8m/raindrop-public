@@ -1,0 +1,21 @@
+.toolbar {
+    position: relative;
+}
+.toolbar:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 var(--line-size) 0 var(--line-color);
+    height: 1px;
+    z-index: -1;
+    opacity: .7;
+}
+
+.inner {
+    width: var(--page-width);
+    margin: 0 auto;
+    padding: calc(var(--padding-regular) + var(--padding-small)) 0;
+}

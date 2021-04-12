@@ -5,11 +5,12 @@ import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
 import Page from '~co/page'
 import Button from '~co/button'
-import Icon, { Logo, Image } from '~co/icon'
+import Icon, { Logo } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
-import Childrens from '~co/collections/childrens'
+import CollectionCover from '~co/collections/cover'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
+import Filters from '~co/raindrops/filters'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -89,12 +90,10 @@ export default function ViewScreen({ statusCode, collection, raindrops, user, co
 						user={user} />
 
 					<h1>
-						{!!collection.cover?.length && (
-							<Image 
-								src={collection.cover[0]}
-								alt={collection.title}
-								size='large' />
-						)}
+						<CollectionCover 
+							{...collection}
+							size='large'
+							fallback={false} />
 
 						{collection.title}
 					</h1>
@@ -130,14 +129,16 @@ export default function ViewScreen({ statusCode, collection, raindrops, user, co
 					user={user} />
 			</Page.Description>
 
-			<Page.Content>
-				{!parseInt(options.page) && (
-					<Childrens 
+			{!parseInt(options.page) && (
+				<Page.Toolbar>
+					<Filters 
 						collection={collection}
 						collections={collections}
 						user={user} />
-				)}
+				</Page.Toolbar>
+			)}
 
+			<Page.Content>
 				<Raindrops 
 					collection={collection}
 					collections={collections}

@@ -32,7 +32,8 @@
     grid-gap: var(--padding-large);
     justify-content: flex-start;
     overflow: hidden;
-    mask-image: linear-gradient(to right, var(--background-color-regular) calc(100% - var(--button-size-regular)), transparent)
+    scroll-behavior: smooth;
+    mask-image: linear-gradient(to right, white calc(100% - var(--button-size-regular)), transparent)
 }
 
 .page, .pages .space {

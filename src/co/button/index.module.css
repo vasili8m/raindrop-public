@@ -18,7 +18,7 @@
     justify-content: start;
 
     padding: 0 var(--padding-regular);
-    transition: background .1s linear;
+    transition: background .1s linear, box-shadow .1s linear;
 }
 
 .button[data-block='true'] {
@@ -58,13 +58,17 @@
 
 /* variants */
 .button[data-variant='regular'] {
+    background: var(--background-color-regular);
     box-shadow: 0 0 0 var(--line-size) var(--line-color);
 }
+.button[data-variant='regular']:hover {
+    box-shadow: 0 0 0 var(--line-size) var(--line-color), 0 var(--line-size) 2px var(--line-color);
+}
 
-.button[data-variant='ghost'], 
-.button[data-variant='flat']:hover,
-.button[data-variant='regular']:active {
+.button[data-variant='regular']:active,
+.button[data-variant='flat']:hover {
     background: var(--background-color-secondary);
+    box-shadow: 0 0 0 2px var(--background-color-secondary);
 }
 
 .button[data-size='small'][data-variant='flat'] {
@@ -82,4 +86,12 @@
     pointer-events: none;
     background: var(--background-color-disabled);
     color: var(--text-color-disabled);
+}
+
+/* group */
+.buttons {
+    display: flex;
+}
+.buttons .button:not(:last-child) {
+    margin-right: calc(var(--padding-regular) + var(--padding-small));
 }

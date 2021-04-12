@@ -6,6 +6,7 @@ import Page from '~co/page'
 import Button from '~co/button'
 import Icon, { Image } from '~co/icon'
 import CollectionAuthor from '~co/collections/author'
+import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
@@ -50,12 +51,9 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 			<Page.Header.Wrap>
 				<Page.Header.Title>
 					<h1>
-						{!!collection.cover?.length && (
-							<Image 
-								src={collection.cover[0]}
-								alt={collection.title}
-								size='large' />
-						)}
+						<CollectionCover 
+							{...collection}
+							size='large' />
 
 						{collection.title}
 					</h1>
