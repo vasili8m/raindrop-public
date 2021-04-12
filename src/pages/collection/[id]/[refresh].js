@@ -11,7 +11,7 @@ async function getUrl(id, { q, sort='' }) {
     const user = await Api.user.getById(collection.user?.$id)
     if (!user) return null
 
-    return cache[id]=`https://raindrop.io/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : 'view'}/${new URLSearchParams({
+    return cache[id]=`/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : 'view'}/${new URLSearchParams({
         sort,
         ...(q ? {
             search: q
@@ -28,17 +28,17 @@ async function getUrl(id, { q, sort='' }) {
 }
 
 export async function getServerSideProps({ params: { id }, query={}, res }) {
-    const url = await getUrl(id, query)
-    if (!url)
+    const destination = await getUrl(id, query)
+    if (!destination)
         return { notFound: true }
 
-    res.statusCode = 307;
-    res.setHeader('Location', url)
-    res.end()
-
-    return { props: {} }
+    return {
+        redirect: {
+            destination
+        }
+    }
 }
 
-export default function Oembed() {
+export default function CollectionRedirect() {
     return null
 }
