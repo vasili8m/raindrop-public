@@ -8,6 +8,7 @@ import Link from 'next/link'
 import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
 import Field from '~co/search/field'
+import Tags from '~co/search/tags'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -16,9 +17,10 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || (options.search?.length ? 'score' : '-created')
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, raindrops, user ] = await Promise.all([
+	const [ collection, raindrops, filters, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.raindrops.get(id, options),
+		Api.filters.get(id, options),
 		Api.user.get(user_name)
 	])
 
@@ -35,6 +37,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 		props: {
 			collection,
 			raindrops,
+			filters,
 			user,
 			options
 		},
@@ -42,7 +45,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function SearchScreen({ statusCode, collection, raindrops, user, options }) {
+export default function SearchScreen({ statusCode, collection, raindrops, filters, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -55,6 +58,8 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 				{!!collection.cover?.length && (
 					<link rel='icon' type='image/png' href={collection.cover[0]} />
 				)}
+
+				<meta name='robots' content='noindex' />
 			</Head>
 
 			<Page.Header.Wrap>
@@ -72,6 +77,9 @@ export default function SearchScreen({ statusCode, collection, raindrops, user, 
 			</Page.Header.Wrap>
 
 			<Page.Content>
+				<Tags
+					{...filters} />
+
 				<Raindrops 
 					collection={collection}
 					items={raindrops.items}

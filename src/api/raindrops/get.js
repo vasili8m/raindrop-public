@@ -1,9 +1,9 @@
 import { API_ENDPOINT } from '~config/api'
 
-export async function get(id, options={}) {
-    //options
+export function optionsToQueryString(options={}) {
     const params = new URLSearchParams(options)
     params.set('nested', true)
+    params.set('version', 2)
 
     if (!params.get('sort'))
         params.set('sort', '-created')
@@ -41,8 +41,11 @@ export async function get(id, options={}) {
         params.set('search', JSON.stringify(search))
     }
 
-    //request
-    const res = await fetch(`${API_ENDPOINT}/raindrops/${id}?${params.toString()}`)
+    return params.toString()
+} 
+
+export async function get(id, options={}) {
+    const res = await fetch(`${API_ENDPOINT}/raindrops/${id}?${optionsToQueryString(options)}`)
     if (!res.ok)
         return {
             items: [],

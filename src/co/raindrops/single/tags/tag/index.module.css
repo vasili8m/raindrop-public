@@ -1,0 +1,10 @@
+.tag {
+    display: inline;
+    padding: var(--padding-small);
+    margin: calc(var(--padding-small) * -1);
+    margin-right: var(--padding-regular);
+}
+.tag:before {
+    content: '#';
+    text-decoration: none !important;
+}

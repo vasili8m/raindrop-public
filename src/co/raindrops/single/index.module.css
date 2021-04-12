@@ -49,22 +49,6 @@
     align-self: flex-end;
 }
 
-.tags {
-    font-size: var(--font-size-small);
-}
-
-.tag {
-    grid-area: tags;
-    display: inline;
-    padding: var(--padding-small);
-    margin: calc(var(--padding-small) * -1);
-    margin-right: var(--padding-regular);
-}
-.tag:before {
-    content: '#';
-    text-decoration: none !important;
-}
-
 .single a {
     position: relative;
     z-index: 2;
@@ -73,6 +57,12 @@
 
 .single a:hover {
     text-decoration: underline;
+}
+
+.important {
+    color: var(--accent-color);
+    vertical-align: -2px;
+    margin-right: 4px;
 }
 
 a.permalink {

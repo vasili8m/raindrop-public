@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
@@ -48,6 +49,10 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 		<Page.Wrap 
 			full
 			accentColor={collection.color}>
+			<Head>
+				<meta name='robots' content='noindex' />
+			</Head>
+
 			<Page.Header.Wrap>
 				<Page.Header.Title>
 					<h1>

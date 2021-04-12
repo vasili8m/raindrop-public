@@ -6,10 +6,6 @@ import Button from '~co/button'
 export default function RaindropsSinglePath({ item, collections }) {
     const { query: { user_name, id } } = useRouter()
 
-    if (!id ||
-        item.collection?.$id == id)
-        return null
-
     const parent = (collections||[])
         .find(({_id})=>_id == item.collection?.$id)
 

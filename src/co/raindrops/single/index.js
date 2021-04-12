@@ -1,15 +1,16 @@
 import s from './index.module.css'
 import { useRouter } from 'next/router'
-
-import Link from 'next/link'
-import Info from '~co/helpers/info'
-import Cover from './cover'
-import Path from './path'
+import Icon from '~co/icon'
 import { ShortDate } from '~modules/format/date'
 import { compactDomain } from '~modules/format/url'
 
+import Info from '~co/helpers/info'
+import Cover from './cover'
+import Path from './path'
+import Tags from './tags'
+
 export default function RaindropsSingle({ item, collection, collections }) {
-    const { cover, title, excerpt, domain, created, link, tags } = item
+    const { cover, title, excerpt, domain, created, link, tags, important } = item
     const { query } = useRouter()
 
     return (
@@ -28,35 +29,29 @@ export default function RaindropsSingle({ item, collection, collections }) {
                         {title}
                     </div>
 
-                    {!!excerpt && (
+                    {!!(excerpt || important) && (
                         <div className={s.excerpt}>
+                            {important && (
+                                <Icon 
+                                    className={s.important}
+                                    name='heart-3'
+                                    variant='fill' 
+                                    size='small' />
+                            )}
+
                             {excerpt}
                         </div>
                     )}
 
-                    {!!tags && (
-                        <div className={s.tags}>
-                            {tags.map(tag=>
-                                <Link 
-                                    key={tag}
-                                    href={{
-                                        pathname: '/[user_name]/search/[id]/[options]',
-                                        query: {
-                                            ...query,
-                                            options: new URLSearchParams({ search: `#${tag}` }).toString()
-                                        }
-                                    }}
-                                    prefetch={false}>
-                                    <a className={s.tag}>{tag}</a>
-                                </Link>
-                            )}
-                        </div>
-                    )}
+                    <Tags 
+                        tags={tags} />
 
                     <Info className={s.info}>
-                        <Path 
-                            item={item}
-                            collections={collections} />
+                        {!!(query.id && item.collection?.$id != query.id) && (
+                            <Path 
+                                item={item}
+                                collections={collections} />
+                        )}
 
                         <span>{compactDomain(domain)}</span>
                         <span><ShortDate date={created} /></span>
