@@ -32,7 +32,7 @@ export async function getServerSideProps({ params: { id }, query={}, res }) {
     if (!url)
         return { notFound: true }
 
-    res.statusCode = 308;
+    res.statusCode = 307;
     res.setHeader('Location', url)
     res.end()
 
