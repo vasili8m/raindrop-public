@@ -1,12 +1,13 @@
 import { API_ENDPOINT } from '~config/api'
+import { FetchError } from '../errors'
 
 export async function get(id) {
     if (typeof id == 'undefined')
-        return null
+        throw new FetchError(404)
 
     const res = await fetch(`${API_ENDPOINT}/collection/${id}`)
     if (!res.ok)
-        return null
+        throw new FetchError(res.status)
         
     const { result, item } = await res.json()
 
