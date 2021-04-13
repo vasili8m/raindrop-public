@@ -67,6 +67,14 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 
 				<Page.Header.Buttons>
 					<Button 
+						variant='flat' 
+						href={`/${user.name}/${collection.slug}-${collection._id}/search`}
+						title='Search'
+						target='_blank'>
+						<Icon name='search' />
+					</Button>
+
+					<Button 
 						variant='ghost'
 						href={`/${user.name}/${collection.slug}-${collection._id}`}
 						target='_blank'>
