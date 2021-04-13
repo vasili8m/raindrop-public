@@ -1,17 +1,13 @@
 import Api from '~api'
 
-const cache = {}
-
 async function getUrl(id, { q, sort='' }) {
-    if (cache[id]) return cache[id]
-
     const collection = await Api.collection.get(id)
     if (!collection) return null
 
     const user = await Api.user.getById(collection.user?.$id)
     if (!user) return null
 
-    return cache[id]=`/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : 'view'}/${new URLSearchParams({
+    return `/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : 'view'}/${new URLSearchParams({
         sort,
         ...(q ? {
             search: q
@@ -27,10 +23,12 @@ async function getUrl(id, { q, sort='' }) {
     })}`
 }
 
-export async function getServerSideProps({ params: { id }, query={}, res }) {
+export async function getServerSideProps({ params: { id }, query={} }) {
     const destination = await getUrl(id, query)
     if (!destination)
-        return { notFound: true }
+        return {
+            notFound: 404
+        }
 
     return {
         redirect: {
@@ -39,6 +37,6 @@ export async function getServerSideProps({ params: { id }, query={}, res }) {
     }
 }
 
-export default function CollectionRedirect() {
+export default function Oembed() {
     return null
 }

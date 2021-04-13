@@ -43,13 +43,15 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 			raindrops,
 			filters,
 			user,
-			options
+			options,
+
+			site_url: process.env.SITE_URL
 		},
 		revalidate: 3
 	}
 }
 
-export default function ViewScreen({ statusCode, collection, collections, raindrops, filters, user, options }) {
+export default function ViewScreen({ statusCode, collection, collections, raindrops, filters, user, options, site_url }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
@@ -63,7 +65,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				<link 
 					rel='alternate'
 					type='application/json+oembed'
-					href={`${process.env.SITE_URL||''}/api/oembed?url=${encodeURIComponent(url)}`}
+					href={`${site_url||''}/api/oembed?url=${encodeURIComponent(url)}`}
   					title={collection.title} />
 
 				<link rel='canonical' href={url} />
