@@ -1,5 +1,5 @@
 module.exports = {
-    assetPrefix: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    assetPrefix: process.env.SITE_URL || '',
     poweredByHeader: false,
 
     future: {

@@ -55,7 +55,7 @@ export default async function getJSON(url) {
         author_url: `https://raindrop.io/${user_name}`,
         thumbnail_url: collection.cover?.length ? 
             collection.cover[0] : 
-            `https://${process.env.VERCEL_URL}/icon_128.png`,
+            `${process.env.SITE_URL}/icon_128.png`,
         thumbnail_width: 128,
         thumbnail_height: 128,
         cache_age: 3600,
