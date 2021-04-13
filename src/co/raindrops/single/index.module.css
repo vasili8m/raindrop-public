@@ -1,6 +1,6 @@
 .single {
-    padding: 0 var(--padding-large);
     position: relative;
+    padding: 0 var(--padding-large);
     transition: background .1s linear;
 }
 
@@ -9,6 +9,7 @@
 }
 
 .item {
+    position: relative;
     grid-area: item;
     padding: var(--padding-large) 0;
     display: grid;
@@ -22,6 +23,10 @@
     grid-template-areas: 'title' 'excerpt' 'tags' 'info';
     grid-template-columns: 100%;
     grid-template-rows: min-content min-content 1fr;
+}
+
+.about a:hover {
+    text-decoration: underline;
 }
 
 .title {
@@ -55,14 +60,21 @@
     font-weight: 500;
 }
 
-.single a:hover {
-    text-decoration: underline;
-}
-
 .important {
     color: var(--accent-color);
     vertical-align: -2px;
     margin-right: 4px;
+}
+
+.actions {
+    opacity: 0;
+    transition: opacity .1s linear;
+}
+
+.single:hover .actions {
+    opacity: 1;
+    transition-delay: .2s;
+    background: var(--background-color-secondary);
 }
 
 a.permalink {
@@ -81,7 +93,7 @@ a.permalink {
 }
 
 .list .item, .simple .item {
-    grid-template-areas: 'cover item';
+    grid-template-areas: 'cover item actions';
     grid-template-columns: min-content 1fr;
     grid-template-rows: 100%;
 }
@@ -109,6 +121,12 @@ a.permalink {
 .grid .item {
     width: 100%;
     height: 100%;
+}
+
+.grid .actions, .masonry .actions {
+    position: absolute;
+    bottom: var(--padding-large);
+    right: 0;
 }
 
 .masonry {

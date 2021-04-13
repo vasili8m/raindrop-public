@@ -8,6 +8,7 @@ import Info from '~co/helpers/info'
 import Cover from './cover'
 import Path from './path'
 import Tags from './tags'
+import Add from './add'
 
 export default function RaindropsSingle({ item, collection, collections, target }) {
     const { cover, title, excerpt, domain, created, link, tags, important } = item
@@ -18,6 +19,7 @@ export default function RaindropsSingle({ item, collection, collections, target 
             className={s.single+' '+s[collection.view]}>
             <div className={s.item}>
                 <Cover
+                    className={s.cover}
                     view={collection.view} 
                     src={cover}
                     domain={domain}
@@ -58,6 +60,12 @@ export default function RaindropsSingle({ item, collection, collections, target 
                         <span>{compactDomain(domain)}</span>
                         <span><ShortDate date={created} /></span>
                     </Info>
+                </div>
+
+                <div className={s.actions}>
+                    <Add 
+                        link={link}
+                        title={title} />
                 </div>
             </div>
 
