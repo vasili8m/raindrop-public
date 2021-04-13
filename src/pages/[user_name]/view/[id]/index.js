@@ -63,7 +63,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				<link 
 					rel='alternate'
 					type='application/json+oembed'
-					href={`${url}/oembed`}
+					href={`/api/oembed?url=${encodeURIComponent(url)}`}
   					title={collection.title} />
 
 				<link rel='canonical' href={url} />

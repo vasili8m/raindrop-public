@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
+/*
+    Why so complicated?
+    Next.js/vercel ignore api routes/pages query params and cache them
+*/
 export default function CollectionLegacy() {
     const router = useRouter()
     const { id, ...query } = router.query

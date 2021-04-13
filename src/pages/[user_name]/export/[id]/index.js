@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
-import { getHTML } from '../../oembed/[id]'
+import { getHTML } from '~pages/api/oembed/collection'
 
 import Page from '~co/page'
 import Link from 'next/link'
@@ -11,10 +11,13 @@ import Icon from '~co/icon'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name } }) {
-	const collection = await Api.collection.get(id)
+	const [ collection, user ] = await Promise.all([
+		Api.collection.get(id),
+		Api.user.getByName(user_name)
+	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
-	if (!collection)
+	if (!collection || !user || user._id != collection.user?.$id)
 		return {
 			props: {
 				statusCode: 404
@@ -22,19 +25,19 @@ export async function getStaticProps({ params: { id, user_name } }) {
 			revalidate: 10
 		}
 
-    const html = getHTML(user_name, collection)
+    const html = getHTML({ user, collection })
 
 	return {
 		props: {
 			collection,
-            user_name,
+            user,
             html
 		},
 		revalidate: 3
 	}
 }
 
-export default function EmbedScreen({ statusCode, collection, user_name, html }) {
+export default function EmbedScreen({ statusCode, collection, user, html }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -50,7 +53,7 @@ export default function EmbedScreen({ statusCode, collection, user_name, html })
 					<h2>
 						<Icon name='arrow-left' size='small' />
 
-						<Link href={`/${user_name}/${collection.slug}-${collection._id}`}>
+						<Link href={`/${user.name}/${collection.slug}-${collection._id}`}>
 							<a>{collection.title}</a>
 						</Link>
 					</h2>
@@ -60,7 +63,7 @@ export default function EmbedScreen({ statusCode, collection, user_name, html })
 			</Page.Header.Wrap>
 
 			<Page.Content>
-				<textarea value={html} />
+				<textarea value={html} readOnly />
 
 				<div dangerouslySetInnerHTML={{__html: html}} />
 			</Page.Content>
