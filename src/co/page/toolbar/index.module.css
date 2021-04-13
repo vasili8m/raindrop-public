@@ -6,16 +6,19 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 50%;
+    top: calc(var(--button-size-regular) - 2px);
     bottom: 0;
     right: 0;
     box-shadow: 0 var(--line-size) 0 var(--line-color);
     height: 1px;
-    z-index: -1;
+    z-index: 0;
     opacity: .7;
 }
 
 .inner {
+    position: relative;
+    z-index: 1;
+    
     width: var(--page-width);
     margin: calc(var(--padding-regular) + var(--padding-small)) auto;
     padding: 1px;
@@ -24,7 +27,6 @@
     gap: calc(var(--padding-regular) + var(--padding-small));
     flex-wrap: wrap;
 
-    height: calc(var(--button-size-regular) + 2px);
     overflow: hidden;
 }
 

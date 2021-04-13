@@ -1,6 +1,0 @@
-.collections {
-    padding: var(--padding-regular);
-    display: grid;
-    grid-auto-flow: row;
-    grid-gap: var(--padding-regular);
-}

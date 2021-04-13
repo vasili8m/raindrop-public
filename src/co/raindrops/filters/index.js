@@ -2,8 +2,7 @@ import { useRouter } from 'next/router'
 
 import Button from '~co/button'
 import Icon from '~co/icon'
-import Collections from './collections'
-import { getChildrens } from '~co/collections/childrens'
+import Childrens, { getChildrens } from '~co/collections/childrens'
 
 export default function RaindropsFilters({ filters={}, collection={}, collections=[] }) {
     const { query } = useRouter()
@@ -20,8 +19,7 @@ export default function RaindropsFilters({ filters={}, collection={}, collection
     return (
         <>
             {show.includes('collections') && (
-                <Collections
-                    key={collection._id}
+                <Childrens
                     collection={collection}
                     collections={collections} />
             )}
@@ -34,7 +32,7 @@ export default function RaindropsFilters({ filters={}, collection={}, collection
                     }}
                     prefetch={false}>
                     <Icon name='hashtag' size='small' variant='' />
-                    Filter by Tags
+                    Tags
                 </Button>
             )}
 

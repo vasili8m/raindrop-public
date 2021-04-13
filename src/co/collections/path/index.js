@@ -27,6 +27,8 @@ export default function CollectionsPath({ collection, collections }) {
 
     return (
         <h2>
+            <Icon name='arrow-left' size='small' />
+            
             {parents.map(({ _id, slug, title })=>(
                 <Fragment key={_id}>
                     <Link href={`/${router.query.user_name}/${slug}-${_id}`}>

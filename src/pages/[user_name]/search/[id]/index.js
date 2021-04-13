@@ -79,10 +79,12 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 				</Page.Header.Title>
 			</Page.Header.Wrap>
 
-			<Page.Content>
+			<Page.Toolbar>
 				<Tags
 					{...filters} />
+			</Page.Toolbar>
 
+			<Page.Content>
 				<Raindrops 
 					collection={collection}
 					collections={collections}
