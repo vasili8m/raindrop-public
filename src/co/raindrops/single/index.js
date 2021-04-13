@@ -1,6 +1,7 @@
 import s from './index.module.css'
 import { useRouter } from 'next/router'
 import Icon from '~co/icon'
+import { Buttons } from '~co/button'
 import { ShortDate } from '~modules/format/date'
 import { compactDomain } from '~modules/format/url'
 
@@ -62,11 +63,11 @@ export default function RaindropsSingle({ item, collection, collections, target 
                     </Info>
                 </div>
 
-                <div className={s.actions}>
+                <Buttons className={s.actions}>
                     <Add 
                         link={link}
                         title={title} />
-                </div>
+                </Buttons>
             </div>
 
             <a 
