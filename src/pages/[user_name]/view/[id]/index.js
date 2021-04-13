@@ -11,11 +11,13 @@ import CollectionCover from '~co/collections/cover'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
 import Filters from '~co/raindrops/filters'
+import Sort from '~co/raindrops/sort'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
+	options.sort = options.sort || '-created'
 	options.perpage = RAINDROPS_PER_PAGE
 
 	const [ collection, raindrops, filters, user ] = await Promise.all([
@@ -146,6 +148,8 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 						collections={collections}
 						filters={filters}
 						user={user} />
+
+					<Sort options={options} />
 				</Page.Toolbar>
 			)}
 

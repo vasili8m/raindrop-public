@@ -9,7 +9,7 @@
 
 .description h2 {
     margin: 0;
-    margin-top: calc(var(--padding-regular) * -1);
+    margin-top: calc(var(--padding-small) * -1);
     padding: 0;
     color: var(--text-color-secondary);
 }

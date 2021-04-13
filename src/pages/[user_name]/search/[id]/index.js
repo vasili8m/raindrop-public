@@ -9,6 +9,7 @@ import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
 import Field from '~co/search/field'
 import Tags from '~co/search/tags'
+import Sort from '~co/raindrops/sort'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -82,6 +83,8 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 			<Page.Toolbar>
 				<Tags
 					{...filters} />
+
+				<Sort options={options} />
 			</Page.Toolbar>
 
 			<Page.Content>
