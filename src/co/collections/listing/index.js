@@ -40,7 +40,6 @@ export default function CollectionsListing({ items }) {
 
                     <Buttons className={s.childrens}>
                         <Childrens
-                            inline={true}
                             collection={item}
                             collections={items} />
                     </Buttons>

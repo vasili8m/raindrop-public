@@ -1,5 +1,7 @@
 import s from './index.module.css'
+import t from './theme.module.scss'
 
+import Head from 'next/head'
 import Header from './header'
 import Description from './description'
 import Content from './content'
@@ -9,16 +11,21 @@ import Loading from './loading'
 import Toolbar from './toolbar'
 
 export default {
-    Wrap: function({ children, full=false, accentColor, className='' }) {
+    Wrap: function({ children, theme='light', wide=false, accentColor, className='' }) {
         return (
             <div 
-                className={s.page+' '+className}
-                data-full={full}
+                className={t.theme + ' ' + s.page + ' ' + className}
+                data-wide={wide}
+                data-theme={theme}
                 style={{
                     ...(accentColor ? {
                         '--accent-color': accentColor
                     } : {})
                 }}>
+                <Head>
+                    <meta name='color-scheme' content={theme=='auto' ? 'dark light' : theme} />
+                </Head>
+                
                 <Loading />
                 
                 {children}

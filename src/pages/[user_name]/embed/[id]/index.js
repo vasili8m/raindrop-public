@@ -48,7 +48,7 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 		
 	return (
 		<Page.Wrap 
-			full
+			wide
 			accentColor={collection.color}
 			className={s.page}>
 			<Head>

@@ -13,7 +13,7 @@
     margin-right: calc(var(--padding-regular) + var(--padding-small))
 }
 
-.brand {
+a.brand {
     flex: 1;
     color: var(--text-color-secondary)
 }

@@ -21,7 +21,7 @@
     grid-area: cover;
 }
 
-.title {
+a.title {
     grid-area: title;
     margin: 0;
     padding: 0;

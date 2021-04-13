@@ -55,7 +55,7 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 		
 	return (
 		<Page.Wrap
-			full={collection.view == 'grid' || collection.view == 'masonry'}
+			wide={collection.view == 'grid' || collection.view == 'masonry'}
 			accentColor={collection.color}>
 			<Head>
 				<title>Search {collection.title}</title>
