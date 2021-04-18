@@ -1,70 +1,47 @@
-import { useState, useRef, useCallback } from 'react'
-import Button from '~co/button'
+import { useMemo, useCallback } from 'react'
+import { useRouter } from 'next/router'
+import { Select } from '~co/button'
 import Icon from '~co/icon'
-import Popover from '~co/popover'
-
-const sorts = {
-    '-created': {
-        title: 'By date',
-        dir: 'desc'
-    },
-    'created': {
-        title: 'By date',
-        dir: 'asc'
-    },
-    'title': {
-        title: 'By name',
-        dir: 'desc'
-    },
-    '-title': {
-        title: 'By name',
-        dir: 'asc'
-    },
-    'domain': {
-        title: 'By site name',
-        dir: 'desc'
-    },
-    '-domain': {
-        title: 'By site name',
-        dir: 'asc'
-    },
-    'score': {
-        title: 'By relevancy',
-        dir: 'desc'
-    },
-}
 
 export default function RaindropsSort({ options={} }) {
-    let { sort='' } = options
-    if (!sorts[sort])
-        sort = '-created'
+    const router = useRouter()
 
-    const { title, dir } = sorts[sort]
+    const sort = options.sort
+    const sorts = useMemo(()=>[
+        { value: '-created', label: 'By date (from new)', dir: 'desc' },
+        { value: 'created', label: 'By date (from old)', dir: 'asc' },
+        { value: 'title', label: 'By name (A-Z)', dir: 'desc' },
+        { value: '-title', label: 'By name (Z-A)', dir: 'asc' },
+        ...options.search ? [{ value: 'score', label: 'By relevancy', dir: 'desc' }] : []
+    ], [options])
 
-    const button = useRef(null)
-    const [show, setShow] = useState(false)
+    const onChange = useCallback(value=>{
+        router.push({
+            pathname: router.pathname.endsWith('[options]') ? router.pathname : `${router.pathname}/[options]`,
+            query: {
+                ...router.query,
+                options: new URLSearchParams({
+                    ...options,
+                    sort: value
+                }).toString()
+            }
+        })
+    }, [])
 
     return (
-        <>
-            <Button 
-                ref={button}
-                variant='ghost'
-                onClick={()=>setShow(true)}>
+        <Select 
+            variant='ghost'
+            selected={sort}
+            options={sorts}
+            onChange={onChange}>
+            {({label, dir})=>(<>
                 <Icon
                     name={`sort-${dir}`}
                     variant=''
                     size='small' />
 
-                {title}
-            </Button>
-
-            {show && (
-                <Popover 
-                    pin={button}
-                    onClose={()=>setShow(false)}>
-                    
-                </Popover>
-            )}
-        </>
+                {label.replace(/\s\(.*\)/, '')}
+            </>)}
+        </Select>
     )
 }

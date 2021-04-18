@@ -14,7 +14,7 @@ export default function Footer() {
                 <span className={s.desc}>All-in-one bookmark manager</span>
             </a>
 
-            <Button href='https://raindrop.io' variant='flat'>Create your own public page</Button>
+            <Button href='https://app.raindrop.io' variant='flat'>Create your own public page</Button>
             <Button href='https://help.raindrop.io' variant='flat'>Help</Button>
         </footer>
     )

@@ -3,12 +3,15 @@ import { Fragment, forwardRef } from 'react'
 import Link from 'next/link'
 import Icon, { Logo } from '~co/icon'
 
-function Button({ className='', prefetch, variant, color, size, block=false, href, disabled=false, forwardedRef, ...props }) {
-    const Wrap = href ? Link : Fragment 
+export * from './select'
+
+export function Base({ as='a', className='', prefetch, variant, color, size, block=false, href, disabled=false, forwardedRef, ...props }) {
+    const Wrap = href ? Link : Fragment
+    const Component = as
 
     return (
         <Wrap {...Wrap == Link ? { href, prefetch } : {}}>
-            <a 
+            <Component 
                 {...props} 
                 ref={forwardedRef}
                 className={s.button+' '+className}
@@ -22,7 +25,7 @@ function Button({ className='', prefetch, variant, color, size, block=false, hre
 }
 
 export default forwardRef((props, ref) => {
-    return <Button {...props} forwardedRef={ref} />
+    return <Base {...props} forwardedRef={ref} />
 })
 
 export function Buttons({ className='', ...etc }) {

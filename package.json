@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"scripts": {
 		"local": "next dev --port 3129",
-		"build": "next build"
+		"build": "next build",
+		"deploy:prod": "git branch -f release/production main && git push --force origin release/production"
 	},
 	"dependencies": {
 		"@svgr/webpack": "^5.5.0",

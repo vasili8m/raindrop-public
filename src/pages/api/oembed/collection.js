@@ -6,7 +6,6 @@ const base = {
     type: 'rich',
     provider_name: 'Raindrop.io',
     provider_url: 'https://raindrop.io/',
-    width: 500,
     height: 400
 }
 
@@ -18,19 +17,16 @@ export function validateURL(url) {
 }
 
 export function getHTML({ user, collection }, options={}) {
-    const { width, height, ...etc } = options
+    const { height, ...etc } = options
 
     const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}/embed`+(
         Object.keys(etc).length ? '?'+new URLSearchParams(etc) : ''
     )
 
     return (`<iframe 
-        width="${width || base.width}" 
-        height="${height || base.height}" 
-        src="${url}" 
-        title="${collection.title}"
-        frameborder="0"
-        allowfullscreen><a href="${url}" target="_blank">${collection.title}</a></iframe>`)
+        style="border: 0; width: 100%; height: ${height || base.height}px;" allowfullscreen
+        src="${url}"
+        allowfullscreen></iframe>`)
         .replace(/\s+/g, ' ')
 }
 
