@@ -1,7 +1,8 @@
 import Button from '~co/button'
 import { Avatar } from '~co/icon'
-import Info from '~co/helpers/info'
-import Badge from '~co/helpers/badge'
+import Info from '~co/layout/info'
+import Badge from '~co/badge'
+import { ShortDate } from '~modules/format/date'
 
 export default function CollectionAuthor({ collection, user, target }) {
     return (
@@ -25,7 +26,7 @@ export default function CollectionAuthor({ collection, user, target }) {
                     )}
                 </Button>
 
-                <span>{collection.count} bookmarks</span>
+                <span>created <ShortDate date={collection.created} /></span>
             </Info>
         </>
     )

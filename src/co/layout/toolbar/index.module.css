@@ -1,0 +1,24 @@
+.toolbar {
+    display: grid;
+    grid-template-areas: 'title actions';
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+    padding-bottom: var(--padding-regular);
+}
+
+.toolbar:not(:first-child) {
+    padding-top: var(--padding-regular);
+    margin-top: var(--padding-large);
+}
+
+.title {
+    grid-area: title;
+}
+
+.title h2 {
+    margin: 0;
+}
+
+.actions {
+    grid-area: actions;
+}

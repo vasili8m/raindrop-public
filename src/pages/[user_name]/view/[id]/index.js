@@ -11,6 +11,7 @@ import CollectionCover from '~co/collections/cover'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
 import { Childrens } from '~co/collections/listing'
+import Toolbar from '~co/layout/toolbar'
 import Sort from '~co/raindrops/sort'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
@@ -148,8 +149,16 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 						collection={collection}
 						items={collections} />
 				)}
+				
+				<Toolbar.Wrap>
+					<Toolbar.Title>
+						<h2>{raindrops.count} bookmarks</h2>
+					</Toolbar.Title>
 
-				{/* <Sort options={options} /> */}
+					<Toolbar.Buttons>
+						<Sort options={options} />
+					</Toolbar.Buttons>
+				</Toolbar.Wrap>
 
 				<Raindrops 
 					collection={collection}

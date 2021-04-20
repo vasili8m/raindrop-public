@@ -5,7 +5,7 @@ import { Buttons } from '~co/button'
 import { ShortDate } from '~modules/format/date'
 import { compactDomain } from '~modules/format/url'
 
-import Info from '~co/helpers/info'
+import Info from '~co/layout/info'
 import Cover from './cover'
 import Path from './path'
 import Tags from './tags'

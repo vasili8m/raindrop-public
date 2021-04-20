@@ -5,9 +5,9 @@ import Api from '~api'
 import Page from '~co/page'
 import Icon, { Logo, Avatar } from '~co/icon'
 import Button from '~co/button'
-import Info from '~co/helpers/info'
+import Info from '~co/layout/info'
 import { ShortDate } from '~modules/format/date'
-import Badge from '~co/helpers/badge'
+import Badge from '~co/badge'
 import { Root } from '~co/collections/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }

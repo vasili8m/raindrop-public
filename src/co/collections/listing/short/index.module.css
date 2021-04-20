@@ -2,6 +2,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr min-content;
+    white-space: nowrap;
+    padding-bottom: var(--padding-large);
+    box-shadow: 0 var(--line-size) 0 var(--line-color);
 }
 
 .items {
