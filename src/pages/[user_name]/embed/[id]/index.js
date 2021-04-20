@@ -84,13 +84,6 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 				</Page.Header.Buttons>
 			</Page.Header.Wrap>
 
-			<Page.Description>
-				<CollectionAuthor
-					target='_blank'
-					collection={collection}
-					user={user} />
-			</Page.Description>
-
 			<Page.Content>
 				<Raindrops 
 					target='_blank'
