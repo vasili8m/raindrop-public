@@ -8,7 +8,7 @@ import Button from '~co/button'
 import Info from '~co/helpers/info'
 import { ShortDate } from '~modules/format/date'
 import Badge from '~co/helpers/badge'
-import Collections from '~co/collections/listing'
+import { Root } from '~co/collections/listing'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -119,7 +119,7 @@ export default function UserPage({ statusCode, user, collections }) {
 			</Page.Description>
 
 			<Page.Content>
-				<Collections 
+				<Root 
 					items={collections}
 					user={user} />
 			</Page.Content>

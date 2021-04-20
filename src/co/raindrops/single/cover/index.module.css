@@ -8,7 +8,7 @@
 
 .cover img {
     object-fit: cover;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
 }
 
 .cover img:after {
@@ -33,7 +33,7 @@
     right: 0;
     bottom: 0;
     top: 0;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
     box-shadow: inset 0 0 0 var(--line-size) var(--line-color);
 }
 

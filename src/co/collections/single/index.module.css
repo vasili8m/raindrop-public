@@ -1,0 +1,52 @@
+a.single {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    color: var(--text-color-regular);
+}
+
+.folder {
+    padding: var(--padding-regular) var(--padding-large);
+    margin-top: calc(var(--padding-small) * 2);
+    margin-bottom: var(--padding-regular);
+
+    border-radius: var(--border-radius-regular);
+    border-top-left-radius: 0;
+    position: relative
+}
+
+.folder:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: calc(var(--padding-small) * -2);
+    width: var(--icon-size-regular);
+    height: calc(var(--padding-small) * 2);
+
+    border-top-left-radius: var(--border-radius-regular);
+    border-top-right-radius: calc(var(--padding-small) * 2);
+}
+
+.folder, 
+.folder:before {
+    background: var(var(--background-color-secondary));
+    transition: background .1s linear;
+}
+
+.folder[data-custom-bg='true'], 
+.folder[data-custom-bg='true']:before {
+    background: rgba(var(--bg-rgb), .1);
+}
+
+.single:hover .folder[data-custom-bg='true'] {
+    background: rgba(var(--bg-rgb), .2);
+}
+.single:hover .folder[data-custom-bg='true']:before {
+    background: rgba(var(--bg-rgb), .3);
+}
+
+.cover {
+    display: block;
+}

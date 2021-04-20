@@ -1,50 +1,73 @@
-import s from './index.module.css'
+import { useMemo, useState, useCallback } from 'react'
 import sortBy from 'lodash/sortBy'
 import { useRouter } from 'next/router'
 
-import { Buttons } from '~co/button'
-import Link from 'next/link'
-import Childrens from '../childrens'
-import CollectionCover from '~co/collections/cover'
+import Tall from './tall'
+import Short from './short'
+import Single from '../single'
 
-export default function CollectionsListing({ items }) {
-    const router = useRouter()
-    
-    const root = sortBy(
-        items.filter(({parent})=>{
-            if (parent)
-                return !items.find(({_id})=>_id==parent.$id)
+export default function CollectionsListing({ items, short=false }) {
+    const { query: { user_name } } = useRouter()
 
-            return true
-        }),
-        ['title']
+    //force tall
+    const [ forceTall, setForceTall ] = useState(false)
+    const onToggleTall = useCallback(()=>
+        setForceTall(!forceTall),
+        [forceTall, setForceTall]
+    )
+
+    const Component = short && !forceTall ? Short : Tall
+
+    if (!items.length)
+        return null
+
+    return (
+        <Component
+            items={items}
+            onToggleTall={onToggleTall}>
+            {items.map(item=>(
+                <Single 
+                    key={item._id}
+                    item={item}
+                    href={`/${user_name}/${item.slug}-${item._id}`} />
+            ))}
+        </Component>
+    )
+}
+
+export function Root({ items, ...etc }) {
+    const filtered = useMemo(()=>
+        sortBy(
+            items.filter(({parent})=>{
+                if (parent)
+                    return !items.find(({_id})=>_id==parent.$id)
+
+                return true
+            }),
+            ['title']
+        ),
+        items
     )
 
     return (
-        <div className={s.listing}>
-            {root.map(item=>(
-                <div 
-                    key={item._id}
-                    className={s.item}>
-                    <div className={s.cover}>
-                        <CollectionCover
-                            {...item}
-                            size='large' />
-                    </div>
-                    
-                    <Link href={`/${router.query.user_name}/${item.slug}-${item._id}`}>
-                        <a className={s.title}>
-                            {item.title}
-                        </a>
-                    </Link>
+        <CollectionsListing
+            {...etc}
+            items={filtered} />
+    )
+}
 
-                    <Buttons className={s.childrens}>
-                        <Childrens
-                            collection={item}
-                            collections={items} />
-                    </Buttons>
-                </div>
-            ))}
-        </div>
+export function Childrens({ collection, items, ...etc }) {
+    const filtered = useMemo(()=>
+        sortBy(
+            items.filter(c=>c.parent?.$id == collection._id), 
+            ['sort']
+        ),
+        items
+    )
+
+    return (
+        <CollectionsListing
+            {...etc}
+            items={filtered} />
     )
 }

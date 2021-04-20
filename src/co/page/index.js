@@ -8,7 +8,6 @@ import Content from './content'
 import Footer from './footer'
 import Pagination from './pagination'
 import Loading from './loading'
-import Toolbar from './toolbar'
 
 export default {
     Wrap: function({ children, theme='light', wide=false, accentColor, className='' }) {
@@ -37,6 +36,5 @@ export default {
     Description,
     Content,
     Footer,
-    Pagination,
-    Toolbar
+    Pagination
 }

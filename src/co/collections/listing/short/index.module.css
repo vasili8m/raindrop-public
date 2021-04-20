@@ -1,0 +1,30 @@
+.short {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+}
+
+.items {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.masked {
+    mask-image: linear-gradient(to right, white 85%, transparent);
+    padding-right: 15%;
+}
+
+.items > :not(:last-child) {
+    margin-right: calc(var(--padding-large) * 2);
+}
+
+.expand {
+    padding-top: var(--padding-small);
+    padding-left: var(--padding-large);
+    padding-right: 1px;
+}
+
+.expandButton {
+    border-radius: var(--border-radius-regular);
+}

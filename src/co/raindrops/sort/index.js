@@ -8,11 +8,11 @@ export default function RaindropsSort({ options={} }) {
 
     const sort = options.sort
     const sorts = useMemo(()=>[
-        { value: '-created', label: 'By date (from new)', dir: 'desc' },
-        { value: 'created', label: 'By date (from old)', dir: 'asc' },
+        { value: '-created', label: 'Date added (newest)', dir: 'desc' },
+        { value: 'created', label: 'Date added (oldest)', dir: 'asc' },
         { value: 'title', label: 'By name (A-Z)', dir: 'desc' },
         { value: '-title', label: 'By name (Z-A)', dir: 'asc' },
-        ...options.search ? [{ value: 'score', label: 'By relevancy', dir: 'desc' }] : []
+        ...options.search ? [{ value: 'score', label: 'By relevance', dir: 'desc' }] : []
     ], [options])
 
     const onChange = useCallback(value=>{

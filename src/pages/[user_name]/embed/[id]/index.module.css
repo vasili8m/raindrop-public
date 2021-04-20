@@ -1,5 +1,5 @@
 .page, .page:after {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
 }
 
 .page:after {
@@ -15,6 +15,6 @@
 }
 
 .header {
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius-regular);
+    border-top-right-radius: var(--border-radius-regular);
 }

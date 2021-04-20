@@ -1,13 +1,13 @@
 import Api from '~api'
 
-async function getUrl(id, { q, sort='' }) {
+async function getUrl(id, { q, sort='' }, embed) {
     const collection = await Api.collection.get(id)
     if (!collection) return null
 
     const user = await Api.user.getById(collection.user?.$id)
     if (!user) return null
 
-    return `/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : 'view'}/${new URLSearchParams({
+    return `/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : (embed ? 'embed' : 'view')}/${new URLSearchParams({
         sort,
         ...(q ? {
             search: q
@@ -23,8 +23,13 @@ async function getUrl(id, { q, sort='' }) {
     })}`
 }
 
-export async function getServerSideProps({ params: { id }, query={} }) {
-    const destination = await getUrl(id, query)
+export async function getServerSideProps({ params: { id }, query={}, req, res }) {
+    const embed = req.headers['sec-fetch-dest'] == 'iframe'
+    
+    if (embed)
+        res.removeHeader('X-Frame-Options')
+
+    const destination = await getUrl(id, query, embed)
     if (!destination)
         return {
             notFound: 404

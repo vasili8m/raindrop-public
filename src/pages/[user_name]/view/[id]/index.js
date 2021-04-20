@@ -10,7 +10,7 @@ import CollectionAuthor from '~co/collections/author'
 import CollectionCover from '~co/collections/cover'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
-import Filters from '~co/raindrops/filters'
+import { Childrens } from '~co/collections/listing'
 import Sort from '~co/raindrops/sort'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
@@ -141,19 +141,16 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					user={user} />
 			</Page.Description>
 
-			{!parseInt(options.page) && (
-				<Page.Toolbar>
-					<Filters 
-						collection={collection}
-						collections={collections}
-						filters={filters}
-						user={user} />
-
-					<Sort options={options} />
-				</Page.Toolbar>
-			)}
-
 			<Page.Content>
+				{!parseInt(options.page) && (
+					<Childrens 
+						short
+						collection={collection}
+						items={collections} />
+				)}
+
+				{/* <Sort options={options} /> */}
+
 				<Raindrops 
 					collection={collection}
 					collections={collections}

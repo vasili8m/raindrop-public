@@ -9,7 +9,7 @@
 
     height: var(--this-button-size);
     line-height: var(--this-button-size);
-    border-radius: var(--this-button-size);
+    border-radius: var(--border-radius-large);
 
     display: inline-grid;
     grid-auto-flow: column;
@@ -80,7 +80,7 @@
 .button[data-size='small'][data-variant='flat'] {
     padding-left: 0;
     padding-right: 0;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
 }
 
 .button[data-variant='active'] {

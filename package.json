@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"@svgr/webpack": "^5.5.0",
+		"color-convert": "^2.0.1",
 		"date-fns": "^2.19.0",
 		"lodash": "^4.17.21",
 		"modern-normalize": "^1.0.0",

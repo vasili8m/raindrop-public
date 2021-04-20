@@ -23,11 +23,12 @@ export function Select({ className='', options=[], selected, children, onChange,
             {!!active && (children ? children(active) : active.label)}
             
             <select onChange={onNativeChange}>
-                {options.map(({separator, value, label})=>
+                {options.map(({separator, value, label}, i)=>
                     separator ? (
-                        <option disabled>―――――――</option>
+                        <option key={i} disabled>―――――――</option>
                     ) : (
                         <option 
+                            key={value}
                             value={value}
                             selected={value == selected}>
                             {label}

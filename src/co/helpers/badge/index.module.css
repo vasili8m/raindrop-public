@@ -5,7 +5,7 @@
     height: 1.4em;
     line-height: 1.4em;
     padding: 0 var(--padding-small);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
 }
 
 .badge[data-variant='disabled'] {

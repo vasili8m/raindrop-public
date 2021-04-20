@@ -89,7 +89,7 @@ a.permalink {
 
 /* list, simple */
 .list, .simple {
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-regular);
 }
 
 .list .item, .simple .item {
