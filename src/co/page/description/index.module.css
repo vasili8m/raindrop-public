@@ -4,7 +4,6 @@
     
     display: grid;
     grid-gap: var(--padding-large);
-    padding-bottom: var(--padding-large);
 }
 
 .description h2 {
