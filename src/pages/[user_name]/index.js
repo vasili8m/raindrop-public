@@ -93,7 +93,7 @@ export default function UserPage({ statusCode, user, collections }) {
 				</Page.Header.Buttons>
 			</Page.Header.Wrap>
 
-			<Page.Description>
+			<Page.Content>
 				<Info>
 					<span>Member since <ShortDate date={user.registered} /></span>
 
@@ -119,12 +119,10 @@ export default function UserPage({ statusCode, user, collections }) {
 						</Button>
 					)}
 				</Info>
-			</Page.Description>
 
-			<Page.Content>
 				<Toolbar.Wrap>
 					<Toolbar.Title>
-						<h2>{root.length} public collections</h2>
+						{root.length} public collections
 					</Toolbar.Title>
 				</Toolbar.Wrap>
 

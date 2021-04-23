@@ -16,7 +16,7 @@
 }
 
 .page[data-wide='true'] {
-    --page-width: calc(100% - var(--padding-large) * 4);
+    --page-width: calc(100% - var(--padding-large) * 6);
 }
 
 @media screen and (max-width: 1000px) {
@@ -39,4 +39,5 @@
 .page h2 {
     font-size: var(--font-size-h2);
     font-weight: 700;
+    line-height: 145%;
 }

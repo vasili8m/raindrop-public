@@ -3,10 +3,10 @@ import t from './theme.module.scss'
 
 import Head from 'next/head'
 import Header from './header'
-import Description from './description'
 import Content from './content'
 import Footer from './footer'
 import Pagination from './pagination'
+import Path from './path'
 import Loading from './loading'
 
 export default {
@@ -33,8 +33,8 @@ export default {
     },
 
     Header,
-    Description,
     Content,
     Footer,
-    Pagination
+    Pagination,
+    Path
 }

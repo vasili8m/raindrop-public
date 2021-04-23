@@ -20,3 +20,7 @@
 .info > *:empty + .divider {
     display: none;
 }
+
+.divider {
+    opacity: .5;
+}

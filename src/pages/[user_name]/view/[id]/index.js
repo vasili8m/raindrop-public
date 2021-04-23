@@ -6,9 +6,8 @@ import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 import Page from '~co/page'
 import Button from '~co/button'
 import Icon, { Logo } from '~co/icon'
-import CollectionAuthor from '~co/collections/author'
 import CollectionCover from '~co/collections/cover'
-import Path from '~co/collections/path'
+import Path from '~co/raindrops/path'
 import Raindrops from '~co/raindrops/listing'
 import Collections from '~co/collections/compact'
 import { useChildrens } from '~co/collections/hooks' 
@@ -98,13 +97,13 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				)}
 			</Head>
 
+			<Path 
+				collection={collection}
+				collections={collections}
+				user={user} />
+
 			<Page.Header.Wrap>
 				<Page.Header.Title>
-					<Path 
-						collection={collection}
-						collections={collections}
-						user={user} />
-
 					<h1>
 						<CollectionCover 
 							{...collection}
@@ -139,13 +138,13 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				</Page.Header.Buttons>
 			</Page.Header.Wrap>
 
-			<Page.Description>
-				<CollectionAuthor
-					collection={{...collection, count: raindrops.count}}
-					user={user} />
-			</Page.Description>
-
 			<Page.Content>
+				{!!collection.description && (
+					<h2>
+						{collection.description}
+					</h2>
+				)}
+
 				{!parseInt(options.page) && (
 					<Collections
 						items={childrens}
@@ -154,7 +153,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				
 				<Toolbar.Wrap>
 					<Toolbar.Title>
-						<h2>{raindrops.count} bookmarks</h2>
+						{raindrops.count} bookmarks
 					</Toolbar.Title>
 
 					<Toolbar.Buttons>

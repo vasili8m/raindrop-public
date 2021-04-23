@@ -100,3 +100,7 @@
     flex-wrap: wrap;
     gap: calc(var(--padding-regular) + var(--padding-small))
 }
+
+.buttons[data-vertical-gap='large'] {
+    margin: var(--padding-large) 0;
+}

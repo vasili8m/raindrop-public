@@ -1,0 +1,10 @@
+.path {
+    width: var(--page-width);
+    margin: 0 auto;
+    margin-bottom: var(--padding-small);
+}
+
+.back {
+    float: left;
+    margin-left: calc((var(--button-size-small) + var(--padding-large)) * -1);
+}

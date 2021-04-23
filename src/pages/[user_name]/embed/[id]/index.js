@@ -6,7 +6,6 @@ import Api from '~api'
 import Page from '~co/page'
 import Button from '~co/button'
 import Icon from '~co/icon'
-import CollectionAuthor from '~co/collections/author'
 import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
 
