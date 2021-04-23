@@ -1,21 +1,6 @@
 .listing {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--item-width), 1fr));
-    grid-column-gap: var(--padding-regular);
-    grid-row-gap: calc(var(--padding-large) * 2);
-    overflow: hidden;
-}
-
-.compact {
-    display: flex;
-    overflow: hidden;
-}
-
-.masked {
-    mask-image: linear-gradient(to right, white 83%, transparent 97%);
-    padding-right: 17%;
-}
-
-.compact > :not(:last-child) {
-    margin-right: calc(var(--padding-large) + var(--padding-regular));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    grid-template-rows: 1fr;
+    margin: 0 calc(var(--padding-large) * -1);
 }

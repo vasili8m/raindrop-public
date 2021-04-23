@@ -1,0 +1,35 @@
+a.single {
+    display: inline-grid;
+    grid-gap: var(--padding-large);
+
+    color: var(--text-color-regular);
+    padding: var(--padding-large);
+}
+
+.folder {
+    border-radius: var(--border-radius-regular);
+    position: relative;
+
+    background: var(var(--background-color-secondary));
+    transition: background .1s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+}
+
+.folder[data-custom-bg='true'] {
+    background: rgba(var(--bg-rgb), .08);
+}
+
+.single:hover .folder[data-custom-bg='true'] {
+    background: rgba(var(--bg-rgb), .15);
+}
+
+.cover {
+    display: block;
+}
+
+.title {
+    font-weight: 600;
+}

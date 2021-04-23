@@ -20,6 +20,13 @@
     height: var(--icon-size-large);
 }
 
+.icon[data-size='xlarge'] {
+    font-size: var(--icon-size-xlarge);
+    line-height: var(--icon-size-xlarge);
+    width: var(--icon-size-xlarge);
+    height: var(--icon-size-xlarge);
+}
+
 /* avatar */
 .avatar {
     display: inline-block;

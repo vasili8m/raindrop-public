@@ -1,7 +1,0 @@
-.tall {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--item-width), 1fr));
-    grid-column-gap: var(--padding-regular);
-    grid-row-gap: calc(var(--padding-large) * 2);
-    overflow: hidden;
-}

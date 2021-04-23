@@ -10,7 +10,8 @@ import CollectionAuthor from '~co/collections/author'
 import CollectionCover from '~co/collections/cover'
 import Path from '~co/collections/path'
 import Raindrops from '~co/raindrops/listing'
-import { Childrens } from '~co/collections/listing'
+import Collections from '~co/collections/compact'
+import { useChildrens } from '~co/collections/hooks' 
 import Toolbar from '~co/layout/toolbar'
 import Sort from '~co/raindrops/sort'
 
@@ -59,6 +60,8 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 		return <Error statusCode={statusCode} />
 
 	const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}`
+
+	const childrens = useChildrens(collections, collection)
 
 	return (
 		<Page.Wrap 
@@ -144,10 +147,9 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 
 			<Page.Content>
 				{!parseInt(options.page) && (
-					<Childrens 
-						short
-						collection={collection}
-						items={collections} />
+					<Collections
+						items={childrens}
+						user={user} />
 				)}
 				
 				<Toolbar.Wrap>

@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import colorConvert from 'color-convert'
 
-import Cover from '../cover'
+import Cover from '../../cover'
 
 export default function CollectionsSingle({ item }) {
     const { query: { user_name } } = useRouter()
@@ -26,7 +26,7 @@ export default function CollectionsSingle({ item }) {
                 <Cover 
                     {...item} 
                     className={s.cover}
-                    fallback={false} />
+                    size='xlarge' />
             </span>
 
             <span className={s.title}>

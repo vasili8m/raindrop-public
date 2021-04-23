@@ -8,7 +8,9 @@ import Button from '~co/button'
 import Info from '~co/layout/info'
 import { ShortDate } from '~modules/format/date'
 import Badge from '~co/badge'
-import { Root } from '~co/collections/listing'
+import Collections from '~co/collections/listing'
+import { useRoot } from '~co/collections/hooks' 
+import Toolbar from '~co/layout/toolbar'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -35,6 +37,8 @@ export async function getStaticProps({ params: { user_name } }) {
 export default function UserPage({ statusCode, user, collections }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
+
+	const root = useRoot(collections)
 
     return (
 		<Page.Wrap>
@@ -91,7 +95,6 @@ export default function UserPage({ statusCode, user, collections }) {
 
 			<Page.Description>
 				<Info>
-					<span>{collections.length} public collections</span>
 					<span>Member since <ShortDate date={user.registered} /></span>
 
 					{!!user.twitter?.screen_name && (
@@ -119,8 +122,14 @@ export default function UserPage({ statusCode, user, collections }) {
 			</Page.Description>
 
 			<Page.Content>
-				<Root 
-					items={collections}
+				<Toolbar.Wrap>
+					<Toolbar.Title>
+						<h2>{root.length} public collections</h2>
+					</Toolbar.Title>
+				</Toolbar.Wrap>
+
+				<Collections 
+					items={root}
 					user={user} />
 			</Page.Content>
 

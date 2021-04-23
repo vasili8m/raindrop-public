@@ -98,5 +98,5 @@
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--padding-regular)
+    gap: calc(var(--padding-regular) + var(--padding-small))
 }
