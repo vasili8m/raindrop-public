@@ -5,6 +5,7 @@
     align-items: center;
     padding-top: var(--padding-large);
     padding-bottom: var(--padding-regular);
+    margin: 0;
     margin-top: var(--padding-regular);
     box-shadow: 0 calc(var(--line-size) * -1) 0 var(--line-color);
 }

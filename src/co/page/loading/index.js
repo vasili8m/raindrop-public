@@ -20,8 +20,8 @@ export default function Loading() {
     }, [setLoading])
 
     return (
-        <div className={s.loading} data-show={loading}>
-            <div className={s.indicator} />
-        </div>
+        <figure className={s.loading} data-show={loading}>
+            <figcaption className={s.indicator} />
+        </figure>
     )
 }

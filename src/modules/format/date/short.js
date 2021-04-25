@@ -24,6 +24,6 @@ export const shortDate = (original) => {
 
 export const ShortDate = React.memo(
     function({ date }) {
-        return shortDate(date)
+        return <time dateTime={date}>{shortDate(date)}</time>
     }
 )

@@ -4,7 +4,7 @@ import { Buttons } from '~co/button'
 export default {
     Wrap: function({ className='', ...etc }) {
         return (
-            <div
+            <figure
                 {...etc}
                 className={s.toolbar+' '+className} />
         )
@@ -12,7 +12,7 @@ export default {
 
     Title: function({ className='', ...etc }) {
         return (
-            <div
+            <figcaption
                 {...etc}
                 className={s.title+' '+className} />
         )

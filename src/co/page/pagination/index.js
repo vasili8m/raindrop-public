@@ -52,17 +52,17 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
             )
 
     return (
-        <div className={s.pagination}>
+        <section className={s.pagination}>
             <div className={s.inner}>
-                <div 
+                <nav 
                     ref={_pagesRef}
                     className={s.pages}
                     data-page={page}>
                     {pages}
                     <div className={s.space} />
-                </div>
+                </nav>
 
-                <div className={s.navigation}>
+                <nav className={s.navigation}>
                     <Button 
                         href={getHref(page-1)}
                         disabled={!page}>
@@ -74,8 +74,8 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
                         disabled={page >= pagesCount-1 && force != 'next'}>
                         <Icon name='arrow-right' />
                     </Button>
-                </div>
+                </nav>
             </div>
-        </div>
+        </section>
     )
 }

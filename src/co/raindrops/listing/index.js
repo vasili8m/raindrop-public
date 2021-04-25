@@ -3,8 +3,8 @@ import Single from '../single'
 
 export default function RaindropsListing({ target, items=[], collection, collections, user }) {
     return (
-        <div className={s.listing+' '+s[collection.view]}>
-            <div className={s.items}>
+        <section className={s.listing+' '+s[collection.view]}>
+            <section className={s.items}>
                 {items.map(item=>(
                     <Single 
                         key={item._id}
@@ -14,7 +14,7 @@ export default function RaindropsListing({ target, items=[], collection, collect
                         user={user}
                         item={item} />
                 ))}
-            </div>
-        </div>
+            </section>
+        </section>
     )
 }

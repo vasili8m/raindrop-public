@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 
 export default function Info({ className='', children, divider='·', ...etc }) {
     return (
-        <div {...etc} className={s.info+' '+className}>
+        <section {...etc} className={s.info+' '+className}>
             {Array.isArray(children) ?
                 children.filter(child=>!!child).map((child, i, { length })=>(
                     <Fragment key={child.key||i}>
@@ -13,6 +13,6 @@ export default function Info({ className='', children, divider='·', ...etc }) {
                 ))
                 : children
             }
-        </div>
+        </section>
     )
 }

@@ -9,7 +9,7 @@ export default {
         const backHref = (last(children) || {}).props?.href || ''
 
         return (
-            <div className={s.path}>
+            <nav className={s.path}>
                 <Button
                     className={s.back}
                     href={backHref}
@@ -25,7 +25,7 @@ export default {
                     divider='/'>
                     {children}
                 </Info>
-            </div>
+            </nav>
         )
     },
 
