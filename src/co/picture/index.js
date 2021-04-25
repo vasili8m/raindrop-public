@@ -7,6 +7,7 @@ export default function Image({ className='', src, width, height, ar, mode, alt,
     if (src)
         link = `${endpoint}/${src.includes(endpoint+'/') ? src.replace(endpoint+'/','') : encodeURIComponent(src)}?width=${width||''}&height=${height||''}&ar=${ar||''}&mode=${mode||''}`
 
+    //aspect ratio
     let arStyle = {}
     if (ar) {
         const [a,b] = ar.split(':')

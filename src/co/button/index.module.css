@@ -102,7 +102,14 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    gap: calc(var(--padding-regular) + var(--padding-small))
+    margin-bottom: calc((var(--padding-regular) + var(--padding-small)) * -1);
+    margin-right: calc((var(--padding-regular) + var(--padding-small)) * -1);
+}
+
+.buttons > * {
+    margin: calc(var(--padding-regular) + var(--padding-small));
+    margin-top: 0;
+    margin-left: 0;
 }
 
 .buttons[data-vertical-gap='large'] {

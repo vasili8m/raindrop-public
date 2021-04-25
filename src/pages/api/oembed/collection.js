@@ -6,7 +6,7 @@ const base = {
     type: 'rich',
     provider_name: 'Raindrop.io',
     provider_url: 'https://raindrop.io/',
-    height: 400
+    height: 450
 }
 
 const regex = /^\/(.+)\/(.+)-(\d+)/
@@ -24,7 +24,9 @@ export function getHTML({ user, collection }, options={}) {
     )
 
     return (`<iframe 
-        style="border: 0; width: 100%; height: ${height || base.height}px;" allowfullscreen
+        style="border: 0; width: 100%; height: ${height || base.height}px;"
+        allowfullscreen
+        frameborder="0"
         src="${url}"
         allowfullscreen></iframe>`)
         .replace(/\s+/g, ' ')

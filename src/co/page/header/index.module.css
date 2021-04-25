@@ -36,6 +36,7 @@
 .title {
     font-size: var(--font-size-h1);
     font-weight: 700;
+    line-height: 120%;
     
     min-width: 0;
     margin: 0;
@@ -50,5 +51,5 @@
 .buttons {
     flex: 1;
     justify-content: flex-end;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap !important;
 }
