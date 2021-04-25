@@ -11,7 +11,7 @@ a.single {
     border-radius: var(--border-radius-regular);
     position: relative;
 
-    background: var(var(--background-color-secondary));
+    background: var(--background-color-secondary);
     transition: background .1s linear;
     display: flex;
     align-items: center;

@@ -73,7 +73,7 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Field />
+				<Field placeholder={`Search ${collection.title}`} />
 			</Page.Header.Wrap>
 
 			<Page.Subheader>

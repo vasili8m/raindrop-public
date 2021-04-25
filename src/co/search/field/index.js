@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Icon, { ActivityIndicator } from '~co/icon'
 import Button from '~co/button'
 
-export default function SearchField({ option='search' }) {
+export default function SearchField({ option='search', placeholder='Search' }) {
     const router = useRouter()
     const input = useRef(null)
     const [value, setValue] = useState('')
@@ -77,7 +77,7 @@ export default function SearchField({ option='search' }) {
                 className={s.field}
                 type='text'
                 value={value}
-                placeholder='Search'
+                placeholder={placeholder}
                 autoFocus
                 onChange={e=>setValue(e.target.value)} />
 

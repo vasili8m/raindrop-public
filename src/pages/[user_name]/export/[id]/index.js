@@ -42,7 +42,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user, ht
 	return (
 		<Page.Wrap accentColor={collection.color}>
 			<Head>
-				<title>Embed {collection.title} Collection</title>
+				<title>Embed {collection.title}</title>
 				<meta name='robots' content='noindex' />
 			</Head>
 
@@ -52,7 +52,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user, ht
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>Embed {collection.title} Collection</Page.Header.Title>
+				<Page.Header.Title>Embed {collection.title}</Page.Header.Title>
 			</Page.Header.Wrap>
 
 			<Page.Content>
