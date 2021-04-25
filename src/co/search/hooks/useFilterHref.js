@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 
-export function useTagHref(tag) {
+export function useFilterHref(filter) {
     const { query, pathname } = useRouter()
     const { search='' } = Object.fromEntries(new URLSearchParams(query.options))
-    const val = tag.includes(' ') ? `"#${tag}"` : `#${tag}`
+
+    let val = filter.includes(' ') ? `"${filter}"` : filter
 
     if (search.includes(val))
         return {

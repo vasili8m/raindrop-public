@@ -1,6 +1,5 @@
 import s from './index.module.css'
 import { useRouter } from 'next/router'
-import Icon from '~co/icon'
 import { Buttons } from '~co/button'
 import { ShortDate } from '~modules/format/date'
 import { compactDomain } from '~modules/format/url'
@@ -9,10 +8,11 @@ import Info from '~co/layout/info'
 import Cover from './cover'
 import Path from './path'
 import Tags from './tags'
+import Important from './important'
 import Add from './add'
 
-export default function RaindropsSingle({ item, collection, collections, target }) {
-    const { cover, title, excerpt, domain, created, link, tags, important } = item
+export default function RaindropsSingle({ item, collection, collections, user, target }) {
+    const { cover, title, excerpt, domain, created, link, tags } = item
     const { query } = useRouter()
 
     return (
@@ -32,32 +32,30 @@ export default function RaindropsSingle({ item, collection, collections, target 
                         {title}
                     </div>
 
-                    {!!(excerpt || important) && (
+                    {!!excerpt && (
                         <div className={s.excerpt}>
-                            {important && (
-                                <Icon 
-                                    className={s.important}
-                                    name='heart-3'
-                                    variant='fill' 
-                                    size='small' />
-                            )}
-
                             {excerpt}
                         </div>
                     )}
 
-                    <Tags 
-                        target={target}
-                        tags={tags} />
+                    <Buttons className={s.filters}>
+                        <Important
+                            item={item} />
 
-                    <Info className={s.info}>
                         {!!(query.id && item.collection?.$id != query.id) && (
                             <Path 
                                 target={target}
                                 item={item}
+                                user={user}
                                 collections={collections} />
                         )}
 
+                        <Tags 
+                            target={target}
+                            tags={tags} />
+                    </Buttons>
+
+                    <Info className={s.info}>
                         <span>{compactDomain(domain)}</span>
                         <span><ShortDate date={created} /></span>
                     </Info>

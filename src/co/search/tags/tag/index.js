@@ -1,8 +1,8 @@
 import Button from '~co/button'
-import { useTagHref } from '~co/search/hooks'
+import { useFilterHref } from '~co/search/hooks'
 
 export default function SearchTag({ _id }) {
-    const href = useTagHref(_id)
+    const href = useFilterHref('#'+_id)
 
     return (
         <Button

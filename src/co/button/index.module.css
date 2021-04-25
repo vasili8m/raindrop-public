@@ -50,6 +50,10 @@
     color: var(--text-color-regular);
 }
 
+.button[data-color='accent'] {
+    color: var(--accent-color);
+}
+
 /* variants */
 .button[data-variant='regular'] {
     background: var(--background-color-regular);

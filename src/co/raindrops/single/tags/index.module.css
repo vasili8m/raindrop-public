@@ -1,7 +1,0 @@
-.tags {
-    grid-area: tags;
-    font-size: var(--font-size-small);
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-}
