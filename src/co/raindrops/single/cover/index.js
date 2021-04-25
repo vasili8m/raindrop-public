@@ -14,11 +14,11 @@ let sizes = {
     },
     grid: {
         ar: '16:9',
-        width: 300,
+        width: 350,
         mode: 'crop'
     },
     masonry: {
-        width: 300
+        width: 350
     }
 }
 

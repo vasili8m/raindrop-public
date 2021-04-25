@@ -73,9 +73,7 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>
-					<Field />
-				</Page.Header.Title>
+				<Field />
 			</Page.Header.Wrap>
 
 			<Page.Subheader>
