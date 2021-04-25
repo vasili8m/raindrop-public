@@ -1,6 +1,7 @@
 a.single {
     display: inline-grid;
-    grid-gap: var(--padding-large);
+    grid-gap: var(--padding-regular);
+    align-content: flex-start;
 
     color: var(--text-color-regular);
     padding: var(--padding-large);
@@ -15,7 +16,13 @@ a.single {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 180px;
+    aspect-ratio: 3 / 2;
+}
+
+@supports not (aspect-ratio: 1/1) {
+    .folder {
+        height: 180px;
+    }
 }
 
 .folder[data-custom-bg='true'] {

@@ -4,6 +4,9 @@ export function useParents(collections=[], collection, self) {
     return useMemo(()=>{
         const parents = []
 
+        if (!collection)
+            return parents
+
         const find = (findId)=>{
             const parent = collections.find(({_id})=>_id == findId)
             

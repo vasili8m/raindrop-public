@@ -1,4 +1,3 @@
-import s from './index.module.css'
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
@@ -41,20 +40,20 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function EmbedScreen({ statusCode, collection, raindrops, user }) {
+export default function EmbedCollectionScreen({ statusCode, collection, raindrops, user }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
 	return (
 		<Page.Wrap 
 			wide
-			accentColor={collection.color}
-			className={s.page}>
+			embed
+			accentColor={collection.color}>
 			<Head>
 				<meta name='robots' content='noindex' />
 			</Head>
 
-			<Page.Header.Wrap className={s.header}>
+			<Page.Header.Wrap>
 				<Page.Header.Icon>
 					<CollectionCover 
 						{...collection}
@@ -90,7 +89,8 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 				<Raindrops 
 					target='_blank'
 					collection={collection}
-					items={raindrops.items} />
+					items={raindrops.items}
+					user={user} />
 			</Page.Content>
 		</Page.Wrap>
 	)

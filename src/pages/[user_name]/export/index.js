@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
-import { getHTML } from '~pages/api/oembed/collection'
+import { getHTML } from '~pages/api/oembed/user'
 
 import Page from '~co/page'
 import Path from '~co/raindrops/path'
@@ -9,13 +9,10 @@ import Path from '~co/raindrops/path'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name } }) {
-	const [ collection, user ] = await Promise.all([
-		Api.collection.get(id),
-		Api.user.getByName(user_name)
-	])
+	const user = await Api.user.getByName(user_name)
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
-	if (!collection || !user || user._id != collection.user?.$id)
+	if (!user)
 		return {
 			props: {
 				statusCode: 404
@@ -23,11 +20,10 @@ export async function getStaticProps({ params: { id, user_name } }) {
 			revalidate: 10
 		}
 
-    const html = getHTML({ user, collection })
+    const html = getHTML({ user })
 
 	return {
 		props: {
-			collection,
             user,
             html
 		},
@@ -35,24 +31,21 @@ export async function getStaticProps({ params: { id, user_name } }) {
 	}
 }
 
-export default function EmbedCollectionScreen({ statusCode, collection, user, html }) {
+export default function EmbedUserScreen({ statusCode, user, html }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
 	return (
-		<Page.Wrap accentColor={collection.color}>
+		<Page.Wrap>
 			<Head>
-				<title>Embed {collection.title} Collection</title>
+				<title>Embed {user.name}</title>
 				<meta name='robots' content='noindex' />
 			</Head>
 
-			<Path 
-				self
-				collection={collection}
-				user={user} />
+			<Path user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>Embed {collection.title} Collection</Page.Header.Title>
+				<Page.Header.Title>Embed User Profile</Page.Header.Title>
 			</Page.Header.Wrap>
 
 			<Page.Content>

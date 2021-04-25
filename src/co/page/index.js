@@ -11,11 +11,12 @@ import Path from './path'
 import Loading from './loading'
 
 export default {
-    Wrap: function({ children, theme='light', wide=false, accentColor, className='' }) {
+    Wrap: function({ children, theme='light', wide=false, embed=false, accentColor, className='' }) {
         return (
             <div 
                 className={t.theme + ' ' + s.page + ' ' + className}
                 data-wide={wide}
+                data-embed={embed}
                 data-theme={theme}
                 style={{
                     ...(accentColor ? {
