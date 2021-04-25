@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import { Fragment, forwardRef } from 'react'
 import Link from 'next/link'
-import Icon, { Logo } from '~co/icon'
+import Icon, { Logo, Avatar } from '~co/icon'
 
 export * from './select'
 
@@ -19,7 +19,7 @@ export function Base({ as='a', className='', prefetch, variant, color, size, bol
                 data-color={color || 'secondary'}
                 data-size={size || 'regular'}
                 data-bold={bold}
-                data-single-icon={props.children?.type == Icon || props.children?.type == Logo} />
+                data-single-icon={props.children?.type == Icon || props.children?.type == Logo || props.children?.type == Avatar} />
         </Wrap>
     )
 }

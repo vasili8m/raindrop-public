@@ -42,7 +42,7 @@ export default function EmbedScreen({ statusCode, collection, user, html }) {
 	return (
 		<Page.Wrap accentColor={collection.color}>
 			<Head>
-				<title>Export {collection.title}</title>
+				<title>Embed {collection.title}</title>
 				<meta name='robots' content='noindex' />
 			</Head>
 
@@ -52,7 +52,7 @@ export default function EmbedScreen({ statusCode, collection, user, html }) {
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>Export & Embed</Page.Header.Title>
+				<Page.Header.Title>Embed</Page.Header.Title>
 			</Page.Header.Wrap>
 
 			<Page.Content>

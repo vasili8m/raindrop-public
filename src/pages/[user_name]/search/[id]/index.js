@@ -84,12 +84,14 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 			<Page.Content>
 				<Toolbar.Wrap>
 					<Toolbar.Title>
-						Found bookmarks
+						{raindrops.items.length ? 'Found bookmarks' : 'Nothing found'}
 					</Toolbar.Title>
 
-					<Toolbar.Buttons>
-						<Sort options={options} />
-					</Toolbar.Buttons>
+					{!!raindrops.items.length && (
+						<Toolbar.Buttons>
+							<Sort options={options} />
+						</Toolbar.Buttons>
+					)}
 				</Toolbar.Wrap>
 
 				<Raindrops 

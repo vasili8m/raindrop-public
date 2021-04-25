@@ -101,6 +101,7 @@
 .buttons {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     gap: calc(var(--padding-regular) + var(--padding-small))
 }
 

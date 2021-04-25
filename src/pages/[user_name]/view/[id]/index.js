@@ -156,9 +156,11 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 						{raindrops.count} bookmarks
 					</Toolbar.Title>
 
-					<Toolbar.Buttons>
-						<Sort options={options} />
-					</Toolbar.Buttons>
+					{!!raindrops.items.length && (
+						<Toolbar.Buttons>
+							<Sort options={options} />
+						</Toolbar.Buttons>
+					)}
 				</Toolbar.Wrap>
 
 				<Raindrops 

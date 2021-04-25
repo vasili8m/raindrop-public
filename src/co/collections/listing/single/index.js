@@ -1,5 +1,6 @@
 import s from './index.module.css'
 import { useMemo } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import colorConvert from 'color-convert'
 
@@ -16,22 +17,24 @@ export default function CollectionsSingle({ item }) {
     )
 
     return (
-        <a 
-            href={`/${user_name}/${item.slug}-${item._id}`} 
-            className={s.single}>
-            <span 
-                className={s.folder}
-                data-custom-bg={folderStyle ? true : false}
-                style={folderStyle}>
-                <Cover 
-                    {...item} 
-                    className={s.cover}
-                    size='xlarge' />
-            </span>
+        <Link 
+            href={`/${user_name}/${item.slug}-${item._id}`}
+            prefetch={false}> 
+            <a className={s.single}>
+                <span 
+                    className={s.folder}
+                    data-custom-bg={folderStyle ? true : false}
+                    style={folderStyle}>
+                    <Cover 
+                        {...item} 
+                        className={s.cover}
+                        size='xlarge' />
+                </span>
 
-            <span className={s.title}>
-                {item.title}
-            </span>
-        </a>
+                <span className={s.title}>
+                    {item.title}
+                </span>
+            </a>
+        </Link>
     )
 }

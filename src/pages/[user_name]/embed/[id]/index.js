@@ -5,7 +5,7 @@ import Api from '~api'
 
 import Page from '~co/page'
 import Button from '~co/button'
-import Icon from '~co/icon'
+import Icon, { Avatar } from '~co/icon'
 import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
 
@@ -64,18 +64,23 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 				<Page.Header.Title>{collection.title}</Page.Header.Title>
 
 				<Page.Header.Buttons>
-					<Button 
-						variant='flat' 
-						href={`/${user.name}/${collection.slug}-${collection._id}/search`}
-						title='Search'
-						target='_blank'>
-						<Icon name='search' />
-					</Button>
+					{!!user.avatar && (
+						<Button 
+							variant='flat' 
+							href={`/${user.name}`}
+							title={user.name}
+							target='_blank'>
+							<Avatar 
+								src={user.avatar} 
+								alt={user.name}
+								size='large' />
+						</Button>
+					)}
 
 					<Button 
-						variant='ghost'
 						href={`/${user.name}/${collection.slug}-${collection._id}`}
 						target='_blank'>
+						Show all
 						<Icon name='arrow-right-up' />
 					</Button>
 				</Page.Header.Buttons>
@@ -86,15 +91,6 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 					target='_blank'
 					collection={collection}
 					items={raindrops.items} />
-
-				<Button 
-					style={{display:'grid', justifyContent: 'center'}}
-					size='large'
-					href={`/${user.name}/${collection.slug}-${collection._id}`}
-					prefetch={false}
-					target='_blank'>
-					Show more…
-				</Button>
 			</Page.Content>
 		</Page.Wrap>
 	)
