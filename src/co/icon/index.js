@@ -1,5 +1,6 @@
 import s from './index.module.css'
 import BrandIcon from '~assets/brand/icon_48.svg'
+import { THUMBNAILS_ENDPOINT } from '~config/api'
 
 function Base({ as='svg', size, className='', ...etc }) {
     const Component = as
@@ -28,10 +29,23 @@ export function Logo(props) {
     )
 }
 
-export function Image(props) {
+//Image
+const widths = {
+    small: 18,
+    regular: 24,
+    large: 32,
+    xlarge: 64,
+}
+
+export function Image({ src, ...etc }) {
+    const width = widths[etc.size]||widths.regular
+
     return (
         <Base
-            {...props}
+            {...etc}
+            src={`${THUMBNAILS_ENDPOINT}?url=${encodeURIComponent(src)}&mode=crop&width=${width}&height=${width}&dpr=2`}
+            loading='lazy'
+            decoding='async'
             as='img' />
     )
 }
@@ -39,9 +53,7 @@ export function Image(props) {
 export function Avatar(props) {
     return (
         <span className={s.avatar}>
-            <Base
-                {...props}
-                as='img' />
+            <Image {...props} />
         </span>
     )
 }
