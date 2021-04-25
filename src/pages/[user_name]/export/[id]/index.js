@@ -52,9 +52,7 @@ export default function EmbedScreen({ statusCode, collection, user, html }) {
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>
-					<h1>Export & Embed</h1>
-				</Page.Header.Title>
+				<Page.Header.Title>Export & Embed</Page.Header.Title>
 			</Page.Header.Wrap>
 
 			<Page.Content>

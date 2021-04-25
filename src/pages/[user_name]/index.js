@@ -59,31 +59,24 @@ export default function UserPage({ statusCode, user, collections }) {
 			</Head>
 
 			<Page.Header.Wrap>
+				{!!user.avatar && (
+					<Page.Header.Icon>
+						<Avatar 
+							src={user.avatar}
+							alt={user.name}
+							size='large' />
+					</Page.Header.Icon>
+				)}
+
 				<Page.Header.Title>
-					<h1>
-						{!!user.avatar && (
-							<Avatar 
-								src={user.avatar}
-								alt={user.name}
-								size='large' />
-						)}
-
-						{user.name}
-
-						{!!user.pro && (
-							<Badge variant='disabled'>Pro</Badge>
-						)}
-					</h1>
+					{user.name}
 				</Page.Header.Title>
 
-				<Page.Header.Buttons>
-					{/* {<Button 
-						variant='flat' 
-						href={`/user/${user.name}/export`}
-						title='Export & Share'>
-						<Icon name='upload-2' />
-					</Button>} */}
+				{!!user.pro && (
+					<Badge variant='disabled'>Pro</Badge>
+				)}
 
+				<Page.Header.Buttons>
 					<Button 
 						variant='flat' 
 						href='https://raindrop.io'
@@ -122,8 +115,6 @@ export default function UserPage({ statusCode, user, collections }) {
 			</Page.Subheader>
 
 			<Page.Content>
-				
-
 				<Toolbar.Wrap>
 					<Toolbar.Title>
 						{root.length} public collections

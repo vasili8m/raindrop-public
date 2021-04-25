@@ -25,50 +25,27 @@
     margin: 0 auto;
     padding: calc(var(--padding-regular) + var(--padding-small)) 0;
     
-    display: grid;
-    grid-template-areas: 'title buttons';
-    grid-template-columns: 1fr max-content;
-    grid-gap: var(--padding-large);
+    display: flex;
+    align-items: center;
+}
+
+.icon:not(:empty) {
+    margin-right: calc(var(--padding-regular) + var(--padding-small))
 }
 
 .title {
-    grid-area: title;
     min-width: 0;
-}
-
-.title h1,
-.title h2 {
     margin: 0;
     padding: 0;
-
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: min-content;
-    grid-gap: calc(var(--padding-regular) + var(--padding-small));
-    align-items: center;
-
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.title h2 {
-    color: var(--text-color-secondary);
-    padding-bottom: var(--padding-regular);
-    grid-gap: var(--padding-regular);
-    font-weight: normal;
-}
-
-.title h2 a {
-    color: inherit;
-    display: block;
+    padding-right: var(--padding-regular);
+    align-self: flex-start;
 }
 
 .buttons {
-    white-space: nowrap;
-    grid-area: buttons;
-
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: var(--padding-large);
+    flex: 1;
+    justify-content: flex-end;
+    flex-wrap: no-wrap;
 }

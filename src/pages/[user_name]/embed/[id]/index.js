@@ -55,15 +55,13 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 			</Head>
 
 			<Page.Header.Wrap className={s.header}>
-				<Page.Header.Title>
-					<h1>
-						<CollectionCover 
-							{...collection}
-							size='large' />
+				<Page.Header.Icon>
+					<CollectionCover 
+						{...collection}
+						size='large' />
+				</Page.Header.Icon>
 
-						{collection.title}
-					</h1>
-				</Page.Header.Title>
+				<Page.Header.Title>{collection.title}</Page.Header.Title>
 
 				<Page.Header.Buttons>
 					<Button 

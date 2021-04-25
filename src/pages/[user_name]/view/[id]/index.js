@@ -103,16 +103,14 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				user={user} />
 
 			<Page.Header.Wrap>
-				<Page.Header.Title>
-					<h1>
-						<CollectionCover 
-							{...collection}
-							size='large'
-							fallback={false} />
-
-						{collection.title}
-					</h1>
-				</Page.Header.Title>
+				<Page.Header.Icon>
+					<CollectionCover 
+						{...collection}
+						size='large'
+						fallback={false} />
+				</Page.Header.Icon>
+				
+				<Page.Header.Title>{collection.title}</Page.Header.Title>
 
 				<Page.Header.Buttons>
 					<Button 

@@ -1,5 +1,6 @@
 import s from './index.module.css'
 import { useState, useEffect } from 'react'
+import { Buttons } from '~co/button'
 
 export default {
     Wrap: function({ children }) {
@@ -33,19 +34,27 @@ export default {
         )
     },
 
-    Title: function({ children }) {
+    Icon: function({ children }) {
         return (
-            <div className={s.title}>
+            <div className={s.icon}>
                 {children}
             </div>
         )
     },
 
+    Title: function({ children }) {
+        return (
+            <h1 className={s.title}>
+                {children}
+            </h1>
+        )
+    },
+
     Buttons: function({ children }) {
         return (
-            <div className={s.buttons}>
+            <Buttons className={s.buttons}>
                 {children}
-            </div>
+            </Buttons>
         )
     }
 }
