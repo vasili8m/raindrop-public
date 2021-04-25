@@ -5,7 +5,7 @@ import Icon, { Logo } from '~co/icon'
 
 export * from './select'
 
-export function Base({ as='a', className='', prefetch, variant, color, size, block=false, href, disabled=false, forwardedRef, ...props }) {
+export function Base({ as='a', className='', prefetch, variant, color, size, bold=false, href, disabled=false, forwardedRef, ...props }) {
     const Wrap = href ? Link : Fragment
     const Component = as
 
@@ -18,7 +18,7 @@ export function Base({ as='a', className='', prefetch, variant, color, size, blo
                 data-variant={disabled ? 'disabled' : (variant || 'regular')}
                 data-color={color || 'secondary'}
                 data-size={size || 'regular'}
-                data-block={block}
+                data-bold={bold}
                 data-single-icon={props.children?.type == Icon || props.children?.type == Logo} />
         </Wrap>
     )

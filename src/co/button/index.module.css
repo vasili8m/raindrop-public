@@ -21,11 +21,6 @@
     transition: background .1s linear, box-shadow .1s linear;
 }
 
-.button[data-block='true'] {
-    display: grid;
-    justify-content: center;
-}
-
 /* size */
 .button[data-size='regular'] {
     --this-button-size: var(--button-size-regular)
@@ -34,7 +29,6 @@
 .button[data-size='small'] {
     --this-button-size: var(--button-size-small);
     font-size: var(--font-size-small);
-    font-weight: 600;
 }
 
 .button[data-size='large'] {
@@ -92,6 +86,11 @@
     pointer-events: none;
     background: var(--background-color-disabled);
     color: var(--text-color-disabled);
+}
+
+/* modifiers */
+.button[data-bold='true'] {
+    font-weight: 600;
 }
 
 /* group */

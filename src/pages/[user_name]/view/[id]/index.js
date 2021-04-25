@@ -138,7 +138,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 				</Page.Header.Buttons>
 			</Page.Header.Wrap>
 
-			<Page.Content>
+			<Page.Subheader>
 				{!!collection.description && (
 					<h2>
 						{collection.description}
@@ -150,7 +150,9 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 						items={childrens}
 						user={user} />
 				)}
-				
+			</Page.Subheader>
+
+			<Page.Content>
 				<Toolbar.Wrap>
 					<Toolbar.Title>
 						{raindrops.count} bookmarks

@@ -5,11 +5,3 @@
     display: grid;
     grid-auto-rows: min-content;
 }
-
-.content h2 {
-    font-weight: normal;
-    margin: 0;
-    margin-top: calc(var(--padding-small) * -2);
-    padding: 0;
-    color: var(--text-color-secondary);
-}

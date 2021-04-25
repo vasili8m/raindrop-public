@@ -4,9 +4,7 @@ import Api from '~api'
 import { getHTML } from '~pages/api/oembed/collection'
 
 import Page from '~co/page'
-import Link from 'next/link'
-import Button from '~co/button'
-import Icon from '~co/icon'
+import Path from '~co/raindrops/path'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -48,16 +46,13 @@ export default function EmbedScreen({ statusCode, collection, user, html }) {
 				<meta name='robots' content='noindex' />
 			</Head>
 
+			<Path 
+				self
+				collection={collection}
+				user={user} />
+
 			<Page.Header.Wrap>
 				<Page.Header.Title>
-					<h2>
-						<Icon name='arrow-left' size='small' />
-
-						<Link href={`/${user.name}/${collection.slug}-${collection._id}`}>
-							<a>{collection.title}</a>
-						</Link>
-					</h2>
-
 					<h1>Export & Embed</h1>
 				</Page.Header.Title>
 			</Page.Header.Wrap>

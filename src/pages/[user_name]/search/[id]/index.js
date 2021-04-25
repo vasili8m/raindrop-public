@@ -4,12 +4,12 @@ import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
 import Page from '~co/page'
-import Link from 'next/link'
-import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
 import Field from '~co/search/field'
 import Tags from '~co/search/tags'
 import Sort from '~co/raindrops/sort'
+import Path from '~co/raindrops/path'
+import Toolbar from '~co/layout/toolbar'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -66,25 +66,33 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 				<meta name='robots' content='noindex' />
 			</Head>
 
+			<Path 
+				self
+				collection={collection}
+				collections={collections}
+				user={user} />
+
 			<Page.Header.Wrap>
 				<Page.Header.Title>
-					<h2>
-						<Icon name='arrow-left' size='small' />
-
-						<Link href={`/${user.name}/${collection.slug}-${collection._id}`}>
-							<a>{collection.title}</a>
-						</Link>
-					</h2>
-
 					<Field />
 				</Page.Header.Title>
 			</Page.Header.Wrap>
 
-			<Page.Content>
+			<Page.Subheader>
 				<Tags
 					{...filters} />
+			</Page.Subheader>
 
-				<Sort options={options} />
+			<Page.Content>
+				<Toolbar.Wrap>
+					<Toolbar.Title>
+						Found bookmarks
+					</Toolbar.Title>
+
+					<Toolbar.Buttons>
+						<Sort options={options} />
+					</Toolbar.Buttons>
+				</Toolbar.Wrap>
 
 				<Raindrops 
 					collection={collection}

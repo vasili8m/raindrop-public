@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-export function useParents(collections, collection) {
+export function useParents(collections=[], collection, self) {
     return useMemo(()=>{
         const parents = []
 
@@ -15,6 +15,9 @@ export function useParents(collections, collection) {
             }
         }
         find(collection.parent?.$id)
+
+        if (self)
+            parents.push(collection)
 
         return parents
     }, [collections, collection])

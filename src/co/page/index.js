@@ -3,6 +3,7 @@ import t from './theme.module.scss'
 
 import Head from 'next/head'
 import Header from './header'
+import Subheader from './subheader'
 import Content from './content'
 import Footer from './footer'
 import Pagination from './pagination'
@@ -33,6 +34,7 @@ export default {
     },
 
     Header,
+    Subheader,
     Content,
     Footer,
     Pagination,

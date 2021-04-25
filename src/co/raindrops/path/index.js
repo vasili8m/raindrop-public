@@ -3,13 +3,14 @@ import { Avatar } from '~co/icon'
 import Badge from '~co/badge'
 import { useParents } from '~co/collections/hooks'
 
-export default function RaindropsPath({ collections, collection, user }) {
-    const parents = useParents(collections, collection)
+export default function RaindropsPath({ collections, collection, user, self }) {
+    const parents = useParents(collections, collection, self)
 
     const path = [
         <Page.Path.Part 
             key='user'
-            href={`/${user.name}`}>
+            href={`/${user.name}`}
+            bold>
             {!!user.avatar && <Avatar src={user.avatar} alt={user.name} />}
             
             {user.name}
