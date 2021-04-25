@@ -1,28 +1,21 @@
 .icon {
     display: inline-block;
-    font-size: var(--icon-size-regular);
-    line-height: var(--icon-size-regular);
     width: var(--icon-size-regular);
     height: var(--icon-size-regular);
+	fill: currentColor;
 }
 
 .icon[data-size='small'] {
-    font-size: var(--icon-size-small);
-    line-height: var(--icon-size-small);
     width: var(--icon-size-small);
     height: var(--icon-size-small);
 }
 
 .icon[data-size='large'] {
-    font-size: var(--icon-size-large);
-    line-height: var(--icon-size-large);
     width: var(--icon-size-large);
     height: var(--icon-size-large);
 }
 
 .icon[data-size='xlarge'] {
-    font-size: var(--icon-size-xlarge);
-    line-height: var(--icon-size-xlarge);
     width: var(--icon-size-xlarge);
     height: var(--icon-size-xlarge);
 }

@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import BrandIcon from '~assets/brand/icon_48.svg'
 
-function Base({ as='span', size, className='', ...etc }) {
+function Base({ as='svg', size, className='', ...etc }) {
     const Component = as
 
     return (
@@ -15,7 +15,7 @@ function Base({ as='span', size, className='', ...etc }) {
 export default function Icon({ name, variant='line', ...etc }) {
     return (
         <Base {...etc}>
-            <i className={`ri-${name}${variant ? '-'+variant : ''}`}></i>
+            <use xlinkHref={`#ri-${name}${variant ? '-'+variant : ''}`}></use>
         </Base>
     )
 }

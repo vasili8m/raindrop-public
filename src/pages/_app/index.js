@@ -1,6 +1,6 @@
 import 'modern-normalize'
 import './index.css'
-import './fonts/remixicon.css'
+import RemixIcon from './remixicon/remixicon.symbol.svg?raw'
 import Head from 'next/head'
 
 function App({ Component, pageProps }) {
@@ -13,6 +13,7 @@ function App({ Component, pageProps }) {
 
 				<link rel='preconnect' href='https://rdl.ink' />
 			</Head>
+			<div dangerouslySetInnerHTML={{__html: RemixIcon}} />
 			<Component {...pageProps} />
 		</>
 	)
