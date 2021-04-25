@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import Button from '~co/button'
 import Icon from '~co/icon'
 
-export default function RaindropsSingleAdd({ link, title }) {
+export default function RaindropsSingleAdd({ item: { link, title } }) {
     const onClick = useCallback(e=>{
         e.preventDefault()
 

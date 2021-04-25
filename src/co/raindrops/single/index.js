@@ -9,10 +9,11 @@ import Cover from './cover'
 import Path from './path'
 import Tags from './tags'
 import Important from './important'
+import Type from './type'
 import Add from './add'
 
-export default function RaindropsSingle({ item, collection, collections, user, target }) {
-    const { cover, title, excerpt, domain, created, link, tags } = item
+export default function RaindropsSingle(props) {
+    const { item, collection, target } = props
     const { query } = useRouter()
 
     return (
@@ -20,60 +21,51 @@ export default function RaindropsSingle({ item, collection, collections, user, t
             className={s.single+' '+s[collection.view]}>
             <div className={s.item}>
                 <Cover
-                    className={s.cover}
-                    view={collection.view} 
-                    src={cover}
-                    domain={domain}
-                    link={link}
-                    alt={title} />
+                    {...props}
+                    className={s.cover} />
+
+                <Type
+                    {...props}
+                    className={s.type} />
 
                 <div className={s.about}>
                     <div className={s.title}>
-                        {title}
+                        {item.title}
                     </div>
 
-                    {!!excerpt && (
+                    {!!item.excerpt && (
                         <div className={s.excerpt}>
-                            {excerpt}
+                            {item.excerpt}
                         </div>
                     )}
 
                     <Buttons className={s.filters}>
-                        <Important
-                            item={item} />
+                        <Important {...props} />
 
                         {!!(query.id && item.collection?.$id != query.id) && (
-                            <Path 
-                                target={target}
-                                item={item}
-                                user={user}
-                                collections={collections} />
+                            <Path {...props} />
                         )}
 
-                        <Tags 
-                            target={target}
-                            tags={tags} />
+                        <Tags {...props} />
                     </Buttons>
 
                     <Info className={s.info}>
-                        <span>{compactDomain(domain)}</span>
-                        <span><ShortDate date={created} /></span>
+                        <span>{compactDomain(item.domain)}</span>
+                        <span><ShortDate date={item.created} /></span>
                     </Info>
                 </div>
 
                 <Buttons className={s.actions}>
-                    <Add 
-                        link={link}
-                        title={title} />
+                    <Add {...props} />
                 </Buttons>
             </div>
 
             <a 
                 target={target}
-                href={link} 
+                href={item.link} 
                 className={s.permalink}
                 rel='nofollow'>
-                {title}
+                {item.title}
             </a>
         </article>
     )
