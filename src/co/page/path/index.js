@@ -14,7 +14,8 @@ export default {
                     className={s.back}
                     href={backHref}
                     size='small'
-                    variant='ghost'>
+                    variant='ghost'
+                    title='Go back'>
                     <Icon 
                         name='arrow-left-s'
                         size='small' />

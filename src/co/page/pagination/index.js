@@ -65,13 +65,15 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
                 <nav className={s.navigation}>
                     <Button 
                         href={getHref(page-1)}
-                        disabled={!page}>
+                        disabled={!page}
+                        title='Previous page'>
                         <Icon name='arrow-left' />
                     </Button>
 
                     <Button 
                         href={getHref(page+1)}
-                        disabled={page >= pagesCount-1 && force != 'next'}>
+                        disabled={page >= pagesCount-1 && force != 'next'}
+                        title='Next page'>
                         <Icon name='arrow-right' />
                     </Button>
                 </nav>

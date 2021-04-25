@@ -22,7 +22,8 @@ export default function RaindropsSingleAdd({ item: { link, title } }) {
             href={'https://app.raindrop.io/add?'+new URLSearchParams({
                 link,
                 title
-            })}>
+            })}
+            title='Add to Raindrop.io'>
             <Icon name='add' />
         </Button>
     )

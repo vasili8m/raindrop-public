@@ -13,7 +13,8 @@ export default function RaindropsSingleImportant({ item: { important }, target }
             href={href}
             prefetch={false}
             color='accent'
-            target={target}>
+            target={target}
+            title='Is favorite'>
             <Icon 
                 name='heart-3'
                 variant='fill' 

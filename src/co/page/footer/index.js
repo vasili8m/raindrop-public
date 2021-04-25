@@ -5,7 +5,10 @@ import Button from '~co/button'
 export default function Footer() {
     return (
         <footer className={s.footer}>
-            <Button href='https://raindrop.io' variant='flat'>
+            <Button 
+                href='https://raindrop.io' 
+                variant='flat'
+                title='Raindrop.io'>
                 <Logo />
             </Button>
 

@@ -94,7 +94,8 @@ export default function UserPage({ statusCode, user, collections }) {
 						<Button
 							href={`https://twitter.com/${user.twitter?.screen_name}`}
 							target='_blank'
-							variant='flat'>
+							variant='flat'
+							title='Twitter'>
 							<Icon 
 								name='twitter'
 								variant='fill' />
@@ -105,7 +106,8 @@ export default function UserPage({ statusCode, user, collections }) {
 						<Button
 							href={`https://facebook.com/${user.facebook?.screen_name}`}
 							target='_blank'
-							variant='flat'>
+							variant='flat'
+							title='Facebook'>
 							<Icon 
 								name='facebook-circle'
 								variant='fill' />
