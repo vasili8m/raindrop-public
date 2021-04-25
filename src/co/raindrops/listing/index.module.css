@@ -22,7 +22,7 @@
     column-gap: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .grid .items {
         grid-template-columns: 50vw 50vw;
     }

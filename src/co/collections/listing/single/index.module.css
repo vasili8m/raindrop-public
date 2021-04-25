@@ -16,7 +16,7 @@ a.single {
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 5 / 3;
 }
 
 @supports not (aspect-ratio: 1/1) {
