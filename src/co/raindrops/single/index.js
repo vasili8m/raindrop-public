@@ -9,6 +9,7 @@ import Cover from './cover'
 import Path from './path'
 import Tags from './tags'
 import Important from './important'
+import Creator from './creator'
 import Type from './type'
 import Add from './add'
 
@@ -50,6 +51,7 @@ export default function RaindropsSingle(props) {
                     </Buttons>
 
                     <Info className={s.info}>
+                        <Creator {...props} />
                         <span>{compactDomain(item.domain)}</span>
                         <span><ShortDate date={item.created} /></span>
                     </Info>
