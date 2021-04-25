@@ -1,5 +1,6 @@
 .select {
     position: relative;
+    overflow: hidden;
 }
 
 .select select {
