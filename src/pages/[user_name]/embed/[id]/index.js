@@ -88,7 +88,7 @@ export default function EmbedScreen({ statusCode, collection, raindrops, user })
 					items={raindrops.items} />
 
 				<Button 
-					block
+					style={{display:'grid', justifyContent: 'center'}}
 					size='large'
 					href={`/${user.name}/${collection.slug}-${collection._id}`}
 					prefetch={false}

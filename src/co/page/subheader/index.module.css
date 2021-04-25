@@ -14,7 +14,9 @@
 .subheader h2 {
     font-weight: normal;
     margin: 0;
-    margin-top: calc(var(--padding-small) * -2);
+    margin-top: calc(var(--padding-regular) * -1);
     padding: 0;
     color: var(--text-color-secondary);
+    font-size: var(--font-size-h2);
+    line-height: 145%;
 }

@@ -34,6 +34,9 @@
 }
 
 .title {
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    
     min-width: 0;
     margin: 0;
     padding: 0;

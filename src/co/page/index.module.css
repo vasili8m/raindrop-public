@@ -21,23 +21,11 @@
 
 @media screen and (max-width: 1000px) {
     .page {
-        padding: 0;
+        padding-top: 0;
         --page-width: calc(100% - var(--padding-large) * 2) !important;
     }
 }
 
 .page a {
     text-decoration: none;
-    color: var(--accent-color);
-}
-
-.page h1 {
-    font-size: var(--font-size-h1);
-    font-weight: 700;
-}
-
-.page h2 {
-    font-size: var(--font-size-h2);
-    font-weight: 700;
-    line-height: 145%;
 }
