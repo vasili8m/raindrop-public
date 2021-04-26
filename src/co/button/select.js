@@ -10,7 +10,7 @@ import Icon from '~co/icon'
     onChange = functioon(value)
 */
 export function Select({ className='', options=[], selected, children, onChange, ...etc }) {
-    const active = options.find(({value})=>value == selected)
+    const active = options.find(({value})=>(value||undefined) == (selected||undefined))
 
     const onNativeChange = useCallback(e=>{
         e.preventDefault()

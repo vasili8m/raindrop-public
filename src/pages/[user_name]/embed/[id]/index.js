@@ -50,6 +50,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, raindrop
 		<Page.Wrap 
 			wide
 			embed
+			theme={options.theme}
 			accentColor={collection.color}>
 			<Head>
 				<meta name='robots' content='noindex' />

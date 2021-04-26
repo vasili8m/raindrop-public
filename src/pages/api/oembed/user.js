@@ -1,4 +1,5 @@
 import Api from '~api'
+import links from '~config/links'
 
 const base = {
     success: true,
@@ -19,8 +20,8 @@ export function validateURL(url) {
 export function getHTML({ user }, options={}) {
     const { height, ...etc } = options
 
-    const url = `https://raindrop.io/${user.name}/embed/me`+(
-        Object.keys(etc).length ? '?'+new URLSearchParams(etc) : ''
+    const url = `${links.site.base}/${user.name}/embed/me`+(
+        Object.keys(etc).length ? '/'+new URLSearchParams(etc) : ''
     )
 
     return (`<iframe 

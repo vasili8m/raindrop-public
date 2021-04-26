@@ -11,7 +11,7 @@ import Button, { Share } from '~co/button'
 import Icon from '~co/icon'
 import Path from '~co/raindrops/path'
 import Toolbar from '~co/layout/toolbar'
-import Form, { Textarea, Label, Checkbox, Fields } from '~co/form'
+import Form, { Textarea, Label, Checkbox, Fields, Select } from '~co/form'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -115,8 +115,13 @@ export default function EmbedUserScreen({ statusCode, user }) {
 					<Label>Code</Label>
 					<Textarea name='html' readOnly />
 
-					<Label>Customization</Label>
+					<Label>Appearance</Label>
 					<Fields>
+						<div>
+							<Select 
+								name='theme'
+								options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
+						</div>
 						<Checkbox name='no-header'>Hide header</Checkbox>
 					</Fields>
 

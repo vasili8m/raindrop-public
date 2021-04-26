@@ -42,6 +42,7 @@ export default function EmbedUser({ statusCode, user, collections, options }) {
 
     return (
 		<Page.Wrap 
+			theme={options.theme}
             embed
             wide>
 			<Head>

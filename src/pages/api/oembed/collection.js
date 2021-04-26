@@ -1,4 +1,5 @@
 import Api from '~api'
+import links from '~config/links'
 
 const base = {
     success: true,
@@ -19,7 +20,7 @@ export function validateURL(url) {
 export function getHTML({ user, collection }, options={}) {
     const { height, ...etc } = options
 
-    const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}/embed`+(
+    const url = `${links.site.base}/${user.name}/${collection.slug}-${collection._id}/embed`+(
         Object.keys(etc).length ? '/'+new URLSearchParams(etc) : ''
     )
 

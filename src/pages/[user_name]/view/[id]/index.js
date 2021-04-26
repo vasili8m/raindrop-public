@@ -65,6 +65,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 	return (
 		<Page.Wrap 
 			wide={collection.view == 'grid' || collection.view == 'masonry'}
+			theme={options.theme}
 			accentColor={collection.color}>
 			<Head>
 				<link 
