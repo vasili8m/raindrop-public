@@ -4,6 +4,8 @@ import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 
 import Page from '~co/page'
+import Button from '~co/button'
+import Icon from '~co/icon'
 import Raindrops from '~co/raindrops/listing'
 import Field from '~co/search/field'
 import Tags from '~co/search/tags'
@@ -74,6 +76,15 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 
 			<Page.Header.Wrap>
 				<Field placeholder={`Search ${collection.title}`} />
+
+				<Page.Header.Buttons style={{flex: 0}}>
+					<Button 
+						variant='flat' 
+						href={`/${user.name}/${collection.slug}-${collection._id}/export/`+new URLSearchParams(options)}
+						title='Export & Share'>
+						<Icon name='upload-2' />
+					</Button>
+				</Page.Header.Buttons>
 			</Page.Header.Wrap>
 
 			<Page.Subheader>

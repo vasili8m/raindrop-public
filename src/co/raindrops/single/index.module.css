@@ -58,6 +58,7 @@
 .filters {
     grid-area: filters;
     padding: calc(var(--padding-regular) - var(--padding-small)) 0;
+    overflow: hidden;
 }
 .filters:empty {
     display: none;

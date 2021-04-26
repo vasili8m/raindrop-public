@@ -50,11 +50,9 @@ export default {
         )
     },
 
-    Buttons: function({ children }) {
+    Buttons: function({ className='', ...etc }) {
         return (
-            <Buttons className={s.buttons}>
-                {children}
-            </Buttons>
+            <Buttons {...etc} className={s.buttons+' '+className} />
         )
     }
 }

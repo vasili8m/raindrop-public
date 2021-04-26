@@ -7,6 +7,7 @@ import Button from '~co/button'
 import Icon, { Avatar } from '~co/icon'
 import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
+import Toolbar from '~co/layout/toolbar'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
@@ -34,13 +35,14 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 		props: {
 			collection,
 			raindrops,
-			user
+			user,
+			options
 		},
 		revalidate: 3
 	}
 }
 
-export default function EmbedCollectionScreen({ statusCode, collection, raindrops, user }) {
+export default function EmbedCollectionScreen({ statusCode, collection, raindrops, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -86,6 +88,12 @@ export default function EmbedCollectionScreen({ statusCode, collection, raindrop
 			</Page.Header.Wrap>
 
 			<Page.Content>
+				{!!options.search && (
+					<Toolbar.Wrap>
+						<Toolbar.Title>{options.search}</Toolbar.Title>
+					</Toolbar.Wrap>
+				)}
+
 				<Raindrops 
 					target='_blank'
 					collection={collection}

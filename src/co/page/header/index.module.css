@@ -47,10 +47,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-right: var(--padding-regular);
 }
 
 .buttons {
+    padding-left: var(--padding-regular);
     flex: 1;
     justify-content: flex-end;
     flex-wrap: nowrap !important;

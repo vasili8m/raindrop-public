@@ -153,7 +153,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 			<Page.Content>
 				<Toolbar.Wrap>
 					<Toolbar.Title>
-						{raindrops.count} bookmarks
+						{options.search ? options.search : raindrops.count+' bookmarks'}
 					</Toolbar.Title>
 
 					{!!raindrops.items.length && (

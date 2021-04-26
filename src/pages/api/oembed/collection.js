@@ -20,7 +20,7 @@ export function getHTML({ user, collection }, options={}) {
     const { height, ...etc } = options
 
     const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}/embed`+(
-        Object.keys(etc).length ? '?'+new URLSearchParams(etc) : ''
+        Object.keys(etc).length ? '/'+new URLSearchParams(etc) : ''
     )
 
     return (`<iframe 
@@ -41,9 +41,6 @@ export default async function getJSON(url) {
     ])
 
     if (!collection || !user)
-        return null
-
-    if (user._id != collection.user?.$id)
         return null
 
     return {

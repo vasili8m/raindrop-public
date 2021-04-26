@@ -8,14 +8,16 @@ import Path from '~co/raindrops/path'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { id, user_name } }) {
+export async function getStaticProps({ params: { id, user_name, options } }) {
+	options = Object.fromEntries(new URLSearchParams(options))
+	
 	const [ collection, user ] = await Promise.all([
 		Api.collection.get(id),
 		Api.user.getByName(user_name)
 	])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
-	if (!collection || !user || user._id != collection.user?.$id)
+	if (!collection || !user)
 		return {
 			props: {
 				statusCode: 404
@@ -23,13 +25,14 @@ export async function getStaticProps({ params: { id, user_name } }) {
 			revalidate: 10
 		}
 
-    const html = getHTML({ user, collection })
+    const html = getHTML({ user, collection }, options)
 
 	return {
 		props: {
 			collection,
             user,
-            html
+            html,
+			options
 		},
 		revalidate: 3
 	}

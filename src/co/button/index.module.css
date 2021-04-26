@@ -6,6 +6,7 @@
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
+    max-width: 100%;
 
     height: var(--this-button-size);
     line-height: var(--this-button-size);
