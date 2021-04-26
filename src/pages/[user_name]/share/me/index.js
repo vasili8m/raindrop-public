@@ -117,7 +117,7 @@ export default function EmbedUserScreen({ statusCode, user }) {
 
 					<Label>Customization</Label>
 					<Fields>
-						<Checkbox name='no-header'>No header</Checkbox>
+						<Checkbox name='no-header'>Hide header</Checkbox>
 					</Fields>
 
 					<Label>Preview</Label>

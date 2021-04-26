@@ -14,7 +14,7 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 	options.sort = options.sort || '-created'
-	options.perpage = 15
+	options.perpage = 50
 
 	const [ collection, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
@@ -90,7 +90,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, raindrop
 			)}
 
 			<Page.Content>
-				{!!options.search && (
+				{!!options.search && !options['no-header'] && (
 					<Toolbar.Wrap>
 						<Toolbar.Title>{options.search}</Toolbar.Title>
 					</Toolbar.Wrap>

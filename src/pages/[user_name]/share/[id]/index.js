@@ -157,7 +157,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 					<Input name='search' placeholder='By #tag, title, etc...' />
 
 					<Fields>
-						<Checkbox name='no-header'>No header</Checkbox>
+						<Checkbox name='no-header'>Hide header</Checkbox>
 					</Fields>
 
 					<Label>Preview</Label>
