@@ -11,7 +11,9 @@ import { useRoot } from '~co/collections/hooks'
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
-export async function getStaticProps({ params: { user_name } }) {
+export async function getStaticProps({ params: { user_name, options } }) {
+	options = Object.fromEntries(new URLSearchParams(options))
+
 	const user = await Api.user.getByName(user_name)
 
 	if (!user)
@@ -25,13 +27,14 @@ export async function getStaticProps({ params: { user_name } }) {
     return {
 		props: {
 			user,
-			collections
+			collections,
+			options
 		},
 		revalidate: 3
 	}
 }
 
-export default function EmbedUser({ statusCode, user, collections }) {
+export default function EmbedUser({ statusCode, user, collections, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
@@ -45,33 +48,35 @@ export default function EmbedUser({ statusCode, user, collections }) {
                 <meta name='robots' content='noindex' />
 			</Head>
 
-			<Page.Header.Wrap>
-				{!!user.avatar && (
-					<Page.Header.Icon>
-						<Avatar 
-							src={user.avatar}
-							alt={user.name}
-							size='large' />
-					</Page.Header.Icon>
-				)}
+			{!options['no-header'] && (
+				<Page.Header.Wrap>
+					{!!user.avatar && (
+						<Page.Header.Icon>
+							<Avatar 
+								src={user.avatar}
+								alt={user.name}
+								size='large' />
+						</Page.Header.Icon>
+					)}
 
-				<Page.Header.Title>
-					{user.name}
-				</Page.Header.Title>
+					<Page.Header.Title>
+						{user.name}
+					</Page.Header.Title>
 
-				{!!user.pro && (
-					<Badge variant='disabled'>Pro</Badge>
-				)}
+					{!!user.pro && (
+						<Badge variant='disabled'>Pro</Badge>
+					)}
 
-				<Page.Header.Buttons>
-                    <Button 
-						href={`/${user.name}`}
-						target='_blank'>
-						Show all
-						<Icon name='arrow-right-up' />
-					</Button>
-				</Page.Header.Buttons>
-			</Page.Header.Wrap>
+					<Page.Header.Buttons>
+						<Button 
+							href={`/${user.name}`}
+							target='_blank'>
+							Show all
+							<Icon name='arrow-right-up' />
+						</Button>
+					</Page.Header.Buttons>
+				</Page.Header.Wrap>
+			)}
 
 			<Page.Content>
 				<Collections 

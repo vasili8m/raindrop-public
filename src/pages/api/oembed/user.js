@@ -19,7 +19,7 @@ export function validateURL(url) {
 export function getHTML({ user }, options={}) {
     const { height, ...etc } = options
 
-    const url = `https://raindrop.io/${user.name}/embed`+(
+    const url = `https://raindrop.io/${user.name}/embed/me`+(
         Object.keys(etc).length ? '?'+new URLSearchParams(etc) : ''
     )
 

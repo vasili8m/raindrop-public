@@ -114,17 +114,17 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 
 				<Page.Header.Buttons>
 					<Button 
-						variant='flat' 
-						href={`/${user.name}/${collection.slug}-${collection._id}/search`}
-						title='Search'>
-						<Icon name='search' />
+						variant='flat'
+						href={`/${user.name}/${collection.slug}-${collection._id}/share`}
+						bold>
+						<Icon name='upload-2' />
 					</Button>
 
 					<Button 
 						variant='flat' 
-						href={`/${user.name}/${collection.slug}-${collection._id}/share`}
-						title='Share'>
-						<Icon name='upload-2' />
+						href={`/${user.name}/${collection.slug}-${collection._id}/search`}
+						title='Search'>
+						<Icon name='search' />
 					</Button>
 					
 					<Button 

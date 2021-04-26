@@ -78,10 +78,10 @@ export default function UserPage({ statusCode, user, collections }) {
 
 				<Page.Header.Buttons>
 					<Button 
-						variant='flat' 
-						href={`/${user.name}/share`}
-						title='Share'>
-						<Icon name='upload-2' />
+						href={`/${user.name}/share/me`}
+						bold>
+						<Icon name='code' />
+						Embed
 					</Button>
 
 					<Button 
