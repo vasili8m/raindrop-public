@@ -20,7 +20,7 @@ export default {
 
     Buttons: function({ className='', ...etc }) {
         return (
-            <div
+            <Buttons
                 {...etc}
                 className={s.buttons+' '+className} />
         )

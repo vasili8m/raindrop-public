@@ -79,8 +79,8 @@ export default function UserPage({ statusCode, user, collections }) {
 				<Page.Header.Buttons>
 					<Button 
 						variant='flat' 
-						href={`/${user.name}/export`}
-						title='Export & Share'>
+						href={`/${user.name}/share`}
+						title='Share'>
 						<Icon name='upload-2' />
 					</Button>
 

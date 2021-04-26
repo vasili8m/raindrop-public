@@ -19,7 +19,11 @@
     justify-content: start;
 
     padding: 0 var(--padding-regular);
-    transition: background .1s linear, box-shadow .1s linear;
+    transition: background .1s linear, box-shadow .1s linear, filter .1s linear;
+}
+
+.button:active {
+    filter: brightness(90%);
 }
 
 /* size */
@@ -37,6 +41,7 @@
 }
 
 .button[data-single-icon='true'] {
+    contain: strict;
     padding: 0;
     justify-content: center;
     width: var(--this-button-size);

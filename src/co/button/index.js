@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Icon, { Logo, Avatar } from '~co/icon'
 
 export * from './select'
+export * from './share'
 
 export function Base({ as='a', className='', prefetch, variant, color, size, bold=false, href, disabled=false, forwardedRef, ...props }) {
     const Wrap = href ? Link : Fragment

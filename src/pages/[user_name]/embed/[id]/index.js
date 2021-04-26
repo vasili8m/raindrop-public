@@ -55,37 +55,39 @@ export default function EmbedCollectionScreen({ statusCode, collection, raindrop
 				<meta name='robots' content='noindex' />
 			</Head>
 
-			<Page.Header.Wrap>
-				<Page.Header.Icon>
-					<CollectionCover 
-						{...collection}
-						size='large' />
-				</Page.Header.Icon>
+			{!options['no-header'] && (
+				<Page.Header.Wrap>
+					<Page.Header.Icon>
+						<CollectionCover 
+							{...collection}
+							size='large' />
+					</Page.Header.Icon>
 
-				<Page.Header.Title>{collection.title}</Page.Header.Title>
+					<Page.Header.Title>{collection.title}</Page.Header.Title>
 
-				<Page.Header.Buttons>
-					{!!user.avatar && (
+					<Page.Header.Buttons>
+						{!!user.avatar && (
+							<Button 
+								variant='flat' 
+								href={`/${user.name}`}
+								title={user.name}
+								target='_blank'>
+								<Avatar 
+									src={user.avatar} 
+									alt={user.name}
+									size='large' />
+							</Button>
+						)}
+
 						<Button 
-							variant='flat' 
-							href={`/${user.name}`}
-							title={user.name}
+							href={`/${user.name}/${collection.slug}-${collection._id}`}
 							target='_blank'>
-							<Avatar 
-								src={user.avatar} 
-								alt={user.name}
-								size='large' />
+							Show all
+							<Icon name='arrow-right-up' />
 						</Button>
-					)}
-
-					<Button 
-						href={`/${user.name}/${collection.slug}-${collection._id}`}
-						target='_blank'>
-						Show all
-						<Icon name='arrow-right-up' />
-					</Button>
-				</Page.Header.Buttons>
-			</Page.Header.Wrap>
+					</Page.Header.Buttons>
+				</Page.Header.Wrap>
+			)}
 
 			<Page.Content>
 				{!!options.search && (

@@ -30,7 +30,7 @@ export default function RaindropsSort({ options={} }) {
 
     return (
         <Select 
-            variant='ghost'
+            variant={sort!='-created' ? 'active' : 'flat'}
             selected={sort}
             options={sorts}
             onChange={onChange}>

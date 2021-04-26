@@ -1,7 +1,7 @@
 .toolbar {
     display: grid;
-    grid-template-areas: 'title actions';
-    grid-template-columns: 1fr min-content;
+    grid-template-areas: 'title buttons';
+    grid-template-columns: 1fr max-content;
     align-items: center;
     padding-top: var(--padding-large);
     padding-bottom: var(--padding-regular);
@@ -19,6 +19,6 @@
     font-weight: 600;
 }
 
-.actions {
-    grid-area: actions;
+.buttons {
+    grid-area: buttons;
 }
