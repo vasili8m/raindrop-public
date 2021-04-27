@@ -46,7 +46,10 @@ function PreviewDebounced({ html }) {
 	useEffect(()=>{
 		setLoad(false)
 		clearTimeout(window.__pdt)
-		window.__pdt = setTimeout(() => setLoad(true), 500)
+		window.__pdt = setTimeout(() => {
+			setLoad(true)
+			window.__pdt = undefined
+		}, 500)
 	}, [html])
 
 	if (!load)

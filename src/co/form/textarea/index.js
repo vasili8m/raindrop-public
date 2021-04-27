@@ -4,12 +4,12 @@ import { Context } from '../form'
 
 export function Textarea({ className='', ...etc }) {
     const { values, onChange } = useContext(Context)
-    const onClick = useCallback(e=>{
+    const onFocus = useCallback(e=>{
         if (etc.readOnly)
             e.target.select()
 
-        if (etc.onClick)
-            etc.onClick(e)
+        if (etc.onFocus)
+            etc.onFocus(e)
     })
 
     return (
@@ -17,7 +17,7 @@ export function Textarea({ className='', ...etc }) {
             {...etc}
             value={values[etc.name]}
             className={s.textarea+' '+className}
-            onClick={onClick}
+            onFocus={onFocus}
             onChange={onChange} />
     )
 }

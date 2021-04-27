@@ -1,4 +1,4 @@
 import Index from './index'
-import { getStaticPaths, getStaticProps } from './index'
-export { getStaticPaths, getStaticProps }
+import { getStaticPaths, getStaticProps, config } from './index'
+export { getStaticPaths, getStaticProps, config }
 export default Index
