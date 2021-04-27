@@ -81,7 +81,8 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 					<Button 
 						variant='flat' 
 						href={`/${user.name}/${collection.slug}-${collection._id}/share/`+new URLSearchParams(options)}
-						title='Export & Share'>
+						title='Export & Share'
+						prefetch={false}>
 						<Icon name='upload-2' />
 					</Button>
 				</Page.Header.Buttons>

@@ -19,6 +19,7 @@ export default function RaindropsSingleAdd({ item: { link, title } }) {
         <Button 
             className={s.add} 
             onClick={onClick}
+            target='_blank'
             href={'https://app.raindrop.io/add?'+new URLSearchParams({
                 link,
                 title

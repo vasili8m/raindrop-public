@@ -9,6 +9,10 @@ import CollectionCover from '~co/collections/cover'
 import Raindrops from '~co/raindrops/listing'
 import Toolbar from '~co/layout/toolbar'
 
+export const config = {
+	unstable_runtimeJS: false
+}
+
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name, options } }) {

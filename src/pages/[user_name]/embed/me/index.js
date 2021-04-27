@@ -7,7 +7,11 @@ import Icon, { Avatar } from '~co/icon'
 import Button from '~co/button'
 import Badge from '~co/badge'
 import Collections from '~co/collections/listing'
-import { useRoot } from '~co/collections/hooks' 
+import { useRoot } from '~co/collections/hooks'
+
+export const config = {
+	unstable_runtimeJS: false
+}
 
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 

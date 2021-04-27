@@ -124,6 +124,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					<Button 
 						variant='flat' 
 						href={`/${user.name}/${collection.slug}-${collection._id}/search`}
+						prefetch={false}
 						title='Search'>
 						<Icon name='search' />
 					</Button>
