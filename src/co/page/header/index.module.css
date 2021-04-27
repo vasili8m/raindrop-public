@@ -8,9 +8,11 @@
 }
 
 .header[data-pinned='false'] {
-    background: transparent;
-    backdrop-filter: none;
     box-shadow: none;
+}
+.header[data-pinned='false'] + [data-is-subheader] {
+    position: relative;
+    z-index: 100;
 }
 
 @supports (backdrop-filter: none) {
