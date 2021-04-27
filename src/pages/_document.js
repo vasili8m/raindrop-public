@@ -14,6 +14,7 @@ class MyDocument extends Document {
                     <meta name='twitter:site' content='@raindrop_io' />
                     <meta name='twitter:domain' content='raindrop.io' />
 
+                    <link rel='preconnect' href={process.env.SITE_URL} />
                     <link rel='preconnect' href='https://rdl.ink' />
                 </Head>
                 <body>
