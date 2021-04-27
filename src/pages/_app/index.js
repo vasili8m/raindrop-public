@@ -1,7 +1,7 @@
 import 'modern-normalize'
 import './index.css'
 import RemixIcon from './remixicon/remixicon.symbol.svg?raw'
-import './sentry'
+import '~modules/vendor/sentry'
 
 function MyApp({ Component, pageProps }) {
     return (
