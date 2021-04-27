@@ -66,7 +66,8 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
                     <Button 
                         href={getHref(page-1)}
                         disabled={!page}
-                        title='Previous page'>
+                        title='Previous page'
+                        prefetch={false}>
                         <Icon name='arrow-left' />
                     </Button>
 
