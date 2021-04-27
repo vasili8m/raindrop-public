@@ -42,6 +42,6 @@ export async function getServerSideProps({ params: { id }, query={}, req, res })
     }
 }
 
-export default function Oembed() {
+export default function CollectionLegacy() {
     return null
 }

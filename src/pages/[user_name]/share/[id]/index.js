@@ -144,7 +144,10 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 					value={value}
 					onChange={onChange}>
 					<Label>Code</Label>
-					<Textarea name='html' readOnly />
+					<Textarea 
+						name='html' 
+						autoFocus
+						readOnly />
 
 					<Label>Sort</Label>
 					<div>
