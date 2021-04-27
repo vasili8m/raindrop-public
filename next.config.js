@@ -97,10 +97,6 @@ module.exports = {
             test: /\.svg$/,
             oneOf: [
                 {
-					resourceQuery: /raw/,
-					loader: 'raw-loader'
-				},
-                {
                     use: ['@svgr/webpack']
                 }
             ]

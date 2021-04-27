@@ -14,10 +14,11 @@ function Base({ as='svg', size, className='', ...etc }) {
 }
 
 export default function Icon({ name, variant='line', ...etc }) {
+    var Component
+	try{Component = require(`~assets/remixicon/${name}${variant ? '-'+variant : ''}.svg`).default}catch(e){}
+
     return (
-        <Base {...etc}>
-            <use xlinkHref={`#ri-${name}${variant ? '-'+variant : ''}`}></use>
-        </Base>
+        <Base {...etc} as={Component} />
     )
 }
 
