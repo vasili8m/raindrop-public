@@ -8,7 +8,7 @@ import links from '~config/links'
 import { copyText } from '~modules/browser'
 
 import Page from '~co/page'
-import Button, { Share } from '~co/button'
+import Button, { Share, Buttons } from '~co/button'
 import Icon from '~co/icon'
 import Path from '~co/raindrops/path'
 import Toolbar from '~co/layout/toolbar'
@@ -120,6 +120,17 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 			</Page.Subheader>
 
 			<Page.Content>
+				<Toolbar.Wrap>
+					<Toolbar.Title>Export</Toolbar.Title>
+				</Toolbar.Wrap>
+				<Buttons>
+					<Button
+						href={`https://raindrop.io/collection/${collection._id}/feed`}
+						target='_blank'>
+						<Icon name='rss' /> RSS
+					</Button>
+				</Buttons>
+
 				<Toolbar.Wrap>
 					<Toolbar.Title>Embed</Toolbar.Title>
 					<Toolbar.Buttons>
