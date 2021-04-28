@@ -1,9 +1,14 @@
 import 'modern-normalize'
 import './index.css'
-import '~modules/vendor/sentry'
+import { PageView } from '~modules/vendor/ga'
 
 function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
+    return (
+        <>
+            <Component {...pageProps} />
+            <PageView />
+        </>
+    )
 }
 
 export default MyApp  

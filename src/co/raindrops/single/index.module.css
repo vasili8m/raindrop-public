@@ -85,7 +85,8 @@
     transition: opacity .1s linear;
 }
 
-.single:hover .actions {
+.single:hover .actions,
+.actions:focus-within {
     opacity: 1;
     width: auto;
     transition-delay: .2s;

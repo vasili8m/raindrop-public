@@ -50,7 +50,7 @@ module.exports = {
                         key: 'Content-Security-Policy',
                         value: `
                             default-src *;
-                            script-src 'self' https://*.raindrop.io ${process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : ''};
+                            script-src 'self' https://*.raindrop.io https://*.googletagmanager.com https://*.google-analytics.com ${process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : ''};
                             style-src 'self' 'unsafe-inline' https://*.raindrop.io;
                             img-src * blob:;
                             object-src 'self' up.raindrop.io;

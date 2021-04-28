@@ -1,4 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import '~modules/vendor/sentry'
+import GA from '~modules/vendor/ga'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
@@ -20,6 +22,7 @@ class MyDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
+                    <GA />
                 </body>
             </Html>
         )
