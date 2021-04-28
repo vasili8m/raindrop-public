@@ -1,10 +1,11 @@
 .listing {
     margin: 0 calc(var(--padding-large) * -1);
+    --grid-item-width: 350px;
 }
 
 .grid .items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(50%, var(--grid-item-width)), 1fr));
     grid-template-rows: 1fr;
 }
 
@@ -18,16 +19,12 @@
 }
 
 .masonry .items {
-    columns: 350px;
+    columns: var(--grid-item-width);
     column-gap: 0;
 }
 
-@media screen and (max-width: 700px) {
-    .grid .items {
-        grid-template-columns: 50vw 50vw;
-    }
-
-    .masonry .items {
-        columns: 50vw;
+@media screen and (max-width: 1000px) {
+    .listing {
+        --grid-item-width: 200px;
     }
 }
