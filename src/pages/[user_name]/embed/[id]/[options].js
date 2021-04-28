@@ -1,4 +1,7 @@
 import Index from './index'
-import { getStaticPaths, getStaticProps, config } from './index'
-export { getStaticPaths, getStaticProps, config }
+import { getStaticPaths, getStaticProps } from './index'
+export { getStaticPaths, getStaticProps }
+export const config = {
+	unstable_runtimeJS: false
+}
 export default Index
