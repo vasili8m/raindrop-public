@@ -85,6 +85,7 @@ export default function EmbedUser({ statusCode, user, collections, options }) {
 
 			<Page.Content>
 				<Collections 
+					target='_blank'
 					items={root}
 					user={user} />
 			</Page.Content>

@@ -6,7 +6,7 @@ import colorConvert from 'color-convert'
 
 import Cover from '../../cover'
 
-export default function CollectionsSingle({ item }) {
+export default function CollectionsSingle({ item, target }) {
     const { query: { user_name } } = useRouter()
 
     const folderStyle = useMemo(()=>
@@ -20,7 +20,9 @@ export default function CollectionsSingle({ item }) {
         <Link 
             href={`/${user_name}/${item.slug}-${item._id}`}
             prefetch={false}> 
-            <a className={s.single}>
+            <a 
+                target={target}
+                className={s.single}>
                 <span 
                     className={s.folder}
                     data-custom-bg={folderStyle ? true : false}

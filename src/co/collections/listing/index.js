@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import Single from './single'
 
-export default function CollectionsListing({ items, user }) {
+export default function CollectionsListing({ items, user, target }) {
     if (!items.length)
         return null
 
@@ -10,6 +10,7 @@ export default function CollectionsListing({ items, user }) {
             {items.map(item=>(
                 <Single 
                     key={item._id}
+                    target={target}
                     item={item}
                     href={`/${user.name}/${item.slug}-${item._id}`} />
             ))}
