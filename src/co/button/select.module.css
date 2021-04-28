@@ -3,6 +3,9 @@
     overflow: hidden;
     border-radius: var(--border-radius-regular);
 }
+.select:focus-within {
+    outline-style: auto;
+}
 
 .select select {
     opacity: 0;
