@@ -26,7 +26,7 @@ export default function RaindropsSort({ options={} }) {
                 }).toString()
             }
         })
-    }, [])
+    }, [options])
 
     return (
         <Select 
