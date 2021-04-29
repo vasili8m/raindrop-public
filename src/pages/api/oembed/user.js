@@ -6,7 +6,7 @@ const base = {
     version: '1.0',
     type: 'rich',
     provider_name: 'Raindrop.io',
-    provider_url: 'https://raindrop.io/',
+    provider_url: links.site.index,
     height: 450
 }
 
@@ -20,7 +20,7 @@ export function validateURL(url) {
 export function getHTML({ user }, options={}) {
     const { height, ...etc } = options
 
-    const url = `${links.site.base}/${user.name}/embed/me`+(
+    const url = `${links.site.index}/${user.name}/embed/me`+(
         Object.keys(etc).length ? '/'+new URLSearchParams(etc) : ''
     )
 

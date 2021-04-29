@@ -29,11 +29,12 @@ export async function getServerSideProps({ params: { id }, query={}, req, res })
     if (embed)
         res.removeHeader('X-Frame-Options')
 
+    if (isNaN(id))
+        return { notFound: true }
+
     const destination = await getUrl(id, query, embed)
     if (!destination)
-        return {
-            notFound: 404
-        }
+        return { notFound: true }
 
     return {
         redirect: {

@@ -5,6 +5,7 @@ import Error from 'next/error'
 import Api from '~api'
 import { getHTML } from '~pages/api/oembed/user'
 import { copyText } from '~modules/browser'
+import links from '~config/links'
 
 import Page from '~co/page'
 import Button, { Share } from '~co/button'
@@ -42,7 +43,7 @@ export default function EmbedUserScreen({ statusCode, user }) {
 		return <Error statusCode={statusCode} />
 
 	//canonical url
-	const canonicalUrl = `https://raindrop.io/${user.name}`
+	const canonicalUrl = `${links.site.index}/${user.name}`
 
 	//form
 	const value = useMemo(

@@ -1,6 +1,7 @@
 import Error from 'next/error'
 import Head from 'next/head'
 import Api from '~api'
+import links from '~config/links'
 
 import Page from '~co/page'
 import Icon, { Logo, Avatar } from '~co/icon'
@@ -15,14 +16,12 @@ import Toolbar from '~co/layout/toolbar'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { user_name } }) {
-	const user = await Api.user.getByName(user_name)
+	const [ user, collections ] = await Promise.all([
+		Api.user.getByName(user_name),
+		Api.collections.getByUserName(user_name)
+	])
 
-	if (!user)
-		return { props: { statusCode: 404 }, revalidate: 10 }
-
-	const collections = await Api.collections.get(user._id)
-
-	if (!collections?.length)
+	if (!user || !collections?.length)
 		return { props: { statusCode: 404 }, revalidate: 10 }
 
     return {
@@ -43,7 +42,7 @@ export default function UserPage({ statusCode, user, collections }) {
     return (
 		<Page.Wrap wide>
 			<Head>
-				<link rel='canonical' href={`https://raindrop.io/${user.name}`} />
+				<link rel='canonical' href={`${links.site.index}/${user.name}`} />
 
 				<title>{user.name}</title>
 				<meta name='twitter:title' content={user.name} />

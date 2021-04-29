@@ -8,10 +8,13 @@ async function getUrl(id) {
     const user = await Api.user.getById(id)
     if (!user) return cache[id]=null
 
-    return cache[id]=`https://raindrop.io/${user.name}`
+    return cache[id]=`${links.site.index}/${user.name}`
 }
 
 export async function getServerSideProps({ params: { id }, res }) {
+    if (isNaN(id))
+        return { notFound: true }
+        
     const url = await getUrl(id)
     if (!url)
         return { notFound: true }

@@ -20,8 +20,9 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || (options.search?.length ? 'score' : '-created')
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, raindrops, user ] = await Promise.all([
+	const [ collection, collections, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
+		Api.collections.getByUserName(user_name),
 		Api.raindrops.get(id, options),
 		Api.user.getByName(user_name)
 	])
@@ -36,7 +37,6 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 		}
 
 	const filters = !options.page ? await Api.filters.get(id, options) : {}
-	const collections = await Api.collections.get(user._id)
 
 	return {
 		props: {

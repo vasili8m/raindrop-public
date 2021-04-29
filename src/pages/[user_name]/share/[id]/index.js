@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import Error from 'next/error'
 import Api from '~api'
 import { getHTML } from '~pages/api/oembed/collection'
-import links from '~config/links'
 import { copyText } from '~modules/browser'
+import links from '~config/links'
 
 import Page from '~co/page'
 import Button, { Share, Buttons } from '~co/button'
@@ -65,7 +65,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 		return <Error statusCode={statusCode} />
 
 	//canonical url
-	const canonicalUrl = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}`
+	const canonicalUrl = `${links.site.index}/${user.name}/${collection.slug}-${collection._id}`
 
 	//form
 	const value = useMemo(
@@ -128,7 +128,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 				</Toolbar.Wrap>
 				<Buttons>
 					<Button
-						href={`https://raindrop.io/collection/${collection._id}/feed`}
+						href={`${links.site.index}/collection/${collection._id}/feed`}
 						target='_blank'>
 						<Icon name='rss' /> RSS
 					</Button>

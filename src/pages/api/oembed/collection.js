@@ -6,7 +6,7 @@ const base = {
     version: '1.0',
     type: 'rich',
     provider_name: 'Raindrop.io',
-    provider_url: 'https://raindrop.io/',
+    provider_url: links.site.index,
     height: 450
 }
 
@@ -20,7 +20,7 @@ export function validateURL(url) {
 export function getHTML({ user, collection }, options={}) {
     const { height, ...etc } = options
 
-    const url = `${links.site.base}/${user.name}/${collection.slug}-${collection._id}/embed`+(
+    const url = `${links.site.index}/${user.name}/${collection.slug}-${collection._id}/embed`+(
         Object.keys(etc).length ? '/'+new URLSearchParams(etc) : ''
     )
 
@@ -48,7 +48,7 @@ export default async function getJSON(url) {
         ...base,
         title: collection.title,
         author_name: user_name,
-        author_url: `https://raindrop.io/${user_name}`,
+        author_url: `${links.site.index}/${user_name}`,
         thumbnail_url: collection.cover?.length ? 
             collection.cover[0] : 
             `${process.env.SITE_URL}/icon_128.png`,

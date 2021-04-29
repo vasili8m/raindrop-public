@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
+import links from '~config/links'
 
 import Page from '~co/page'
 import Button from '~co/button'
@@ -21,10 +22,10 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || '-created'
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, raindrops, filters, user ] = await Promise.all([
+	const [ collection, collections, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
+		Api.collections.getByUserName(user_name),
 		Api.raindrops.get(id, options),
-		Api.filters.get(id),
 		Api.user.getByName(user_name)
 	])
 
@@ -37,14 +38,11 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 			revalidate: 10
 		}
 
-	const collections = await Api.collections.get(user._id)
-
 	return {
 		props: {
 			collection,
 			collections,
 			raindrops,
-			filters,
 			user,
 			options,
 
@@ -54,11 +52,11 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function ViewScreen({ statusCode, collection, collections, raindrops, filters, user, options, site_url }) {
+export default function ViewScreen({ statusCode, collection, collections, raindrops, user, options, site_url }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 
-	const url = `https://raindrop.io/${user.name}/${collection.slug}-${collection._id}`
+	const url = `${links.site.index}/${user.name}/${collection.slug}-${collection._id}`
 
 	const childrens = useChildrens(collections, collection)
 
@@ -131,7 +129,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					
 					<Button 
 						variant='flat' 
-						href='https://raindrop.io'
+						href={links.site.index}
 						title='Raindrop.io'>
 						<Logo />
 					</Button>

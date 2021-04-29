@@ -1,4 +1,5 @@
 import s from './index.module.css'
+import links from '~config/links'
 import { useCallback } from 'react'
 import Button from '~co/button'
 import Icon from '~co/icon'
@@ -18,9 +19,10 @@ export default function RaindropsSingleAdd({ item: { link, title } }) {
     return (
         <Button 
             className={s.add} 
+            color='accent'
             onClick={onClick}
             target='_blank'
-            href={'https://app.raindrop.io/add?'+new URLSearchParams({
+            href={links.app.index+'/add?'+new URLSearchParams({
                 link,
                 title
             })}

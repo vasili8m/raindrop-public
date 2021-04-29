@@ -18,14 +18,12 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 export async function getStaticProps({ params: { user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 
-	const user = await Api.user.getByName(user_name)
+	const [ user, collections ] = await Promise.all([
+		Api.user.getByName(user_name),
+		Api.collections.getByUserName(user_name)
+	])
 
-	if (!user)
-		return { props: { statusCode: 404 }, revalidate: 10 }
-
-	const collections = await Api.collections.get(user._id)
-
-	if (!collections?.length)
+	if (!user || !collections?.length)
 		return { props: { statusCode: 404 }, revalidate: 10 }
 
     return {
