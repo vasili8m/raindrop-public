@@ -24,7 +24,10 @@ async function getUrl(id, { q, sort='' }, embed) {
 }
 
 export async function getServerSideProps({ params: { id }, query={}, req, res }) {
-    res.removeHeader('X-Frame-Options')
+    const embed = req.headers['sec-fetch-dest'] == 'iframe'
+    
+    if (embed)
+        res.removeHeader('X-Frame-Options')
 
     if (isNaN(id))
         return { notFound: true }
