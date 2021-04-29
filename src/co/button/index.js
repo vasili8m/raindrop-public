@@ -14,7 +14,6 @@ export function Base({ as='a', className='', prefetch, variant, color, size, bol
         <Wrap {...Wrap == Link ? { href, prefetch } : {}}>
             <Component 
                 {...props}
-                href={href||'javascript:'} //otherwise focus not works
                 ref={forwardedRef}
                 className={s.button+' '+className}
                 data-variant={disabled ? 'disabled' : (variant || 'regular')}

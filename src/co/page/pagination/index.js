@@ -37,8 +37,11 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
 
     let pages = []
 
-    if (pagesCount>1)
-        for(var i=0;i<=pagesCount-1;i++)
+    if (pagesCount>1){
+        let from = 0
+        let to = Math.min(pagesCount, 100)
+
+        for(var i=from;i<=to-1;i++)
             pages.push(
                 <Button
                     key={i}
@@ -50,6 +53,7 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
                     {i+1}
                 </Button>
             )
+    }
 
     return (
         <section className={s.pagination}>
