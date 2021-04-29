@@ -9,7 +9,8 @@ export default function CollectionsCompactSingle({ item, user, ...etc }) {
             prefetch={false}>
             <Cover 
                 {...item} 
-                size='small' />
+                size='small'
+                fallback={false} />
 
             {item.title}
         </Button>

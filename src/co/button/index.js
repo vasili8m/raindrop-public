@@ -30,8 +30,8 @@ export default forwardRef((props, ref) => {
     return <Base {...props} forwardedRef={ref} />
 })
 
-export function Buttons({ className='', ...etc }) {
+export function Buttons({ className='', tight=false, ...etc }) {
     return (
-        <div {...etc} className={s.buttons+' '+className} />
+        <div {...etc} data-tight={tight} className={s.buttons+' '+className} />
     )
 }

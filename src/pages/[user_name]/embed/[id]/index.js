@@ -20,8 +20,9 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || '-created'
 	options.perpage = 50
 
-	const [ collection, raindrops, user ] = await Promise.all([
+	const [ collection, collections, raindrops, user ] = await Promise.all([
 		Api.collection.get(id),
+		Api.collections.getByUserName(user_name),
 		Api.raindrops.get(id, options),
 		Api.user.getByName(user_name)
 	])
@@ -38,6 +39,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	return {
 		props: {
 			collection,
+			collections,
 			raindrops,
 			user,
 			options
@@ -46,7 +48,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	}
 }
 
-export default function EmbedCollectionScreen({ statusCode, collection, raindrops, user, options }) {
+export default function EmbedCollectionScreen({ statusCode, collection, collections, raindrops, user, options }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
 		
@@ -104,6 +106,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, raindrop
 				<Raindrops 
 					target='_blank'
 					collection={collection}
+					collections={collections}
 					items={raindrops.items}
 					user={user} />
 			</Page.Content>

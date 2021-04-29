@@ -40,7 +40,7 @@ export default function RaindropsSingle(props) {
                         </div>
                     )}
 
-                    <Buttons className={s.filters}>
+                    <Buttons tight className={s.filters}>
                         <Important {...props} />
 
                         {!!(query.id && item.collection?.$id != query.id) && (

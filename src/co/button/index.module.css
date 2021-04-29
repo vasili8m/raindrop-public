@@ -105,19 +105,22 @@
 
 /* group */
 .buttons {
+    --buttons-gap: calc(var(--padding-regular) + var(--padding-small));
+
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    margin-bottom: calc((var(--padding-regular) + var(--padding-small)) * -1);
-    margin-right: calc((var(--padding-regular) + var(--padding-small)) * -1);
+    
+    margin-bottom: calc(var(--buttons-gap) * -1);
+    margin-right: calc(var(--buttons-gap) * -1);
 }
 
 .buttons > * {
-    margin: calc(var(--padding-regular) + var(--padding-small));
+    margin: var(--buttons-gap);
     margin-top: 0;
     margin-left: 0;
 }
 
-.buttons[data-vertical-gap='large'] {
-    margin: var(--padding-large) 0;
+.buttons[data-tight='true'] {
+    --buttons-gap: var(--padding-regular)
 }
