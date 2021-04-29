@@ -63,11 +63,11 @@
 /* variants */
 .button[data-variant='regular'] {
     background: var(--background-color-regular);
-    box-shadow: 0 0 0 var(--line-size) var(--line-color);
+    box-shadow: inset 0 0 0 var(--line-size) var(--line-color);
 }
 .button[data-variant='regular']:hover,
 .button[data-variant='ghost']:hover {
-    box-shadow: 0 0 0 var(--line-size) var(--line-color), 0 var(--line-size) 2px var(--line-color);
+    box-shadow: inset 0 0 0 var(--line-size) var(--line-color), 0 var(--line-size) 2px var(--line-color);
 }
 
 .button[data-variant='ghost'] {
