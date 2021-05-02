@@ -3,6 +3,7 @@ import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 import links from '~config/links'
+import find from 'lodash/find'
 
 import Page from '~co/page'
 import Button from '~co/button'
@@ -20,14 +21,16 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 	options.sort = options.sort || '-created'
+	options.page = parseInt(options.page)
 	options.perpage = RAINDROPS_PER_PAGE
 
-	const [ collection, collections, raindrops, user ] = await Promise.all([
-		Api.collection.get(id),
+	const [ collections, raindrops, user ] = await Promise.all([
 		Api.collections.getByUserName(user_name),
 		Api.raindrops.get(id, options),
 		Api.user.getByName(user_name)
 	])
+
+	const collection = find(collections, ['_id', parseInt(id)])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection || !user)

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
+import find from 'lodash/find'
 
 import Page from '~co/page'
 import Button from '~co/button'
@@ -20,12 +21,13 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options.sort = options.sort || '-created'
 	options.perpage = 50
 
-	const [ collection, collections, raindrops, user ] = await Promise.all([
-		Api.collection.get(id),
+	const [ collections, raindrops, user ] = await Promise.all([
 		Api.collections.getByUserName(user_name),
 		Api.raindrops.get(id, options),
 		Api.user.getByName(user_name)
 	])
+
+	const collection = find(collections, ['_id', parseInt(id)])
 
 	//notFound: true doesn't refresh cached pages :( so instead do this:
 	if (!collection || !user)
