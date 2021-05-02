@@ -10,7 +10,7 @@ const base = {
     height: 450
 }
 
-const regex = /^\/(.+)\/(.+)-(\d+)/
+const regex = /^\/(.+)\/(.+)(\/|-)(\d+)/
 
 export function validateURL(url) {
     const { pathname } = new URL(url)
@@ -34,7 +34,7 @@ export function getHTML({ user, collection }, options={}) {
 }
 
 export default async function getJSON(url) {
-    const [ pathname, user_name, slug, id ] = new URL(url).pathname.match(regex)
+    const [ pathname, user_name, slugOrSection, separator, id ] = new URL(url).pathname.match(regex)
 
     const [ collection, user ] = await Promise.all([
         Api.collection.get(id),
