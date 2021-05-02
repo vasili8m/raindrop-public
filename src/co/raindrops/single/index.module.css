@@ -101,6 +101,7 @@ a.permalink {
     bottom: 0;
     z-index: 1;
     color: transparent;
+    overflow: hidden;
 }
 
 /* list, simple */
