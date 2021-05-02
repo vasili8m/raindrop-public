@@ -63,6 +63,8 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 
 	const childrens = useChildrens(collections, collection)
 
+	gg
+
 	return (
 		<Page.Wrap 
 			wide={collection.view == 'grid' || collection.view == 'masonry'}
