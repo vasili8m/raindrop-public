@@ -5,7 +5,7 @@ import { FetchError } from '../errors'
 export async function getById(id) {
     const res = await fetch(`${API_ENDPOINT}/user/${id}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
 
     const { result, user } = await res.json()
 
@@ -18,7 +18,7 @@ export async function getById(id) {
 export async function getByName(name) {
     const res = await fetch(`${API_ENDPOINT}/user/name/${name}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
 
     const { result, user } = await res.json()
 

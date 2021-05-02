@@ -29,5 +29,9 @@ if (process.env.VERCEL_GIT_COMMIT_SHA) {
 		integrations,
 		dsn: SENTRY_DSN,
 		release: process.env.VERCEL_GIT_COMMIT_SHA,
+
+		ignoreErrors: [
+			'FetchError'
+		]
 	})
 }

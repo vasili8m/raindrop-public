@@ -7,7 +7,7 @@ export async function get(id) {
 
     const res = await fetch(`${API_ENDPOINT}/collection/${id}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
         
     const { result, item } = await res.json()
 

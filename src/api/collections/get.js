@@ -6,7 +6,7 @@ export async function getByUserId(userId, options={}) {
 
     const res = await fetch(`${API_ENDPOINT}/collections/${userId}?${params.toString()}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
 
     const { result, items } = await res.json()
 
@@ -21,7 +21,7 @@ export async function getByUserName(user_name, options={}) {
 
     const res = await fetch(`${API_ENDPOINT}/collections/username/${user_name}?${params.toString()}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
 
     const { result, items } = await res.json()
 

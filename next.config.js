@@ -83,7 +83,7 @@ module.exports = {
                     include: '.next',
                     ignore: ['node_modules'],
                     stripPrefix: ['webpack://_N_E/'],
-                    urlPrefix: `~/_next`,
+                    urlPrefix: `app:///_next`,
                 })
             )
 

@@ -1,5 +1,5 @@
 export class FetchError extends Error {
-    constructor(status, ...params) {
+    constructor(status, message, ...params) {
         super(...params)
   
         if (Error.captureStackTrace)
@@ -7,6 +7,7 @@ export class FetchError extends Error {
   
         this.name = 'FetchError'
         this.status = status
+        this.message = message || status
         this.date = new Date()
     }
 }

@@ -5,7 +5,7 @@ import { optionsToQueryString } from '~api/raindrops/get'
 export async function get(id, options={}) {
     const res = await fetch(`${API_ENDPOINT}/filters/${id}?${optionsToQueryString(options)}`)
     if (!res.ok)
-        throw new FetchError(res.status)
+        throw new FetchError(res.status, res.statusText)
 
     const { result, ...items } = await res.json()
 
