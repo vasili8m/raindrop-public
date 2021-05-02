@@ -6,9 +6,14 @@ async function getUrl(id, { q, sort='' }, embed) {
     const collection = cache[id] || await Api.collection.get(id)
     if (!collection) return null
 
+    //get user name
+    const user = await Api.user.getById(collection.user?.$id)
+    if (!user) return null
+    collection.user.name = user.name
+
     cache[id] = collection
 
-    return `/${collection.creatorRef.name}/${collection.slug}-${collection._id}/${q ? 'search' : (embed ? 'embed' : 'view')}/${new URLSearchParams({
+    return `/${collection.user.name}/${collection.slug}-${collection._id}/${q ? 'search' : (embed ? 'embed' : 'view')}/${new URLSearchParams({
         sort,
         ...(q ? {
             search: q

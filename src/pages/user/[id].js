@@ -1,4 +1,5 @@
 import Api from '~api'
+import links from '~config/links'
 
 const cache = {}
 
