@@ -3,9 +3,6 @@ import { GOOGLE_ANALYTICS_ID } from '~config/vendors'
 
 export function PageView() {
     useEffect(() => {
-        //init
-        if (window.__gainit) return
-        window.__gainit = true
         window.dataLayer = window.dataLayer || []
         window.gtag = function(){dataLayer.push(arguments);}
         window.gtag('js', new Date())
