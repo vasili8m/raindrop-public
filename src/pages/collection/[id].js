@@ -1,13 +1,14 @@
 import Api from '~api'
 
+let cache = { }
+
 async function getUrl(id, { q, sort='' }, embed) {
-    const collection = await Api.collection.get(id)
+    const collection = cache[id] || await Api.collection.get(id)
     if (!collection) return null
 
-    const user = await Api.user.getById(collection.user?.$id)
-    if (!user) return null
+    cache[id] = collection
 
-    return `/${user.name}/${collection.slug}-${collection._id}/${q ? 'search' : (embed ? 'embed' : 'view')}/${new URLSearchParams({
+    return `/${collection.creatorRef.name}/${collection.slug}-${collection._id}/${q ? 'search' : (embed ? 'embed' : 'view')}/${new URLSearchParams({
         sort,
         ...(q ? {
             search: q

@@ -20,8 +20,10 @@ export default async function oembed({ query: { url='' } }, res) {
         }
     }
 
-    if (json)
+    if (json){
+        res.setHeader('Cache-Control', 'public,max-age=3600,stale-while-revalidate=3600')
         return res.json(json)
+    }
 
     res.status(400)
     res.write('Please provide correct `url`')
