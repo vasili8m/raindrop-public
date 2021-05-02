@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
+import { parseQueryParams } from '~modules/format/url'
 
 export function useFilterHref(filter) {
     const { query, pathname } = useRouter()
-    const { search='' } = Object.fromEntries(new URLSearchParams(query.options))
+    const { search='' } = parseQueryParams(query.options)
 
     let val = filter.includes(' ') ? `"${filter}"` : filter
 

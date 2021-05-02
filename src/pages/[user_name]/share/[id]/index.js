@@ -2,6 +2,7 @@ import { useCallback, useMemo, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Error from 'next/error'
+import { parseQueryParams } from '~modules/format/url'
 import Api from '~api'
 import { getHTML } from '~pages/api/oembed/collection'
 import { copyText } from '~modules/browser'
@@ -70,7 +71,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 	//form
 	const value = useMemo(
 		()=>{
-			const options = Object.fromEntries(new URLSearchParams(router.query.options||{}))
+			const options = parseQueryParams(router.query.options)
 
 			return {
 				...options,

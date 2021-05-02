@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
+import { parseQueryParams } from '~modules/format/url'
 import links from '~config/links'
 import find from 'lodash/find'
 
@@ -19,14 +20,12 @@ import Sort from '~co/raindrops/sort'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name, options } }) {
-	options = Object.fromEntries(new URLSearchParams(options))
+	options = parseQueryParams(options)
 	options.sort = options.sort || '-created'
-	options.page = parseInt(options.page)
-	options.perpage = parseInt(options.perpage || RAINDROPS_PER_PAGE)
+	options.perpage = options.perpage || RAINDROPS_PER_PAGE
 
-	const [ collections, raindrops, user ] = await Promise.all([
+	const [ collections, user ] = await Promise.all([
 		Api.collections.getByUserName(user_name),
-		Api.raindrops.get(id, options),
 		Api.user.getByName(user_name)
 	])
 
@@ -40,6 +39,11 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 			},
 			revalidate: 10
 		}
+
+	const raindrops = await Api.raindrops.get(id, {
+		...options,
+		nested: user.config?.nested_view_legacy ? false : true
+	})
 
 	return {
 		props: {

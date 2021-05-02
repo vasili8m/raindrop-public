@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Error from 'next/error'
 import Api from '~api'
+import { parseQueryParams } from '~modules/format/url'
 import { getHTML } from '~pages/api/oembed/user'
 import { copyText } from '~modules/browser'
 import links from '~config/links'
@@ -48,7 +49,7 @@ export default function EmbedUserScreen({ statusCode, user }) {
 	//form
 	const value = useMemo(
 		()=>{
-			const options = Object.fromEntries(new URLSearchParams(router.query.options||{}))
+			const options = parseQueryParams(router.query.options)
 
 			return {
 				...options,

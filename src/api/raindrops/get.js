@@ -3,9 +3,15 @@ import { FetchError } from '../errors'
 
 export function optionsToQueryString(options={}) {
     const params = new URLSearchParams(options)
-    params.set('nested', true)
     params.set('version', 2)
 
+    //nested
+    if (params.get('nested') === 'false')
+        params.delete('nested')
+    else
+        params.set('nested', true)
+
+    //sorting
     if (!params.get('sort'))
         params.set('sort', '-created')
 

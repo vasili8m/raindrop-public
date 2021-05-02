@@ -1,6 +1,7 @@
 import Error from 'next/error'
 import Head from 'next/head'
 import Api from '~api'
+import { parseQueryParams } from '~modules/format/url'
 
 import Page from '~co/page'
 import Icon, { Avatar } from '~co/icon'
@@ -16,7 +17,7 @@ export const config = {
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { user_name, options } }) {
-	options = Object.fromEntries(new URLSearchParams(options))
+	options = parseQueryParams(options)
 
 	const [ user, collections ] = await Promise.all([
 		Api.user.getByName(user_name),

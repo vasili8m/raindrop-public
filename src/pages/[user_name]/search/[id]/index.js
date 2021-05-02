@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
+import { parseQueryParams } from '~modules/format/url'
 import find from 'lodash/find'
 
 import Page from '~co/page'
@@ -17,9 +18,8 @@ import Toolbar from '~co/layout/toolbar'
 export async function getStaticPaths() { return { paths: [], fallback: 'blocking' } }
 
 export async function getStaticProps({ params: { id, user_name, options } }) {
-	options = Object.fromEntries(new URLSearchParams(options))
+	options = parseQueryParams(options)
 	options.sort = options.sort || (options.search?.length ? 'score' : '-created')
-	options.page = parseInt(options.page)
 	options.perpage = RAINDROPS_PER_PAGE
 
 	const [ collections, raindrops, user, filters={} ] = await Promise.all([
