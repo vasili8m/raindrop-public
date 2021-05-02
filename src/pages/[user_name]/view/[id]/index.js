@@ -22,7 +22,7 @@ export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 	options.sort = options.sort || '-created'
 	options.page = parseInt(options.page)
-	options.perpage = RAINDROPS_PER_PAGE
+	options.perpage = parseInt(options.perpage || RAINDROPS_PER_PAGE)
 
 	const [ collections, raindrops, user ] = await Promise.all([
 		Api.collections.getByUserName(user_name),

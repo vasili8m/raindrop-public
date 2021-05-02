@@ -6,7 +6,7 @@ import Icon, { Logo, Avatar } from '~co/icon'
 export * from './select'
 export * from './share'
 
-export function Base({ as='a', className='', prefetch, variant, color, size, bold=false, href, disabled=false, forwardedRef, ...props }) {
+export function Base({ as='a', className='', prefetch, variant, color, size, bold=false, href, disabled=false, inline=true, forwardedRef, ...props }) {
     const Wrap = href ? Link : Fragment
     const Component = as
 
@@ -20,6 +20,7 @@ export function Base({ as='a', className='', prefetch, variant, color, size, bol
                 data-color={color || 'secondary'}
                 data-size={size || 'regular'}
                 data-bold={bold}
+                data-inline={inline}
                 data-single-icon={props.children?.type == Icon || props.children?.type == Logo || props.children?.type == Avatar} />
         </Wrap>
     )

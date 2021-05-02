@@ -1,10 +1,12 @@
 .pagination {
-    position: sticky;
     z-index: 99;
     bottom: 0;
     
     background: var(--background-color-regular);
     box-shadow: 0 1px 0 var(--background-color-regular), inset 0 var(--line-size) 0 rgba(0,0,0,.13);
+}
+.pagination[data-sticky='true'] {
+    position: sticky;
 }
 
 @supports (backdrop-filter: none) {

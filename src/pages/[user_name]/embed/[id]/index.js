@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Error from 'next/error'
 import Api from '~api'
+import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 import find from 'lodash/find'
 
 import Page from '~co/page'
@@ -19,7 +20,7 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = Object.fromEntries(new URLSearchParams(options))
 	options.sort = options.sort || '-created'
-	options.perpage = 50
+	options.perpage = parseInt(options.perpage || RAINDROPS_PER_PAGE)
 
 	const [ collections, raindrops, user ] = await Promise.all([
 		Api.collections.getByUserName(user_name),
@@ -75,6 +76,13 @@ export default function EmbedCollectionScreen({ statusCode, collection, collecti
 					<Page.Header.Title>{collection.title}</Page.Header.Title>
 
 					<Page.Header.Buttons>
+						<Button 
+							href={`/${user.name}/${collection.slug}-${collection._id}`}
+							target='_blank'>
+							More
+							<Icon name='arrow-right-up' />
+						</Button>
+
 						{!!user.avatar && (
 							<Button 
 								variant='flat' 
@@ -87,13 +95,6 @@ export default function EmbedCollectionScreen({ statusCode, collection, collecti
 									size='large' />
 							</Button>
 						)}
-
-						<Button 
-							href={`/${user.name}/${collection.slug}-${collection._id}`}
-							target='_blank'>
-							Show all
-							<Icon name='arrow-right-up' />
-						</Button>
 					</Page.Header.Buttons>
 				</Page.Header.Wrap>
 			)}
@@ -111,6 +112,18 @@ export default function EmbedCollectionScreen({ statusCode, collection, collecti
 					collections={collections}
 					items={raindrops.items}
 					user={user} />
+
+				<br />
+				
+				{raindrops.count > options.perpage && (
+					<Button
+						inline={false}
+						size='large'
+						href={`/${user.name}/${collection.slug}-${collection._id}`}
+						target='_blank'>
+						Show other {raindrops.count - options.perpage} bookmarks <Icon name='arrow-right-up' />
+					</Button>
+				)}
 			</Page.Content>
 		</Page.Wrap>
 	)

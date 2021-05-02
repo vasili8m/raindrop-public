@@ -21,6 +21,10 @@
     padding: 0 var(--padding-regular);
     transition: background .1s linear, box-shadow .1s linear, filter .1s linear;
 }
+.button[data-inline="false"] {
+    display: grid;
+    justify-content: center;
+}
 
 .button:active {
     filter: brightness(90%);

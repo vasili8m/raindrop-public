@@ -56,7 +56,9 @@ export default function Pagination({ count, perpage, force=false, ...etc }) {
     }
 
     return (
-        <section className={s.pagination}>
+        <section 
+            className={s.pagination}
+            data-sticky={page > 0}>
             <div className={s.inner}>
                 <nav 
                     ref={_pagesRef}
