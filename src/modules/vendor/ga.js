@@ -6,6 +6,13 @@ export function PageView() {
     const router = useRouter()
 
     useEffect(() => {
+        //init
+        window.dataLayer = window.dataLayer || []
+        window.gtag = function(){dataLayer.push(arguments);}
+        window.gtag('js', new Date())
+        window.gtag('config', GOOGLE_ANALYTICS_ID);
+
+        //page view
         const routeChangeComplete = url => 
             window.gtag('config', GOOGLE_ANALYTICS_ID, {
                 page_location: url,
@@ -21,17 +28,6 @@ export function PageView() {
 
 export default function GA() {
     return (
-        <>
-            <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`} />
-            <script
-                dangerouslySetInnerHTML={{__html: `
-                    window.dataLayer = window.dataLayer || []
-                    window.gtag = function(){dataLayer.push(arguments);}
-                    window.gtag('js', new Date())
-                    window.gtag('config', '${GOOGLE_ANALYTICS_ID}');
-                `}} />
-        </>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`} />
     )
 }
