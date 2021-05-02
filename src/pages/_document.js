@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import '~modules/vendor/sentry'
 import GA from '~modules/vendor/ga'
 
 class MyDocument extends Document {

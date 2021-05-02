@@ -1,27 +1,16 @@
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { GOOGLE_ANALYTICS_ID } from '~config/vendors'
 
 export function PageView() {
-    const router = useRouter()
-
     useEffect(() => {
         //init
+        if (window.__gainit) return
+        window.__gainit = true
         window.dataLayer = window.dataLayer || []
         window.gtag = function(){dataLayer.push(arguments);}
         window.gtag('js', new Date())
         window.gtag('config', GOOGLE_ANALYTICS_ID);
-
-        //page view
-        const routeChangeComplete = url => 
-            window.gtag('config', GOOGLE_ANALYTICS_ID, {
-                page_location: url,
-                page_title: document.title,
-            })
-    
-        router.events.on('routeChangeComplete', routeChangeComplete)
-        return () => router.events.off('routeChangeComplete', routeChangeComplete)
-    }, [router])
+    }, [])
 
     return null
 }

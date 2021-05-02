@@ -1,7 +1,19 @@
 import NextErrorComponent from 'next/error'
 import * as Sentry from '@sentry/node'
 
-export async function getInitialProps({ res, err, asPath }) {
+function Error({ statusCode, hasGetInitialPropsRun, err }) {
+    if (!hasGetInitialPropsRun && err) {
+        // getInitialProps is not called in case of
+        // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
+        // err via _app.js so it can be captured
+        Sentry.captureException(err)
+        // Flushing is not required in this case as it only happens on the client
+    }
+
+    return <NextErrorComponent statusCode={statusCode} />
+}
+
+Error.getInitialProps = async function({ res, err, asPath }) {
     const errorInitialProps = await NextErrorComponent.getInitialProps({ res, err })
 
     // Workaround for https://github.com/vercel/next.js/issues/8592, mark when getInitialProps has run
@@ -20,14 +32,4 @@ export async function getInitialProps({ res, err, asPath }) {
     return errorInitialProps
 }
 
-export default function Error({ statusCode, hasGetInitialPropsRun, err }) {
-    if (!hasGetInitialPropsRun && err) {
-        // getInitialProps is not called in case of
-        // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
-        // err via _app.js so it can be captured
-        Sentry.captureException(err)
-        // Flushing is not required in this case as it only happens on the client
-    }
-
-    return <NextErrorComponent statusCode={statusCode} />
-}
+export default Error
