@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/node'
 import { RewriteFrames } from '@sentry/integrations'
+import { SENTRY_DSN } from '~config/vendors'
 
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+if (process.env.VERCEL_GIT_COMMIT_SHA) {
 	const integrations = []
 	if (
 		process.env.NEXT_IS_SERVER === 'true' &&
@@ -25,9 +26,8 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
 	}
 
 	Sentry.init({
-		enabled: process.env.NODE_ENV === 'production',
 		integrations,
-		dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-		release: process.env.NEXT_PUBLIC_COMMIT_SHA,
+		dsn: SENTRY_DSN,
+		release: process.env.VERCEL_GIT_COMMIT_SHA,
 	})
 }

@@ -9,11 +9,6 @@ module.exports = {
         webpack5: true
     },
 
-    env: {
-        //sentry
-        NEXT_PUBLIC_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
-    },
-
     async rewrites() {
         return [
             //view
@@ -50,7 +45,7 @@ module.exports = {
                         key: 'Content-Security-Policy',
                         value: `
                             default-src *;
-                            script-src 'self' https://*.raindrop.io https://*.googletagmanager.com https://*.google-analytics.com ${process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : ''};
+                            script-src 'self' https://*.raindrop.io https://*.sentry.io https://sentry.io https://*.googletagmanager.com https://*.google-analytics.com ${process.env.NODE_ENV === 'development' ? '\'unsafe-inline\' \'unsafe-eval\'' : ''};
                             style-src 'self' 'unsafe-inline' https://*.raindrop.io;
                             img-src * blob:;
                             object-src 'self' up.raindrop.io;
@@ -73,22 +68,22 @@ module.exports = {
         config.plugins.push(
             new options.webpack.DefinePlugin({
                 'process.env.NEXT_IS_SERVER': JSON.stringify(options.isServer.toString()),
+                'process.env.VERCEL_GIT_COMMIT_SHA': JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA||''),
             })
         )
 
-        if (process.env.SENTRY_DSN &&
-            process.env.SENTRY_ORG &&
-            process.env.SENTRY_PROJECT &&
-            process.env.SENTRY_AUTH_TOKEN &&
-            process.env.VERCEL_GIT_COMMIT_SHA &&
-            process.env.NODE_ENV === 'production')
+        if (process.env.VERCEL_GIT_COMMIT_SHA)
             config.plugins.push(
                 new SentryWebpackPlugin({
+                    org: 'oblako-corp',
+				    project: 'public',
+				    authToken: process.env.SENTRY_AUTH_TOKEN, //required in CI environment
+                    release: process.env.VERCEL_GIT_COMMIT_SHA,
+
                     include: '.next',
                     ignore: ['node_modules'],
                     stripPrefix: ['webpack://_N_E/'],
                     urlPrefix: `~/_next`,
-                    release: process.env.VERCEL_GIT_COMMIT_SHA,
                 })
             )
 
