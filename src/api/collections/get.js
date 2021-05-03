@@ -4,7 +4,7 @@ import { FetchError } from '../errors'
 export async function getByUserId(userId, options={}) {
     const params = new URLSearchParams(options)
 
-    const res = await fetch(`${API_ENDPOINT}/collections/${userId}?${params.toString()}`)
+    const res = await fetch(`${API_ENDPOINT}/collections/${String(userId)}?${params.toString()}`)
     if (!res.ok)
         throw new FetchError(res.status, res.statusText)
 
@@ -19,7 +19,7 @@ export async function getByUserId(userId, options={}) {
 export async function getByUserName(user_name, options={}) {
     const params = new URLSearchParams(options)
 
-    const res = await fetch(`${API_ENDPOINT}/collections/username/${user_name}?${params.toString()}`)
+    const res = await fetch(`${API_ENDPOINT}/collections/username/${String(user_name)}?${params.toString()}`)
     if (!res.ok)
         throw new FetchError(res.status, res.statusText)
 
