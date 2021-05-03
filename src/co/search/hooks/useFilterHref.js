@@ -3,7 +3,7 @@ import { parseQueryParams } from '~modules/format/url'
 
 export function useFilterHref(filter) {
     const { query, pathname } = useRouter()
-    const search = String(parseQueryParams(query.options).search)
+    const search = String(parseQueryParams(query.options).search||'')
 
     let val = filter.includes(' ') ? `"${filter}"` : filter
 
