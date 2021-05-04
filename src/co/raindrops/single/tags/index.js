@@ -1,7 +1,7 @@
 import Tag from './tag'
 
 export default function RaindropsSingleTags({ target, item: { tags } }) {
-    if (!tags.length)
+    if (!(tags||[]).length)
         return null
 
     return tags.map(_id=>
