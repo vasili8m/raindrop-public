@@ -1,6 +1,6 @@
 .select {
     position: relative;
-    overflow: hidden;
+    overflow: initial; /* fix firefox bug */
     border-radius: var(--border-radius-regular);
 }
 .select:focus-within {
