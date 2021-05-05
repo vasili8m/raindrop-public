@@ -21,7 +21,7 @@ export async function getStaticPaths() { return { paths: [], fallback: 'blocking
 
 export async function getStaticProps({ params: { id, user_name, options } }) {
 	options = parseQueryParams(options)
-	options.sort = options.sort || '-created'
+	options.sort = options.sort || '-sort'
 	options.perpage = options.perpage || RAINDROPS_PER_PAGE
 
 	const [ collections, user ] = await Promise.all([

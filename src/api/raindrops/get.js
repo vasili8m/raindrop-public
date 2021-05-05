@@ -11,10 +11,6 @@ export function optionsToQueryString(options={}) {
     else
         params.set('nested', true)
 
-    //sorting
-    if (!params.get('sort'))
-        params.set('sort', '-created')
-
     //search
     if (params.get('search')){
         let search = []

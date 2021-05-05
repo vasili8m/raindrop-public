@@ -37,7 +37,10 @@ export function Select({ className='', options=[], selected, children, onChange,
             <select value={selected} onChange={onNativeChange}>
                 {options.map(({separator, value, label}, i)=>
                     separator ? (
-                        <option key={i} disabled>―――――――</option>
+                        <>  
+                            {i > 0 && <optgroup key={i+'b'} />}
+                            <optgroup key={i} label={label} />
+                        </>
                     ) : (
                         <option 
                             key={value||i}

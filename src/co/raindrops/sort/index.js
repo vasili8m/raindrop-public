@@ -8,11 +8,21 @@ export default function RaindropsSort({ options={} }) {
 
     const sort = options.sort
     const sorts = useMemo(()=>[
-        { value: '-created', label: 'Date added (newest)', dir: 'desc' },
-        { value: 'created', label: 'Date added (oldest)', dir: 'asc' },
-        { value: 'title', label: 'By name (A-Z)', dir: 'desc' },
-        { value: '-title', label: 'By name (Z-A)', dir: 'asc' },
-        ...options.search ? [{ value: 'score', label: 'By relevance', dir: 'desc' }] : []
+        { separator: true, label: 'User specified' },
+        { value: '-sort', label: 'Custom sorting', dir: 'desc' },
+
+        { separator: true, label: 'Date added' },
+        { value: '-created', label: 'Newest', dir: 'desc' },
+        { value: 'created', label: 'Oldest', dir: 'asc' },
+
+        { separator: true, label: 'Name' },
+        { value: 'title', label: 'A-Z', dir: 'desc' },
+        { value: '-title', label: 'Z-A', dir: 'asc' },
+
+        ...options.search ? [
+            { separator: true, label: 'Search' },
+            { value: 'score', label: 'By relevance', dir: 'desc' }
+        ] : []
     ], [options])
 
     const onChange = useCallback(value=>{
@@ -30,7 +40,7 @@ export default function RaindropsSort({ options={} }) {
 
     return (
         <Select 
-            variant={sort!='-created' ? 'active' : 'flat'}
+            variant={sort!='-sort' ? 'active' : 'flat'}
             selected={sort}
             options={sorts}
             onChange={onChange}>
