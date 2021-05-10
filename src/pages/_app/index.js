@@ -1,4 +1,5 @@
 import '~modules/vendor/sentry'
+import './polyfills'
 import 'modern-normalize'
 import './index.css'
 import { PageView } from '~modules/vendor/ga'
