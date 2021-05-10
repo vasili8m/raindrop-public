@@ -9,6 +9,33 @@ module.exports = {
         webpack5: true
     },
 
+    async redirects() {
+        return [
+            //view index in iframe
+            {
+                source: '/:user_name/(.*)-:id(\\d+$)',
+                has: [{
+                    type: 'header',
+                    key: 'Sec-Fetch-Dest',
+                    value: 'iframe'
+                },],
+                permanent: false,
+                destination: '/:user_name/embed/:id',
+            },
+            //user in iframe
+            {
+                source: '/:user_name',
+                has: [{
+                    type: 'header',
+                    key: 'Sec-Fetch-Dest',
+                    value: 'iframe'
+                },],
+                permanent: false,
+                destination: '/:user_name/embed/me',
+            }
+        ]
+    },
+
     async rewrites() {
         return [
             //view
@@ -27,16 +54,6 @@ module.exports = {
 
     async headers() {
         return [
-            //deny iframe all except /embed routes
-            {
-                source: '/((?!.+\/embed).+)',
-                headers: [
-                    {
-                        key: 'X-Frame-Options',
-                        value: 'DENY'
-                    }
-                ]
-            },
             //security
             {
                 source: '/(.*)',
