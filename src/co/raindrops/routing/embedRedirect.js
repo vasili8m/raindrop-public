@@ -9,7 +9,10 @@ export function EmbedRedirect({ children }) {
         if (inIframe)
             router.replace({
                 pathname: `/[user_name]/embed/[id]/[options]`,
-                query: router.query
+                query: {
+                    ...router.query,
+                    options: router.query.options || 'a=a'
+                }
             })
     }, [router.asPath])
 
