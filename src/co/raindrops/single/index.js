@@ -2,7 +2,6 @@ import s from './index.module.css'
 import { useRouter } from 'next/router'
 import { Buttons } from '~co/button'
 import { ShortDate } from '~modules/format/date'
-import { compactDomain } from '~modules/format/url'
 
 import Info from '~co/layout/info'
 import Cover from './cover'
@@ -52,7 +51,7 @@ export default function RaindropsSingle(props) {
 
                     <Info className={s.info}>
                         <Creator {...props} />
-                        <span>{compactDomain(item.domain)}</span>
+                        <span>{item.domain}</span>
                         <span><ShortDate date={item.created} /></span>
                     </Info>
                 </div>

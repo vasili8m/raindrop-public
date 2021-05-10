@@ -71,7 +71,7 @@
 }
 .button[data-variant='regular']:hover,
 .button[data-variant='ghost']:hover {
-    box-shadow: inset 0 0 0 var(--line-size) var(--line-color), 0 var(--line-size) 2px var(--line-color);
+    box-shadow: inset 0 0 0 var(--line-size) var(--line-color), 0 var(--line-size) 2px rgba(0,0,0,.3);
 }
 
 .button[data-variant='ghost'] {

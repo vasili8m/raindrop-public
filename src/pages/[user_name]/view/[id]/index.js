@@ -78,6 +78,11 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					type='application/json+oembed'
 					href={`${site_url}/api/oembed?url=${encodeURIComponent(url)}`}
   					title={collection.title} />
+				<link 
+					rel='alternate'
+					type='application/rss+xml'
+					href={`https://raindrop.io/collection/${collection._id}/feed`}
+					title={collection.title} />
 
 				<link rel='canonical' href={url} />
 				<meta name='twitter:url' content={url} />

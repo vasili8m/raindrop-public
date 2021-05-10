@@ -56,16 +56,16 @@
 /* Dark theme */
 @mixin dark() {
     /* colors */
-    --background-hsl-regular: 202,12%,7%;
+    --background-hsl-regular: 0,0%,19%;
     --background-color-regular: hsl(var(--background-hsl-regular));
-    --background-color-secondary: #1D2225;
+    --background-color-secondary: #222222;
     --background-color-disabled: rgba(255,255,255,.15);
 
     --accent-color: #3169FF;
     --text-color-regular: #E0E0E0;
     --text-color-secondary: #8A8F94;
     --text-color-disabled: rgba(0,0,0,.2);
-    --line-color: rgba(255,255,255,.2);
+    --line-color: rgba(255,255,255,.18);
 }
 
 .theme[data-theme='dark'] {
