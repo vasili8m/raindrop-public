@@ -4,6 +4,7 @@ import Api from '~api'
 import { RAINDROPS_PER_PAGE } from '~config/raindrops'
 import { parseQueryParams } from '~modules/format/url'
 import find from 'lodash/find'
+import { EmbedRedirect } from '~co/raindrops/routing'
 
 import Page from '~co/page'
 import Button from '~co/button'
@@ -58,70 +59,72 @@ export default function SearchScreen({ statusCode, collection, collections, rain
 		return <Error statusCode={statusCode} />
 		
 	return (
-		<Page.Wrap
-			wide={collection.view == 'grid' || collection.view == 'masonry'}
-			accentColor={collection.color}>
-			<Head>
-				<title>Search {collection.title}</title>
-				{!!collection.cover?.length && (
-					<link rel='icon' type='image/png' href={collection.cover[0]} />
-				)}
-
-				<meta name='robots' content='noindex' />
-			</Head>
-
-			<Path 
-				self
-				collection={collection}
-				collections={collections}
-				user={user} />
-
-			<Page.Header.Wrap>
-				<Field placeholder={`Search ${collection.title}`} />
-
-				<Page.Header.Buttons style={{flex: 0}}>
-					<Button 
-						variant='flat' 
-						href={`/${user.name}/${collection.slug}-${collection._id}/share/`+new URLSearchParams(options)}
-						title='Export & Share'
-						prefetch={false}>
-						<Icon name='upload-2' />
-					</Button>
-				</Page.Header.Buttons>
-			</Page.Header.Wrap>
-
-			<Page.Subheader>
-				<Tags
-					{...filters} />
-			</Page.Subheader>
-
-			<Page.Content>
-				<Toolbar.Wrap>
-					<Toolbar.Title>
-						{raindrops.items.length ? 'Found bookmarks' : 'Nothing found'}
-					</Toolbar.Title>
-
-					{!!raindrops.items.length && (
-						<Toolbar.Buttons>
-							<Sort options={options} />
-						</Toolbar.Buttons>
+		<EmbedRedirect>
+			<Page.Wrap
+				wide={collection.view == 'grid' || collection.view == 'masonry'}
+				accentColor={collection.color}>
+				<Head>
+					<title>Search {collection.title}</title>
+					{!!collection.cover?.length && (
+						<link rel='icon' type='image/png' href={collection.cover[0]} />
 					)}
-				</Toolbar.Wrap>
 
-				<Raindrops 
+					<meta name='robots' content='noindex' />
+				</Head>
+
+				<Path 
+					self
 					collection={collection}
 					collections={collections}
-					items={raindrops.items}
 					user={user} />
-			</Page.Content>
 
-			<Page.Pagination 
-				page={options.page}
-				perpage={options.perpage}
-				count={raindrops.count}
-				force={raindrops.items.length==options.perpage ? 'next' : true} />
+				<Page.Header.Wrap>
+					<Field placeholder={`Search ${collection.title}`} />
 
-			<Page.Footer />
-		</Page.Wrap>
+					<Page.Header.Buttons style={{flex: 0}}>
+						<Button 
+							variant='flat' 
+							href={`/${user.name}/${collection.slug}-${collection._id}/share/`+new URLSearchParams(options)}
+							title='Export & Share'
+							prefetch={false}>
+							<Icon name='upload-2' />
+						</Button>
+					</Page.Header.Buttons>
+				</Page.Header.Wrap>
+
+				<Page.Subheader>
+					<Tags
+						{...filters} />
+				</Page.Subheader>
+
+				<Page.Content>
+					<Toolbar.Wrap>
+						<Toolbar.Title>
+							{raindrops.items.length ? 'Found bookmarks' : 'Nothing found'}
+						</Toolbar.Title>
+
+						{!!raindrops.items.length && (
+							<Toolbar.Buttons>
+								<Sort options={options} />
+							</Toolbar.Buttons>
+						)}
+					</Toolbar.Wrap>
+
+					<Raindrops 
+						collection={collection}
+						collections={collections}
+						items={raindrops.items}
+						user={user} />
+				</Page.Content>
+
+				<Page.Pagination 
+					page={options.page}
+					perpage={options.perpage}
+					count={raindrops.count}
+					force={raindrops.items.length==options.perpage ? 'next' : true} />
+
+				<Page.Footer />
+			</Page.Wrap>
+		</EmbedRedirect>
 	)
 }

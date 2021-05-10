@@ -7,6 +7,7 @@ import Api from '~api'
 import { getHTML } from '~pages/api/oembed/collection'
 import { copyText } from '~modules/browser'
 import links from '~config/links'
+import { EmbedRedirect } from '~co/raindrops/routing'
 
 import Page from '~co/page'
 import Button, { Share, Buttons } from '~co/button'
@@ -99,99 +100,101 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 	}, [])
 		
 	return (
-		<Page.Wrap accentColor={collection.color}>
-			<Head>
-				<title>Share {collection.title}</title>
-				<meta name='robots' content='noindex' />
-			</Head>
+		<EmbedRedirect>
+			<Page.Wrap accentColor={collection.color}>
+				<Head>
+					<title>Share {collection.title}</title>
+					<meta name='robots' content='noindex' />
+				</Head>
 
-			<Path 
-				self
-				collection={collection}
-				user={user} />
+				<Path 
+					self
+					collection={collection}
+					user={user} />
 
-			<Page.Header.Wrap>
-				<Page.Header.Title>Share {collection.title}</Page.Header.Title>
-				<Page.Header.Buttons>
-					<Share 
-						url={canonicalUrl}
-						title={collection.title} />
-				</Page.Header.Buttons>
-			</Page.Header.Wrap>
+				<Page.Header.Wrap>
+					<Page.Header.Title>Share {collection.title}</Page.Header.Title>
+					<Page.Header.Buttons>
+						<Share 
+							url={canonicalUrl}
+							title={collection.title} />
+					</Page.Header.Buttons>
+				</Page.Header.Wrap>
 
-			<Page.Subheader>
-				<h2>Share this collection with your social community or embed to website or blog</h2>
-			</Page.Subheader>
+				<Page.Subheader>
+					<h2>Share this collection with your social community or embed to website or blog</h2>
+				</Page.Subheader>
 
-			<Page.Content>
-				<Toolbar.Wrap>
-					<Toolbar.Title>Export</Toolbar.Title>
-				</Toolbar.Wrap>
-				<Buttons>
-					<Button
-						href={`${links.site.index}/collection/${collection._id}/feed`}
-						target='_blank'>
-						<Icon name='rss' /> RSS
-					</Button>
-				</Buttons>
-
-				<Toolbar.Wrap>
-					<Toolbar.Title>Embed</Toolbar.Title>
-					<Toolbar.Buttons>
-						<Button 
-							variant='flat'
-							target='_blank'
-							href={links.help.embed}>
-							<Icon name='question' />
-						</Button>
-
+				<Page.Content>
+					<Toolbar.Wrap>
+						<Toolbar.Title>Export</Toolbar.Title>
+					</Toolbar.Wrap>
+					<Buttons>
 						<Button
-							variant='active'
-							bold
-							onClick={()=>copyText(value.html)}>
-							<Icon name='file-copy' />
-							Copy Code
+							href={`${links.site.index}/collection/${collection._id}/feed`}
+							target='_blank'>
+							<Icon name='rss' /> RSS
 						</Button>
-					</Toolbar.Buttons>
-				</Toolbar.Wrap>
+					</Buttons>
 
-				<Form 
-					value={value}
-					onChange={onChange}>
-					<Label>Code</Label>
-					<Textarea 
-						name='html' 
-						autoFocus
-						readOnly />
+					<Toolbar.Wrap>
+						<Toolbar.Title>Embed</Toolbar.Title>
+						<Toolbar.Buttons>
+							<Button 
+								variant='flat'
+								target='_blank'
+								href={links.help.embed}>
+								<Icon name='question' />
+							</Button>
 
-					<Label>Sort</Label>
-					<div>
-						<Select 
-							name='sort'
-							options={[{value:'', label: 'Custom (user specified)'}, {value:'-created', label: 'By date (newest)'}, {value: 'created', label: 'By date (oldest)'}, {value: 'title', label: 'By name (A-Z)'}, {value: '-title', label: 'By name (Z-A)'}]} />
-					</div>
+							<Button
+								variant='active'
+								bold
+								onClick={()=>copyText(value.html)}>
+								<Icon name='file-copy' />
+								Copy Code
+							</Button>
+						</Toolbar.Buttons>
+					</Toolbar.Wrap>
 
-					<Label>Search</Label>
-					<Input name='search' placeholder='By #tag, title, etc...' />
+					<Form 
+						value={value}
+						onChange={onChange}>
+						<Label>Code</Label>
+						<Textarea 
+							name='html' 
+							autoFocus
+							readOnly />
 
-					<Label>Appearance</Label>
-					<Fields>
+						<Label>Sort</Label>
 						<div>
 							<Select 
-								name='theme'
-								options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
+								name='sort'
+								options={[{value:'', label: 'Custom (user specified)'}, {value:'-created', label: 'By date (newest)'}, {value: 'created', label: 'By date (oldest)'}, {value: 'title', label: 'By name (A-Z)'}, {value: '-title', label: 'By name (Z-A)'}]} />
 						</div>
-						<Checkbox name='no-header'>Hide header</Checkbox>
-					</Fields>
 
-					<Label>Preview</Label>
-					<Fields inset>
-						<PreviewDebounced html={value.html} />
-					</Fields>
-				</Form>
-			</Page.Content>
+						<Label>Search</Label>
+						<Input name='search' placeholder='By #tag, title, etc...' />
 
-			<Page.Footer />
-		</Page.Wrap>
+						<Label>Appearance</Label>
+						<Fields>
+							<div>
+								<Select 
+									name='theme'
+									options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
+							</div>
+							<Checkbox name='no-header'>Hide header</Checkbox>
+						</Fields>
+
+						<Label>Preview</Label>
+						<Fields inset>
+							<PreviewDebounced html={value.html} />
+						</Fields>
+					</Form>
+				</Page.Content>
+
+				<Page.Footer />
+			</Page.Wrap>
+		</EmbedRedirect>
 	)
 }

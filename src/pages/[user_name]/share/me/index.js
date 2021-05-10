@@ -7,6 +7,7 @@ import { parseQueryParams } from '~modules/format/url'
 import { getHTML } from '~pages/api/oembed/user'
 import { copyText } from '~modules/browser'
 import links from '~config/links'
+import { EmbedRedirect } from '~co/user/routing'
 
 import Page from '~co/page'
 import Button, { Share } from '~co/button'
@@ -76,68 +77,70 @@ export default function EmbedUserScreen({ statusCode, user }) {
 	}, [])
 		
 	return (
-		<Page.Wrap>
-			<Head>
-				<title>Embed {user.name}</title>
-				<meta name='robots' content='noindex' />
-			</Head>
+		<EmbedRedirect>
+			<Page.Wrap>
+				<Head>
+					<title>Embed {user.name}</title>
+					<meta name='robots' content='noindex' />
+				</Head>
 
-			<Path user={user} />
+				<Path user={user} />
 
-			<Page.Header.Wrap>
-				<Page.Header.Title>Embed User Profile</Page.Header.Title>
-				<Page.Header.Buttons>
-					<Share 
-						url={canonicalUrl}
-						title={user.name} />
-				</Page.Header.Buttons>
-			</Page.Header.Wrap>
+				<Page.Header.Wrap>
+					<Page.Header.Title>Embed User Profile</Page.Header.Title>
+					<Page.Header.Buttons>
+						<Share 
+							url={canonicalUrl}
+							title={user.name} />
+					</Page.Header.Buttons>
+				</Page.Header.Wrap>
 
-			<Page.Subheader>
-				<h2>Share your collections with social community or embed to website or blog</h2>
-			</Page.Subheader>
+				<Page.Subheader>
+					<h2>Share your collections with social community or embed to website or blog</h2>
+				</Page.Subheader>
 
-			<Page.Content>
-				<Toolbar.Wrap>
-					<Toolbar.Title>Embed</Toolbar.Title>
-					<Toolbar.Buttons>
-						<Button
-							variant='active'
-							bold
-							onClick={()=>copyText(value.html)}>
-							<Icon name='file-copy' />
-							Copy Code
-						</Button>
-					</Toolbar.Buttons>
-				</Toolbar.Wrap>
+				<Page.Content>
+					<Toolbar.Wrap>
+						<Toolbar.Title>Embed</Toolbar.Title>
+						<Toolbar.Buttons>
+							<Button
+								variant='active'
+								bold
+								onClick={()=>copyText(value.html)}>
+								<Icon name='file-copy' />
+								Copy Code
+							</Button>
+						</Toolbar.Buttons>
+					</Toolbar.Wrap>
 
-				<Form 
-					value={value}
-					onChange={onChange}>
-					<Label>Code</Label>
-					<Textarea 
-						name='html'
-						autoFocus
-						readOnly />
+					<Form 
+						value={value}
+						onChange={onChange}>
+						<Label>Code</Label>
+						<Textarea 
+							name='html'
+							autoFocus
+							readOnly />
 
-					<Label>Appearance</Label>
-					<Fields>
-						<div>
-							<Select 
-								name='theme'
-								options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
-						</div>
-						<Checkbox name='no-header'>Hide header</Checkbox>
-					</Fields>
+						<Label>Appearance</Label>
+						<Fields>
+							<div>
+								<Select 
+									name='theme'
+									options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
+							</div>
+							<Checkbox name='no-header'>Hide header</Checkbox>
+						</Fields>
 
-					<Label>Preview</Label>
-					<Fields inset>
-						<div dangerouslySetInnerHTML={{__html: value.html}} />
-					</Fields>
-				</Form>
-			</Page.Content>
+						<Label>Preview</Label>
+						<Fields inset>
+							<div dangerouslySetInnerHTML={{__html: value.html}} />
+						</Fields>
+					</Form>
+				</Page.Content>
 
-			<Page.Footer />
-		</Page.Wrap>
+				<Page.Footer />
+			</Page.Wrap>
+		</EmbedRedirect>
 	)
 }
