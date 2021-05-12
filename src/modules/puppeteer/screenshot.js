@@ -47,9 +47,10 @@ export default async({ url, viewport })=>{
 
         //load
         await page.goto(url, {
-            waitUntil: 'load',
+            waitUntil: 'networkidle2',
             timeout: 15000
         })
+        await pause(500)
 
         //generate screenshot
         const image = await page.screenshot({ type: 'png' })
