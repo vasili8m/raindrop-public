@@ -8,7 +8,7 @@ const routes = [
     },
     {
         capture: /\/(?<username>.*)/,
-        embed: ({ username })=>`/${username}/embed/me`
+        embed: ({ username })=>`/${username}/embed/me/no-header=true`
     }
 ]
 
@@ -39,8 +39,8 @@ export default async function oembed({ query }, res) {
         url,
         viewport: {
             ...(format == 'twitter' ? {
-                width: 602,
-                height: 301,
+                width: 504,
+                height: 263,
             } : {
                 width: 602,
                 height: 401,

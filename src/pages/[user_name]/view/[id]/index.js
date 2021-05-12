@@ -65,6 +65,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 		return <Error statusCode={statusCode} />
 
 	const url = `${links.site.index}/${user.name}/${collection.slug}-${collection._id}`
+	const description = collection.description || `${raindrops.count} bookmarks`
 
 	const childrens = useChildrens(collections, collection)
 
@@ -97,9 +98,9 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					<meta name='og:type' content='website' />
 					<meta name='twitter:card' content='summary_large_image' />					
 
-					<meta name='description' content={collection.description} />
-					<meta name='twitter:description' content={collection.description} />
-					<meta name='og:description' content={collection.description} />
+					<meta name='description' content={description} />
+					<meta name='twitter:description' content={description} />
+					<meta name='og:description' content={description} />
 
 					<meta name='twitter:label1' content='Created by' />
 					<meta name='twitter:data1' content={user.name} />
