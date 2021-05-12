@@ -12,13 +12,14 @@
 		"@sentry/integrations": "^6.3.1",
 		"@sentry/node": "^6.3.1",
 		"@svgr/webpack": "^5.5.0",
+		"chrome-aws-lambda": "^9.1.0",
 		"color-convert": "^2.0.1",
 		"core-js": "^3.12.1",
 		"date-fns": "^2.19.0",
 		"lodash": "^4.17.21",
 		"modern-normalize": "^1.0.0",
 		"next": "10.2.0",
-		"puppeteer": "^9.1.1",
+		"puppeteer-core": "9.1.x",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-portal": "^4.2.1"
@@ -28,6 +29,7 @@
 		"eslint": "^7.23.0",
 		"eslint-plugin-react": "^7.23.1",
 		"eslint-plugin-react-hooks": "^4.2.0",
+		"puppeteer": "^9.1.1",
 		"sass": "^1.32.8"
 	}
 }

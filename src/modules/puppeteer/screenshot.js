@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+import chromium from 'chrome-aws-lambda'
 import { PassThrough } from 'stream'
 import { pause } from '~modules/async'
 
@@ -17,12 +17,15 @@ async function newPage() {
     } catch(e) {}
     finally { _browser = undefined }
 
-    _browser = await puppeteer.launch({
+    _browser = await chromium.puppeteer.launch({
+        args: chromium.args,
         defaultViewport: {
+            ...chromium.defaultViewport,
             width: 1280,
             height: 900
         },
-        headless: true,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless,
         ignoreHTTPSErrors: true
     })
 
@@ -40,7 +43,10 @@ export default async({ url, viewport })=>{
             await page.setViewport(viewport)
 
         //load
-        await page.goto(url, { waitUntil: 'load' })
+        await page.goto(url, {
+            waitUntil: 'load',
+            timeout: 10000
+        })
 
         //generate screenshot
         const image = await page.screenshot({ type: 'png' })
