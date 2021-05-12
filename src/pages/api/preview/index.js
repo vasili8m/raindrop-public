@@ -5,6 +5,10 @@ const routes = [
     {
         capture: /\/(?<username>.*)\/(?<slug>.*)-(?<id>\d+)/,
         embed: ({ username, slug, id })=>`/${username}/${slug}-${parseInt(id)}/embed`
+    },
+    {
+        capture: /\/(?<username>.*)/,
+        embed: ({ username })=>`/${username}/embed/me`
     }
 ]
 

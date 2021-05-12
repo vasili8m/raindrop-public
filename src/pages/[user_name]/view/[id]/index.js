@@ -94,20 +94,21 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					<meta name='twitter:title' content={collection.title} />
 					<meta name='og:title' content={collection.title} />
 
+					<meta name='og:type' content='website' />
+					<meta name='twitter:card' content='summary_large_image' />					
+
 					<meta name='description' content={collection.description} />
 					<meta name='twitter:description' content={collection.description} />
 					<meta name='og:description' content={collection.description} />
 
-					<meta name='twitter:card' content='summary_large_image' />
 					<meta name='twitter:label1' content='Created by' />
 					<meta name='twitter:data1' content={user.name} />
 
+					<meta name='twitter:image' content={`${site_url}/api/preview?format=twitter&url=${encodeURIComponent(url)}`} />
+					<meta name='og:image' content={`${site_url}/api/preview?format=og&url=${encodeURIComponent(url)}`} />
+
 					{!!collection.cover?.length && (
-						<>
-							<link rel='icon' type='image/png' href={collection.cover[0]} />
-							<meta name='twitter:image' content={collection.cover[0]} />
-							<meta name='og:image' content={collection.cover[0]} />
-						</>
+						<link rel='icon' type='image/png' href={collection.cover[0]} />
 					)}
 				</Head>
 

@@ -28,15 +28,19 @@ export async function getStaticProps({ params: { user_name } }) {
     return {
 		props: {
 			user,
-			collections
+			collections,
+
+			site_url: process.env.SITE_URL || ''
 		},
 		revalidate: 3
 	}
 }
 
-export default function UserPage({ statusCode, user, collections }) {
+export default function UserPage({ statusCode, user, collections, site_url }) {
 	if (statusCode)
 		return <Error statusCode={statusCode} />
+
+	const url = `${links.site.index}/${user.name}`
 
 	const root = useRoot(collections)
 
@@ -44,18 +48,20 @@ export default function UserPage({ statusCode, user, collections }) {
 		<EmbedRedirect>
 			<Page.Wrap wide>
 				<Head>
-					<link rel='canonical' href={`${links.site.index}/${user.name}`} />
+					<link rel='canonical' href={url} />
 
 					<title>{user.name}</title>
 					<meta name='twitter:title' content={user.name} />
 					<meta name='og:title' content={user.name} />
 
+					<meta name='og:type' content='website' />
+					<meta name='twitter:card' content='summary_large_image' />
+
+					<meta name='twitter:image' content={`${site_url}/api/preview?format=twitter&url=${encodeURIComponent(url)}`} />
+					<meta name='og:image' content={`${site_url}/api/preview?format=og&url=${encodeURIComponent(url)}`} />
+
 					{!!user.avatar && (
-						<>
-							<link rel='icon' type='image/png' href={user.avatar} />
-							<meta name='twitter:image' content={user.avatar} />
-							<meta name='og:image' content={user.avatar} />
-						</>
+						<link rel='icon' type='image/png' href={user.avatar} />
 					)}
 				</Head>
 

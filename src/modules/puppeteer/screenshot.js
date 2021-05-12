@@ -42,10 +42,13 @@ export default async({ url, viewport })=>{
         if (viewport)
             await page.setViewport(viewport)
 
+        //no js
+        await page.isJavaScriptEnabled(false)
+
         //load
         await page.goto(url, {
             waitUntil: 'load',
-            timeout: 10000
+            timeout: 15000
         })
 
         //generate screenshot
