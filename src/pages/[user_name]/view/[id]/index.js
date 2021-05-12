@@ -98,6 +98,7 @@ export default function ViewScreen({ statusCode, collection, collections, raindr
 					<meta name='twitter:description' content={collection.description} />
 					<meta name='og:description' content={collection.description} />
 
+					<meta name='twitter:card' content='summary_large_image' />
 					<meta name='twitter:label1' content='Created by' />
 					<meta name='twitter:data1' content={user.name} />
 
