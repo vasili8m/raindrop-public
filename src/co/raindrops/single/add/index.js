@@ -27,7 +27,7 @@ export default function RaindropsSingleAdd({ item: { link, title } }) {
                 title
             })}
             title='Add to Raindrop.io'>
-            <Icon name='add' />
+            <Icon name='star' variant='fill' size='small' />
         </Button>
     )
 }

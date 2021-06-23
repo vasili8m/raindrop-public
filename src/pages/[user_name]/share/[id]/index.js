@@ -170,7 +170,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 						<div>
 							<Select 
 								name='sort'
-								options={[{value:'', label: 'Custom (user specified)'}, {value:'-created', label: 'By date (newest)'}, {value: 'created', label: 'By date (oldest)'}, {value: 'title', label: 'By name (A-Z)'}, {value: '-title', label: 'By name (Z-A)'}]} />
+								options={[{value:'', label: 'Custom (curator specified)'}, {value:'-created', label: 'By date (newest)'}, {value: 'created', label: 'By date (oldest)'}, {value: 'title', label: 'By name (A-Z)'}, {value: '-title', label: 'By name (Z-A)'}]} />
 						</div>
 
 						<Label>Search</Label>

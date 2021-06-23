@@ -18,7 +18,7 @@ export default function Footer() {
                 <span className={s.desc}>All-in-one bookmark manager</span>
             </a>
 
-            <Button href={links.app.index} variant='flat'>Create your own public page</Button>
+            <Button href={links.app.index} variant='flat'>Create your own curated list</Button>
             <Button href={links.help.publicPage} variant='flat'>Help</Button>
         </footer>
     )

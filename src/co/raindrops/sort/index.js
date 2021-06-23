@@ -8,7 +8,7 @@ export default function RaindropsSort({ options={} }) {
 
     const sort = options.sort
     const sorts = useMemo(()=>[
-        { separator: true, label: 'User specified' },
+        { separator: true, label: 'Curator specified' },
         { value: '-sort', label: 'Custom sorting', dir: 'desc' },
 
         { separator: true, label: 'Date added' },
