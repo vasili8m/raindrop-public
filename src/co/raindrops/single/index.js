@@ -13,7 +13,7 @@ import Type from './type'
 import Add from './add'
 
 export default function RaindropsSingle(props) {
-    const { item, collection, target } = props
+    const { item, collection, target, options={} } = props
     const { query } = useRouter()
 
     return (
@@ -56,9 +56,11 @@ export default function RaindropsSingle(props) {
                     </Info>
                 </div>
 
-                <Buttons className={s.actions}>
-                    <Add {...props} />
-                </Buttons>
+                {!options['no-add'] && (
+                    <Buttons className={s.actions}>
+                        <Add {...props} />
+                    </Buttons>
+                )}
             </div>
 
             <a 

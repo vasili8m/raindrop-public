@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import Single from '../single'
 
-export default function RaindropsListing({ target, items=[], collection, collections, user }) {
+export default function RaindropsListing({ target, items=[], collection, collections, user, options }) {
     return (
         <section className={s.listing+' '+s[collection.view]}>
             <section className={s.items}>
@@ -12,7 +12,8 @@ export default function RaindropsListing({ target, items=[], collection, collect
                         collection={collection}
                         collections={collections}
                         user={user}
-                        item={item} />
+                        item={item}
+                        options={options} />
                 ))}
             </section>
         </section>

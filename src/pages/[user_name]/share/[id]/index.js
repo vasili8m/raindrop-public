@@ -184,6 +184,7 @@ export default function EmbedCollectionScreen({ statusCode, collection, user }) 
 									options={[{value:'', label: 'Light theme'}, {value: 'dark', label: 'Dark theme'}, {value: 'auto', label: 'Automatic theme (light or dark depending on user preferences)'}]} />
 							</div>
 							<Checkbox name='no-header'>Hide header</Checkbox>
+							<Checkbox name='no-add'>Hide Add to Raindrop.io button</Checkbox>
 						</Fields>
 
 						<Label>Preview</Label>

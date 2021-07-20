@@ -112,7 +112,8 @@ export default function EmbedCollectionScreen({ statusCode, collection, collecti
 					collection={collection}
 					collections={collections}
 					items={raindrops.items}
-					user={user} />
+					user={user}
+					options={options} />
 
 				<br />
 				
